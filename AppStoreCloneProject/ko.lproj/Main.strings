@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "검색"; ObjectID = "TMk-KC-IFh"; */
+"TMk-KC-IFh.text" = "검색";
+
+/* Class = "UITextField"; placeholder = "게임, 앱, 스토리 등"; ObjectID = "f9y-Sh-qRG"; */
+"f9y-Sh-qRG.placeholder" = "게임, 앱, 스토리 등";
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "u1V-G6-L6U"; */
+"u1V-G6-L6U.normalTitle" = "취소";
