@@ -23,3 +23,38 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
 }
+
+extension UIImageView {
+    
+    /**
+     이미지뷰에 URL로 부터 Cache 이미지 설정하는 Extention 함수
+     - url: URL
+     */
+    func setCacheImageURL(_ url: URL?) {
+        self.setCacheImageURL(url, nil)
+    }
+    
+    /**
+     이미지뷰에 URL로 부터 Cache 이미지 설정하는 Extention 함수
+     - url: URL
+     - success: 성공 block
+     */
+    func setCacheImageURL(_ url: URL?, _ success: ((_ image: UIImage) -> Void)? = nil) {
+        let urlString = url?.absoluteString ?? ""
+        if urlString.isEmpty {
+            self.image = nil
+            return
+        }
+        
+        self.image = nil
+        
+        ImageCacheManager.shared.requestImageURL(url, { [weak self] (image) in
+            self?.image = image
+            if let success = success {
+                success(image)
+            }
+        }) { (error) in
+            print(error)
+        }
+    }
+}

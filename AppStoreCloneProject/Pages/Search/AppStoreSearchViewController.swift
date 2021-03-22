@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 protocol AppStoreSearchDisplayLogic: class {
-    func displayRecentWordList(viewModel: AppStoreSearch.RecentWord.ViewModel)
+    func displayHistoryWordList(viewModel: AppStoreSearch.HistoryWord.ViewModel)
     func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel)
     func displayError(error: Error?)
 }
@@ -67,9 +67,9 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         
         self.initNavigation()
         self.initStyle()
-        self.initRecentSearchedWordTableView()
+        self.initHistoryWordTableView()
         
-        self.loadRecentWord(dataType: .all)
+        self.loadHistoryWord(dataType: .all)
     }
     
     // MARK: Do something
@@ -92,8 +92,15 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         return btn
     }()
     
+    lazy var searchResultTableViewController: SearchResultTableViewController = {
+        let tv = SearchResultTableViewController()
+        tv.view.backgroundColor = .red
+        tv.tableView.backgroundColor = .green
+        return tv
+    }()
+    
     lazy var searchingController: UISearchController = {
-        let sc = UISearchController(searchResultsController: nil)
+        let sc = UISearchController(searchResultsController: searchResultTableViewController)
         sc.do {
             $0.hidesNavigationBarDuringPresentation = true
             $0.automaticallyShowsCancelButton = true
@@ -106,21 +113,12 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         return sc
     }()
     
-    lazy var searchResultTableViewController: SearchResultTableViewController = {
-        let tv = SearchResultTableViewController()
-        return tv
-     
-     //UISearchController(searchResultsController: searchResultTableViewController) //MARK: [고민] 테이블뷰 두개 겹쳐서 돌아가면서 나오게 하면 안될것 같다...
-    }()
-    
     //tableView
-    @IBOutlet var recentWordTableView: UITableView!
-    let recentWordReuseIdentifier = "RecentWordTableViewCell"
-    
+    let mainCell = "MainTableViewCell"
+    @IBOutlet var mainTableView: UITableView!
     
     //data
-    var vmRecentWordDataList: [String]?
-    
+    var vmHistoryWordList: [String]?
     
     func initNavigation() {
         self.navigationItem.do {
@@ -142,11 +140,12 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         }
     }
     
-    func initRecentSearchedWordTableView() {
-        self.recentWordTableView.do {
+    func initHistoryWordTableView() {
+        self.mainTableView.do {
             $0.delegate = self
             $0.dataSource = self
-            $0.register(UINib(nibName: recentWordReuseIdentifier, bundle: nil), forCellReuseIdentifier: recentWordReuseIdentifier)
+            $0.separatorColor = .clear
+            $0.register(UINib(nibName: mainCell, bundle: nil), forCellReuseIdentifier: mainCell)
         }
     }
     
@@ -158,23 +157,25 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         print("프로필 버튼 클릭")
     }
    
-    func loadRecentWord(dataType: AppStoreSearch.RecentWord.Request.DataType, keyWord: String? = nil) {
-        self.interactor?.loadRecentWordList(request: .init(dataType: dataType, keyWord: keyWord))
-        self.updateTableViewMode(mode: .recentWord)
+    func loadHistoryWord(dataType: AppStoreSearch.HistoryWord.Request.DataType, keyWord: String? = nil) {
+        //MARK: 모드 바꾸기
+        self.interactor?.loadHistoryWordList(request: .init(dataType: dataType, keyWord: keyWord))
+        //self.updateTableViewMode(mode: .historyWord)
     }
     
-    func requestMusicList(keyWord: String) {
+    func requestITunesSearchDataList(keyWord: String) {
+        //MARK: 모드 바꾸기***
         self.interactor?.requestSearchWordList(request: .init(keyWord: keyWord))
-        self.updateTableViewMode(mode: .searchWord)
+        //self.updateTableViewMode(mode: .searchWord)
     }
     
-    func displayRecentWordList(viewModel: AppStoreSearch.RecentWord.ViewModel) {
-        guard let recentWordList = viewModel.recentWordList else {
+    func displayHistoryWordList(viewModel: AppStoreSearch.HistoryWord.ViewModel) {
+        guard let historyWordList = viewModel.historyWordList else {
             return
         }
         
-        self.vmRecentWordDataList = recentWordList
-        self.updateRecentWordTableView()
+        self.vmHistoryWordList = historyWordList
+        self.updateHistoryWordTableView()
     }
     
     func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel) {
@@ -185,38 +186,38 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         print(error?.localizedDescription ?? "error is occured")
     }
     
-    func updateRecentWordTableView() {
-        self.recentWordTableView.reloadData()
+    func updateHistoryWordTableView() {
+        self.mainTableView.reloadData()
     }
-    
-    func updateTableViewMode(mode: AppStoreSearch.ViewMode) {
-        switch mode {
-        case .recentWord:
-            self.searchingController = UISearchController(searchResultsController: nil)
-        case .searchWord:
-            self.searchingController = UISearchController(searchResultsController: searchResultTableViewController)
-        }
-    }
+//
+//    func updateTableViewMode(mode: AppStoreSearch.ViewMode) {
+//        switch mode {
+//        case .historyWord:
+//            self.searchingController = UISearchController(searchResultsController: nil)
+//        case .searchWord:
+//            self.searchingController = UISearchController(searchResultsController: searchResultTableViewController)
+//        }
+//    }
 }
 
 extension AppStoreSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, text.count > 0 else { return }
         
-        self.loadRecentWord(dataType: .filtered, keyWord: text)
+        self.loadHistoryWord(dataType: .filtered, keyWord: text)
     }
 }
 
 extension AppStoreSearchViewController: UISearchBarDelegate {
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("searchBarTextDidEndEditing", searchBar.text)
-    }
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        print("searchBarTextDidEndEditing", searchBar.text)
+//    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("textDidChange", searchBar.text)
+        //print("textDidChange", searchBar.text)
         
         if searchText.isEmpty {
-            self.loadRecentWord(dataType: .all)
+            self.loadHistoryWord(dataType: .all)
         }
     }
     
@@ -225,7 +226,7 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
         //let isBackSpace = strcmp(char, "\\b")
         if text.isEmpty { //(isBackSpace == -92) && (text.isEmpty)
             //print("Backspace was pressed and search bar text is empty")
-            self.loadRecentWord(dataType: .all)
+            self.loadHistoryWord(dataType: .all)
         }
         
         return true
@@ -235,49 +236,54 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
         print("서치 버튼 클릭")
         guard let text = searchBar.text, text.count > 0 else { return }
         
-        self.requestMusicList(keyWord: text)
+        self.requestITunesSearchDataList(keyWord: text)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("서치 취소 클릭")
         
-        self.loadRecentWord(dataType: .all)
+        self.loadHistoryWord(dataType: .all)
     }
     
 }
 
 extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "최근 검색어" //MARK: 임시
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let recentWordList = self.vmRecentWordDataList,
-              !recentWordList.isEmpty else {
+        guard let historyWordList = self.vmHistoryWordList,
+              !historyWordList.isEmpty else {
             //self.recentWordTableView.isHidden = true //MARK: 테스트 코드
             return 0
         }
                 
         //self.recentWordTableView.isHidden = false //MARK: 테스트 코드
-        return recentWordList.count
+        return historyWordList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let recentWordList = self.vmRecentWordDataList,
-              indexPath.row < recentWordList.count else {
+        guard let historyWordList = self.vmHistoryWordList,
+              indexPath.row < historyWordList.count else {
             return UITableViewCell()
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.recentWordReuseIdentifier, for: indexPath) as! RecentWordTableViewCell
-        cell.updateData(word: recentWordList[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.mainCell, for: indexPath) as! MainTableViewCell
+        cell.updateCellData(word: historyWordList[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedWord = self.vmRecentWordDataList?[indexPath.row] else { return }
+        guard let selectedWord = self.vmHistoryWordList?[indexPath.row] else { return }
         
         print("선택한 단어로 검색하기")
         self.searchingController.searchBar.text = selectedWord
-        self.requestMusicList(keyWord: selectedWord)
+        self.requestITunesSearchDataList(keyWord: selectedWord)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

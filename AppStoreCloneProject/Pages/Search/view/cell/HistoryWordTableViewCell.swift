@@ -1,5 +1,5 @@
 //
-//  RecentWordTableViewCell.swift
+//  HistoryWordTableViewCell.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/21.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class RecentWordTableViewCell: UITableViewCell {
+class HistoryWordTableViewCell: UITableViewCell {
 
     @IBOutlet var iconImageView: UIImageView!
-    @IBOutlet var wordLabel: UILabel!
+    @IBOutlet var historyWordLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,16 +26,16 @@ class RecentWordTableViewCell: UITableViewCell {
     func initStyle() {
         self.selectionStyle = .none
         
-        self.wordLabel.do {
+        self.historyWordLabel.do {
             $0.setFontAndColor(f: .systemFont(ofSize: 14), c: .black)
             $0.text = ""
             $0.textAlignment = .left
         }
     }
     
-    func updateData(word: String?) {
-        if let word = word {
-            self.wordLabel.text = word
+    func updateCellData(historyWord: String?) {
+        if let text = historyWord {
+            self.historyWordLabel.text = text
         }
     }
     

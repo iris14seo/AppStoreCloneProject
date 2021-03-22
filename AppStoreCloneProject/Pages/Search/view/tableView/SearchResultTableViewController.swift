@@ -10,7 +10,10 @@ import UIKit
 //MARK: test 코드
 class SearchResultTableViewController: UITableViewController {
 
-    let recentWordReuseIdentifier = "RecentWordTableViewCell"
+    let historyWordCell = "HistoryWordTableViewCell"
+    let searchResultCell = "SearchResultTableViewCell"
+    let notFoundCell = "NotFoundTableViewCell"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,25 +34,25 @@ class SearchResultTableViewController: UITableViewController {
         self.tableView.do {
             $0.delegate = self
             $0.dataSource = self
-            $0.register(UINib(nibName: recentWordReuseIdentifier, bundle: nil), forCellReuseIdentifier: recentWordReuseIdentifier)
+            $0.register(UINib(nibName: historyWordCell, bundle: nil), forCellReuseIdentifier: historyWordCell)
+            $0.register(UINib(nibName: searchResultCell, bundle: nil), forCellReuseIdentifier: searchResultCell)
+            $0.register(UINib(nibName: notFoundCell, bundle: nil), forCellReuseIdentifier: notFoundCell)
         }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.recentWordReuseIdentifier, for: indexPath) as! RecentWordTableViewCell
-        cell.backgroundColor = .red
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.historyWordCell, for: indexPath) as! HistoryWordTableViewCell
+        cell.backgroundColor = .lightGray
         return cell
     }
 

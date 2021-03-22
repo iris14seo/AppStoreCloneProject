@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - MusicData
+// MARK: - ITunesSearchData
 
 struct ITunesSearchDataResponse: Codable {
     var resultCount: Int?
@@ -77,57 +77,3 @@ extension URLSession {
         return self.codableTask(with: url, completionHandler: completionHandler)
     }
 }
-
-
-/*
- //MARK: [도전과제] 코더블 사용하기
- 
- // This file was generated from JSON Schema using quicktype, do not modify it directly.
- // To parse the JSON, add this file to your project and do:
- //
- //   let musicData = try? newJSONDecoder().decode(MusicData.self, from: jsonData)
- 
- //
- // To read values from URLs:
- //
- //   let task = URLSession.shared.musicDataTask(with: url) { musicData, response, error in
- //     if let musicData = musicData {
- //       ...
- //     }
- //   }
- //   task.resume()
- 
- 
- //MARK: 이거는 이제 이렇게 Json Parsing 하지 말기
- //    init(dictionary: [String: Any]) {
- //        self.wrapperType = dictionary["wrapperType"] as! String
- //        self.kind = dictionary["kind"] as! String
- //        self.artistId = dictionary["artistId"] as! Int
- //        self.collectionId = dictionary["collectionId"] as! Int
- //        self.trackId = dictionary["trackId"] as! Int
- //        self.artistName = dictionary["artistName"] as! String
- //        self.collectionName = dictionary["collectionName"] as! String
- //        self.trackName = dictionary["trackName"] as! String
- //        self.collectionCensoredName = dictionary["collectionCensoredName"] as! String
- //        self.trackCensoredName = dictionary["trackCensoredName"] as! String
- //        self.artistViewUrl = dictionary["artistViewUrl"] as! String
- //        self.collectionViewUrl = dictionary["collectionViewUrl"] as! String
- //        self.trackViewUrl = dictionary["trackViewUrl"] as! String
- //        self.previewUrl = dictionary["previewUrl"] as? String
- //        self.artworkUrl60 = dictionary["artworkUrl60"] as? String
- //        self.artworkUrl100 = dictionary["artworkUrl100"] as? String
- //        self.collectionPrice = dictionary["collectionPrice"] as! Double
- //        self.trackPrice = dictionary["trackPrice"] as! Double
- //        self.collectionExplicitness = dictionary["collectionExplicitness"] as! String
- //        self.trackExplicitness = dictionary["trackExplicitness"] as! String
- //        self.discCount = dictionary["discCount"] as! Int
- //        self.discNumber = dictionary["discNumber"] as! Int
- //        self.trackCount = dictionary["trackCount"] as! Int
- //        self.trackNumber = dictionary["trackNumber"] as! Int
- //        self.trackTimeMillis = dictionary["trackTimeMillis"] as? Int
- //        self.country = dictionary["country"] as! String
- //        self.currency = dictionary["currency"] as! String
- //        self.primaryGenreName = dictionary["primaryGenreName"] as! String
- //    }
- */
-

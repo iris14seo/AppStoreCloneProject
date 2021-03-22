@@ -107,7 +107,7 @@ class NetworkManager {
         print(urlRequest)
         
         // - 네트워킹 시작
-        session?.dataTask(with: urlRequest) { (data, response, error) in
+        let task = session?.dataTask(with: urlRequest) { (data, response, error) in
             
             guard error == nil else {
                 //MARK: 왜 디스패치 큐 해야함??
@@ -139,8 +139,9 @@ class NetworkManager {
                     completionHandler(.failure(error: .unknownError))
                 }
             }
-            
-        }.resume()
+        }
+        
+        task?.resume()
     }
     
     /**

@@ -10,7 +10,7 @@ import UIKit
 enum AppStoreSearch {
     
     //Use Case1 - 최근 검색어 조회하기(전체 목록 vs 입력된 검색어 기반 필터 목록)
-    enum RecentWord {
+    enum HistoryWord {
         struct Request {
             var dataType: DataType
             var keyWord: String?
@@ -22,11 +22,11 @@ enum AppStoreSearch {
         }
         
         struct Response {
-            var recentWordList: [String]?
+            var historyWordList: [String]?
         }
         
         struct ViewModel{
-            var recentWordList: [String]?
+            var historyWordList: [String]?
         }
     }
     
@@ -37,47 +37,32 @@ enum AppStoreSearch {
         }
         
         struct Response {
-            var musicDataList: [ITunesSearchData]?
+            var iTunesSearchDataList: [ITunesSearchData]?
         }
         
         struct ViewModel{
-            var musicDataList: [ITunesSearchData]?
+            var iTunesSearchDataList: [ITunesSearchData]?
+        }
+        
+        struct FormmatedSearchData: Equatable {
+            var wrapperType, kind: String?
+            var artistID, collectionID, trackID: Int?
+            var artistName, collectionName, trackName, collectionCensoredName: String?
+            var trackCensoredName: String?
+            var artistViewURL, collectionViewURL, trackViewURL: String?
+            var previewURL: String?
+            var artworkUrl60, artworkUrl100: String?
+            let collectionPrice, trackPrice: Double?
+            var collectionExplicitness, trackExplicitness: String?
+            var discCount, discNumber, trackCount, trackNumber: Int?
+            var trackTimeMillis: Int?
+            var country, currency, primaryGenreName: String?
         }
     }
-    
-    enum ViewMode {
-        case recentWord
-        case searchWord
-    }
 }
 
-
-/*//MARK: Use Case3 - delete 버튼 누름
-enum DeleteWord {
-    struct Request {
-    }
-    
-    struct Response {
-    }
-    
-    struct ViewModel{
-    }
+public enum SearchResultType {
+    case history
+    case search
+    case notFound
 }
-
-//MARK: Use Case4 - 검색 모드 변경
-enum ChangeSearchMode {
-    struct Request {
-        var searchMode: SearchMode
-    }
-    
-    struct Response {
-    }
-    
-    struct ViewModel{
-    }
-    
-    enum SearchMode {
-        case active //searchBar 탭해서 검색모드 활성화
-        case deactive //cancel 버튼 눌러서 검색모드 비활성화
-    }
-}*/

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppStoreSearchPresentationLogic {
-    func presentRecentWordList(response: AppStoreSearch.RecentWord.Response)
+    func presentHistoryWordList(response: AppStoreSearch.HistoryWord.Response)
     func presentSearchWordList(response: AppStoreSearch.SearchWord.Response)
     func presentError(error: Error?)
 }
@@ -18,12 +18,12 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
     
     // MARK: Do something
     
-    func presentRecentWordList(response: AppStoreSearch.RecentWord.Response) {
-        self.viewController?.displayRecentWordList(viewModel: .init(recentWordList: response.recentWordList))
+    func presentHistoryWordList(response: AppStoreSearch.HistoryWord.Response) {
+        self.viewController?.displayHistoryWordList(viewModel: .init(historyWordList: response.historyWordList))
     }
     
     func presentSearchWordList(response: AppStoreSearch.SearchWord.Response) {
-        self.viewController?.displaySearchWordList(viewModel: .init(musicDataList: response.musicDataList))
+        self.viewController?.displaySearchWordList(viewModel: .init(iTunesSearchDataList: response.iTunesSearchDataList))
     }
     
     func presentError(error: Error?) {
