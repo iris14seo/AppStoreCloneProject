@@ -4,20 +4,6 @@
 //
 //  Created by MUN JEONG SEO on 2021/03/22.
 //
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let musicData = try? newJSONDecoder().decode(MusicData.self, from: jsonData)
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.musicDataTask(with: url) { musicData, response, error in
-//     if let musicData = musicData {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 import Foundation
 
@@ -30,28 +16,28 @@ struct MusicDataResponse: Codable {
 
 struct MusicData: Codable {
     let wrapperType, kind: String
-    let artistID, collectionID, trackID: Int
+    let artistId, collectionId, trackId: Int
     let artistName, collectionName, trackName, collectionCensoredName: String
     let trackCensoredName: String
-    let artistViewURL, collectionViewURL, trackViewURL: String
-    let previewURL: String?
+    let artistViewUrl, collectionViewUrl, trackViewUrl: String
+    let previewUrl: String?
     let artworkUrl60, artworkUrl100: String?
     let collectionPrice, trackPrice: Double
     let collectionExplicitness, trackExplicitness: String
     let discCount, discNumber, trackCount, trackNumber: Int
     let trackTimeMillis: Int?
     let country, currency, primaryGenreName: String
-
+    
     enum CodingKeys: String, CodingKey {
         case wrapperType, kind
-        case artistID = "artistId"
-        case collectionID = "collectionId"
-        case trackID = "trackId"
+        case artistId = "artistId"
+        case collectionId = "collectionId"
+        case trackId = "trackId"
         case artistName, collectionName, trackName, collectionCensoredName, trackCensoredName
-        case artistViewURL = "artistViewUrl"
-        case collectionViewURL = "collectionViewUrl"
-        case trackViewURL = "trackViewUrl"
-        case previewURL = "previewUrl"
+        case artistViewUrl = "artistViewUrl"
+        case collectionViewUrl = "collectionViewUrl"
+        case trackViewUrl = "trackViewUrl"
+        case previewUrl = "previewUrl"
         case artworkUrl60, artworkUrl100, collectionPrice, trackPrice, collectionExplicitness, trackExplicitness, discCount, discNumber, trackCount, trackNumber, trackTimeMillis, country, currency, primaryGenreName
     }
 }
@@ -86,8 +72,62 @@ extension URLSession {
             completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
         }
     }
-
+    
     func musicDataTask(with url: URL, completionHandler: @escaping (MusicData?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.codableTask(with: url, completionHandler: completionHandler)
     }
 }
+
+
+/*
+ //MARK: [도전과제] 코더블 사용하기
+ 
+ // This file was generated from JSON Schema using quicktype, do not modify it directly.
+ // To parse the JSON, add this file to your project and do:
+ //
+ //   let musicData = try? newJSONDecoder().decode(MusicData.self, from: jsonData)
+ 
+ //
+ // To read values from URLs:
+ //
+ //   let task = URLSession.shared.musicDataTask(with: url) { musicData, response, error in
+ //     if let musicData = musicData {
+ //       ...
+ //     }
+ //   }
+ //   task.resume()
+ 
+ 
+//MARK: 이거는 이제 이렇게 Json Parsing 하지 말기
+//    init(dictionary: [String: Any]) {
+//        self.wrapperType = dictionary["wrapperType"] as! String
+//        self.kind = dictionary["kind"] as! String
+//        self.artistId = dictionary["artistId"] as! Int
+//        self.collectionId = dictionary["collectionId"] as! Int
+//        self.trackId = dictionary["trackId"] as! Int
+//        self.artistName = dictionary["artistName"] as! String
+//        self.collectionName = dictionary["collectionName"] as! String
+//        self.trackName = dictionary["trackName"] as! String
+//        self.collectionCensoredName = dictionary["collectionCensoredName"] as! String
+//        self.trackCensoredName = dictionary["trackCensoredName"] as! String
+//        self.artistViewUrl = dictionary["artistViewUrl"] as! String
+//        self.collectionViewUrl = dictionary["collectionViewUrl"] as! String
+//        self.trackViewUrl = dictionary["trackViewUrl"] as! String
+//        self.previewUrl = dictionary["previewUrl"] as? String
+//        self.artworkUrl60 = dictionary["artworkUrl60"] as? String
+//        self.artworkUrl100 = dictionary["artworkUrl100"] as? String
+//        self.collectionPrice = dictionary["collectionPrice"] as! Double
+//        self.trackPrice = dictionary["trackPrice"] as! Double
+//        self.collectionExplicitness = dictionary["collectionExplicitness"] as! String
+//        self.trackExplicitness = dictionary["trackExplicitness"] as! String
+//        self.discCount = dictionary["discCount"] as! Int
+//        self.discNumber = dictionary["discNumber"] as! Int
+//        self.trackCount = dictionary["trackCount"] as! Int
+//        self.trackNumber = dictionary["trackNumber"] as! Int
+//        self.trackTimeMillis = dictionary["trackTimeMillis"] as? Int
+//        self.country = dictionary["country"] as! String
+//        self.currency = dictionary["currency"] as! String
+//        self.primaryGenreName = dictionary["primaryGenreName"] as! String
+//    }
+ */
+ 

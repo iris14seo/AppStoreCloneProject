@@ -11,11 +11,14 @@ import RxCocoa
 import RxSwift
 
 protocol AppStoreSearchDisplayLogic: class {
-    //func displaySomething(viewModel: AppStoreSearch.Something.ViewModel)
+    func displayRecentWordList(viewModel: AppStoreSearch.RecentWord.ViewModel)
+    func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel)
+    func displayError(error: APIError?)
 }
 
 typealias AppStoreSearchPage = AppStoreSearchViewController
 class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic {
+    
     var interactor: AppStoreSearchBusinessLogic?
     var router: (NSObjectProtocol & AppStoreSearchRoutingLogic & AppStoreSearchDataPassing)?
     
@@ -66,12 +69,7 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         self.initStyle()
         self.initRecentSearchedWordTableView()
         
-        //test
-        
-        MusicDataManager.shared.getMusicList(keyWord: "AJR") { _ in
-            print("done")
-        }
-        
+        self.loadRecentWord(dataType: .all)
     }
     
     // MARK: Do something
@@ -102,7 +100,7 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
             $0.obscuresBackgroundDuringPresentation = false
             $0.searchResultsUpdater = self
             $0.searchBar.delegate = self
-            $0.searchBar.placeholder = "게임, 앱, 스토리 등"
+            $0.searchBar.placeholder = "음악, 영화, 책 등"
         }
         
         return sc
@@ -111,6 +109,8 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
     lazy var searchResultTableViewController: SearchResultTableViewController = {
         let tv = SearchResultTableViewController()
         return tv
+     
+     //UISearchController(searchResultsController: searchResultTableViewController) //MARK: [고민] 테이블뷰 두개 겹쳐서 돌아가면서 나오게 하면 안될것 같다...
     }()
     
     //tableView
@@ -119,9 +119,7 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
     
     
     //data
-    var targetArray: [String]?
-    var userDefaultArray: [String] = ["카카오","카카오톡","카카오 뱅크","뱅크","카카오페이","카패","게임","애플","테스트","캌ㅋ","ㅋㅋㅇ","카카오택시","카톡","은행","배그","ㅁㅇㄹㅁ","하이","1","2","3","4","5","6","7","netflix","play"]
-    var filteredArrray: [String] = []
+    var vmRecentWordDataList: [String]?
     
     
     func initNavigation() {
@@ -141,20 +139,10 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
     func initStyle() {
         self.view.do {
             $0.backgroundColor = .systemBackground
-            
-//            let swipeUpRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture))
-//            swipeUpRecognizer.direction = .up
-//            $0.addGestureRecognizer(swipeUpRecognizer)
-//
-//            let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture))
-//            swipeUpRecognizer.direction = .down
-//            $0.addGestureRecognizer(swipeDownRecognizer)
         }
     }
     
     func initRecentSearchedWordTableView() {
-        self.targetArray = self.userDefaultArray //나중에 인터렉터로 받아오기
-        
         self.recentWordTableView.do {
             $0.delegate = self
             $0.dataSource = self
@@ -170,30 +158,53 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         print("프로필 버튼 클릭")
     }
    
-    //  func doSomething() {
-    //    let request = AppStoreSearch.Something.Request()
-    //    interactor?.doSomething(request: request)
-    //  }
+    func loadRecentWord(dataType: AppStoreSearch.RecentWord.Request.DataType, keyWord: String? = nil) {
+        self.interactor?.loadRecentWordList(request: .init(dataType: dataType, keyWord: keyWord))
+        self.updateTableViewMode(mode: .recentWord)
+    }
     
-    //  func displaySomething(viewModel: AppStoreSearch.Something.ViewModel) {
-    //    //nameTextField.text = viewModel.name
-    //  }
+    func requestMusicList(keyWord: String) {
+        self.interactor?.requestSearchWordList(request: .init(keyWord: keyWord))
+        self.updateTableViewMode(mode: .searchWord)
+    }
+    
+    func displayRecentWordList(viewModel: AppStoreSearch.RecentWord.ViewModel) {
+        guard let recentWordList = viewModel.recentWordList else {
+            return
+        }
+        
+        self.vmRecentWordDataList = recentWordList
+        self.updateRecentWordTableView()
+    }
+    
+    func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel) {
+        
+    }
+    
+    func displayError(error: APIError?) {
+        print(error?.localizedDescription ?? "error is occured")
+    }
+    
+    func updateRecentWordTableView() {
+        self.recentWordTableView.reloadData()
+    }
+    
+    func updateTableViewMode(mode: AppStoreSearch.ViewMode) {
+        switch mode {
+        case .recentWord:
+            self.searchingController = UISearchController(searchResultsController: nil)
+        case .searchWord:
+            self.searchingController = UISearchController(searchResultsController: searchResultTableViewController)
+        }
+    }
 }
 
 extension AppStoreSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //code
         guard let text = searchController.searchBar.text, text.count > 0 else { return }
-        self.filteredArrray = self.userDefaultArray.filter{ $0.lowercased().contains(text) }
-        self.targetArray = self.filteredArrray
         
-        print("updateSearchResults")
-        dump(self.filteredArrray)
-        
-        self.recentWordTableView.reloadData()
+        self.loadRecentWord(dataType: .filtered, keyWord: text)
     }
-    
-    
 }
 
 extension AppStoreSearchViewController: UISearchBarDelegate {
@@ -205,23 +216,16 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
         print("textDidChange", searchBar.text)
         
         if searchText.isEmpty {
-            self.filteredArrray = []
-            self.targetArray = self.userDefaultArray
-            
-            self.recentWordTableView.reloadData()
+            self.loadRecentWord(dataType: .all)
         }
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //let  char = text.cString(using: String.Encoding.utf8)!
-//        let isBackSpace = strcmp(char, "\\b")
-
+        //let isBackSpace = strcmp(char, "\\b")
         if text.isEmpty { //(isBackSpace == -92) && (text.isEmpty)
-            print("Backspace was pressed and search bar text is empty")
-            self.filteredArrray = []
-            self.targetArray = self.userDefaultArray
-            
-            self.recentWordTableView.reloadData()
+            //print("Backspace was pressed and search bar text is empty")
+            self.loadRecentWord(dataType: .all)
         }
         
         return true
@@ -229,15 +233,15 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("서치 버튼 클릭")
+        guard let text = searchBar.text, text.count > 0 else { return }
+        
+        self.requestMusicList(keyWord: text)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("서치 취소 클릭")
         
-        self.filteredArrray = []
-        self.targetArray = self.userDefaultArray
-        
-        self.recentWordTableView.reloadData()
+        self.loadRecentWord(dataType: .all)
     }
     
 }
@@ -245,33 +249,35 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
 extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let targetArray = self.targetArray,
-              !targetArray.isEmpty else { //count > 0
-            self.recentWordTableView.isHidden = true
+        guard let recentWordList = self.vmRecentWordDataList,
+              !recentWordList.isEmpty else {
+            //self.recentWordTableView.isHidden = true //MARK: 테스트 코드
             return 0
         }
                 
-        self.recentWordTableView.isHidden = false
-        return targetArray.count
+        //self.recentWordTableView.isHidden = false //MARK: 테스트 코드
+        return recentWordList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let targetArray = self.targetArray,
-              indexPath.row < targetArray.count else {
+        guard let recentWordList = self.vmRecentWordDataList,
+              indexPath.row < recentWordList.count else {
             return UITableViewCell()
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: self.recentWordReuseIdentifier, for: indexPath) as! RecentWordTableViewCell
-        cell.updateData(word: targetArray[indexPath.row])
+        cell.updateData(word: recentWordList[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.searchingController.searchBar.text = self.targetArray?[indexPath.row]
+        guard let selectedWord = self.vmRecentWordDataList?[indexPath.row] else { return }
         
         print("선택한 단어로 검색하기")
+        self.searchingController.searchBar.text = selectedWord
+        self.requestMusicList(keyWord: selectedWord)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

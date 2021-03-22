@@ -39,7 +39,7 @@
 		BBDF99422607410400F4BB20 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */; };
 		BBDF994C26075A3D00F4BB20 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */; };
 		BBDF994F26075A5200F4BB20 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */; };
-		BBDF995F26078ED900F4BB20 /* MusicDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF995E26078ED900F4BB20 /* MusicDataManager.swift */; };
+		BBDF995F26078ED900F4BB20 /* MusicAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF995E26078ED900F4BB20 /* MusicAPIManager.swift */; };
 		BBDF99632607B06400F4BB20 /* MusicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99622607B06400F4BB20 /* MusicData.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +79,7 @@
 		BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
-		BBDF995E26078ED900F4BB20 /* MusicDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDataManager.swift; sourceTree = "<group>"; };
+		BBDF995E26078ED900F4BB20 /* MusicAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAPIManager.swift; sourceTree = "<group>"; };
 		BBDF99622607B06400F4BB20 /* MusicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicData.swift; sourceTree = "<group>"; };
 		EA74DDA3CC96BE09662696A1 /* Pods-AppStoreCloneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneProject.release.xcconfig"; path = "Target Support Files/Pods-AppStoreCloneProject/Pods-AppStoreCloneProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,7 +161,7 @@
 			children = (
 				BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */,
 				BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */,
-				BBDF995E26078ED900F4BB20 /* MusicDataManager.swift */,
+				BBDF995E26078ED900F4BB20 /* MusicAPIManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				BB8C981F26050D91003B40F8 /* String+Extension.swift in Sources */,
 				BB8C986626064902003B40F8 /* UIViewController+Extension.swift in Sources */,
 				BB8C97ED2604FE1B003B40F8 /* AppDelegate.swift in Sources */,
-				BBDF995F26078ED900F4BB20 /* MusicDataManager.swift in Sources */,
+				BBDF995F26078ED900F4BB20 /* MusicAPIManager.swift in Sources */,
 				BB8C982326050D91003B40F8 /* Sets.swift in Sources */,
 				BBDF99422607410400F4BB20 /* SearchResultTableViewController.swift in Sources */,
 				BB8C986326064495003B40F8 /* UINavigation+Extension.swift in Sources */,

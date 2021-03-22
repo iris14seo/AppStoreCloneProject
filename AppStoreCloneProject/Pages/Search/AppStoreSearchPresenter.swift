@@ -8,7 +8,9 @@
 import UIKit
 
 protocol AppStoreSearchPresentationLogic {
-    //func presentSomething(response: AppStoreSearch.Something.Response)
+    func presentRecentWordList(response: AppStoreSearch.RecentWord.Response)
+    func presentSearchWordList(response: AppStoreSearch.SearchWord.Response)
+    func presentError(error: APIError?)
 }
 
 class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
@@ -16,8 +18,15 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
     
     // MARK: Do something
     
-    //    func presentSomething(response: AppStoreSearch.Something.Response) {
-    //        let viewModel = AppStoreSearch.Something.ViewModel()
-    //        viewController?.displaySomething(viewModel: viewModel)
-    //    }
+    func presentRecentWordList(response: AppStoreSearch.RecentWord.Response) {
+        self.viewController?.displayRecentWordList(viewModel: .init(recentWordList: response.recentWordList))
+    }
+    
+    func presentSearchWordList(response: AppStoreSearch.SearchWord.Response) {
+        self.viewController?.displaySearchWordList(viewModel: .init(musicDataList: response.musicDataList))
+    }
+    
+    func presentError(error: APIError?) {
+        self.viewController?.displayError(error: error)
+    }
 }
