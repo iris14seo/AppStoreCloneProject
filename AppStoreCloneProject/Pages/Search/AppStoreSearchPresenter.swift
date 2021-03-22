@@ -10,7 +10,7 @@ import UIKit
 protocol AppStoreSearchPresentationLogic {
     func presentRecentWordList(response: AppStoreSearch.RecentWord.Response)
     func presentSearchWordList(response: AppStoreSearch.SearchWord.Response)
-    func presentError(error: APIError?)
+    func presentError(error: Error?)
 }
 
 class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
@@ -26,7 +26,7 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
         self.viewController?.displaySearchWordList(viewModel: .init(musicDataList: response.musicDataList))
     }
     
-    func presentError(error: APIError?) {
+    func presentError(error: Error?) {
         self.viewController?.displayError(error: error)
     }
 }

@@ -15,14 +15,14 @@ protocol AppStoreSearchBusinessLogic {
 
 protocol AppStoreSearchDataStore {
     var storedRecentWordList: [String]? { get set }
-    var musicDataList: [MusicData]? { get set } //MARK: [도전과제] 음악말고 다양한 DataModel 추가하면 'var searchedDataList: [Any]? { get set }' 로 변경하기
+    var musicDataList: [ITunesSearchData]? { get set } //MARK: [도전과제] 음악말고 다양한 DataModel 추가하면 'var searchedDataList: [Any]? { get set }' 로 변경하기
 }
 
 class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataStore {
     var presenter: AppStoreSearchPresentationLogic?
     var worker = AppStoreSearchWorker()
     var storedRecentWordList: [String]?
-    var musicDataList: [MusicData]?
+    var musicDataList: [ITunesSearchData]?
     
     let disposeBag = DisposeBag()
     /*
@@ -35,7 +35,7 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     
     func loadRecentWordList(request: AppStoreSearch.RecentWord.Request) {
         
-        self.worker.loadRecentWordList().asObservable()
+        /*self.worker.loadRecentWordList().asObservable()
             .subscribe(onNext: { response in
                 self.storedRecentWordList = response
                 
@@ -49,31 +49,66 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
                 self.presenter?.presentRecentWordList(response: response)
                 
             }, onError: { [weak self] (error) in
-                guard let error = error as? APIError else {
+                guard let error = error as? CustomError else {
                     return
                 }
                 
                 self?.presenter?.presentError(error: error)
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)*/
         
     }
     
     func requestSearchWordList(request: AppStoreSearch.SearchWord.Request) {
+        self.worker.requestItunesSearchList(keyWord: request.keyWord).asObservable()
+            .subscribe(onNext: { [weak self] (result) in
+                
+                self?.musicDataList = result
+                self?.presenter?.presentSearchWordList(response: .init(musicDataList: self?.musicDataList))
+                
+            }, onError: { [weak self] (error) in
+                self?.presenter?.presentError(error: error)
+            }).disposed(by: self.disposeBag)
         
-        self.worker.requestMusicDataList(keyWord: request.keyWord).asObservable()
-            .subscribe(onNext: { response in
-                self.musicDataList = response
+//        self.worker.requestItunesSearchList(keyWord: request.keyWord, completionHandler: { [weak self] (result) in
+//
+//            switch result {
+//            case .success(result: let dataList):
+//                self?.musicDataList = dataList
+//                self?.presenter?.presentSearchWordList(response: .init(musicDataList: self.musicDataList))
+//            case .failure(error: let error):
+//                self?.presenter?.presentError(error: error)
+//            }
+//
+//        })
+        /*MusicAPIManager.shared.getMusicDataList(keyWord: request.keyWord, completionHandler: { result in
+            
+            switch result {
+            case .Success(result: let array):
+                guard let result = array else {
+                    return
+                }
+                print(result)
+            case .Failure(error: let error):
+                print(error)
+            }
+        })*/
+        
+    }
+}
+/*self.worker.requestMusicDataList(keyWord: request.keyWord).asObservable()
+ .subscribe(onNext: { response in
+ self.musicDataList = response
                 
                 self.presenter?.presentSearchWordList(response: .init(musicDataList: self.musicDataList))
             }, onError: { [weak self] (error) in
-                guard let error = error as? APIError else {
+                guard let error = error as? CustomError else {
                     return
                 }
                 
                 self?.presenter?.presentError(error: error)
-            }).disposed(by: self.disposeBag)
-    }
-}
+            }).disposed(by: self.disposeBag)*/
+//    }
+//}
 //    func loadAllRecentWordList() {
 //        var disposable: Disposable?
 //

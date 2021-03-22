@@ -13,7 +13,7 @@ import RxSwift
 protocol AppStoreSearchDisplayLogic: class {
     func displayRecentWordList(viewModel: AppStoreSearch.RecentWord.ViewModel)
     func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel)
-    func displayError(error: APIError?)
+    func displayError(error: Error?)
 }
 
 typealias AppStoreSearchPage = AppStoreSearchViewController
@@ -181,7 +181,7 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
         
     }
     
-    func displayError(error: APIError?) {
+    func displayError(error: Error?) {
         print(error?.localizedDescription ?? "error is occured")
     }
     

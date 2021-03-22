@@ -37,11 +37,11 @@ enum AppStoreSearch {
         }
         
         struct Response {
-            var musicDataList: [MusicData]?
+            var musicDataList: [ITunesSearchData]?
         }
         
         struct ViewModel{
-            var musicDataList: [MusicData]?
+            var musicDataList: [ITunesSearchData]?
         }
     }
     

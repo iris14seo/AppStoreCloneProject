@@ -8,9 +8,9 @@
 import Foundation
 import RxSwift
 
-public let defaultDataSize: Int = 10
+public let defaultDataSize: Int = 3
 
-public enum APIError: LocalizedError {
+public enum CustomError: LocalizedError {
     case urlNotSupportError
     case responseError //MARK: [고민] 네이밍 고민중
     case serverError
@@ -36,6 +36,10 @@ public enum APIError: LocalizedError {
     }
 }
 
+
+
+typealias MusicDataCompletionHandler = (APIResult<[MusicData]?>) -> Void
+
 class MusicAPIManager {
     
     static let shared: MusicAPIManager = MusicAPIManager()
@@ -47,20 +51,21 @@ class MusicAPIManager {
     private init() {}
     
     //GET 음악 데이터 검색 결과
-    func getMusicDataList(keyWord: String, limit: Int = defaultDataSize, completionHandler:  @escaping (Result<[MusicData]?, APIError>) -> Void) {
+    func getMusicDataList(keyWord: String, limit: Int = defaultDataSize, completionHandler:  @escaping MusicDataCompletionHandler) {// (Result<[MusicData]?, CustomError>) -> Void
         
         //URL
         let dataResponseLimitString = limit > 0 ? (dataResponseLimit + String(limit)) : (dataResponseLimit + String(defaultDataSize))
         
         guard let requestURL = URL(string: defaultSearchUrl + keyWord.lowercased() + dataResponseLimitString) else {
-            completionHandler(.failure(.urlNotSupportError))
+            //completionHandler(.failure(.urlNotSupportError))
+            completionHandler(.Failure(error: .urlNotSupportError))
             return
         }
 
         //네트워킹 시작
         defaultSession.dataTask(with: requestURL) { data, response, error in
             guard error == nil else {
-                completionHandler(.failure(.responseError))
+                completionHandler(.Failure(error: .responseError))
                 //print("Response Error", error?.localizedDescription)
                 return
             }
@@ -74,15 +79,15 @@ class MusicAPIManager {
                         let musicResponse = try decoder.decode(MusicDataResponse.self, from: jsonData)
                         dump(musicResponse)
                         
-                        completionHandler(.success(musicResponse.results))
+                        completionHandler(.Success(result: musicResponse.results))
                     } catch { // catch (let error) {
-                        completionHandler(.failure(.decodeError))
+                        completionHandler(.Failure(error: .decodeError))
                         //print("Decoding Error", error.localizedDescription)
                     }
                 case 400 ..< 500:
-                    completionHandler(.failure(.serverError))
+                    completionHandler(.Failure(error: .serverError))
                 default:
-                    completionHandler(.failure(.unknownError))
+                    completionHandler(.Failure(error: .unknownError))
                 }
                 
             }
@@ -98,7 +103,7 @@ class MusicAPIManager {
 //MARK: [도전] 이런식으로 사용하지는 못하나?
 public enum APIResult<U> {
     case success(result: U)
-    case failure(error: APIError)
+    case failure(error: CustomError)
 }
 typealias SearchMusicCompletionHandler = (APIResult<[MusicData]?>) -> Void
  */
