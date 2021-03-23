@@ -69,26 +69,10 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.initStyle()
         self.initHistoryWordTableView()
         
-        self.loadHistoryWord(target: .main)
+        self.loadAllHistoryWord()
     }
     
     // MARK: Do something
-        
-    //navigation
-    let profileButtonWidth: CGFloat = 40
-    let profileButtonTraillingConstarint: CGFloat = 20
-    lazy var profileButton: UIButton =  {
-        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: profileButtonWidth, height: profileButtonWidth))
-        btn.do {
-            $0.backgroundColor = .clear
-            $0.setImage(UIImage(named: "icBearProfile"), for: .normal)
-            $0.layer.cornerRadius = btn.frame.height / 2
-            $0.layer.masksToBounds = true
-            $0.addTarget(self, action: #selector(handleProfileButtonTap(_:)), for: .touchUpInside)
-        }
-        
-        return btn
-    }()
     
     lazy var searchResultTableViewController: SearchResultTableViewController = {
         let tv = SearchResultTableViewController()
@@ -104,7 +88,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
             $0.obscuresBackgroundDuringPresentation = false
             $0.searchResultsUpdater = self
             $0.searchBar.delegate = self
-            $0.searchBar.placeholder = "음악, 영화, 책 등"
+            $0.searchBar.placeholder = "게임, 앱, 스토리 등"
         }
         
         return sc
@@ -112,6 +96,11 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     
     //tableView
     let mainCell = "MainTableViewCell"
+    let mainCellHeight: CGFloat = 40
+    
+    let mainSectionView: String = "MainTableViewSectionView"
+    let mainSectionHeight: CGFloat = 45.0
+    
     @IBOutlet var mainTableView: UITableView!
     
     //data
@@ -124,7 +113,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
             
             //타이틀
             $0.title = "검색"
-            self.navigationController?.navigationBar.prefersLargeTitles = true //MARK: 이거 안쓰고 커스텀 뷰에 라지 타이틀이랑 버튼 넣어보기
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             
             //스크롤 액션
             $0.hidesSearchBarWhenScrolling = false
@@ -143,6 +132,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
             $0.dataSource = self
             $0.separatorColor = .clear
             $0.register(UINib(nibName: mainCell, bundle: nil), forCellReuseIdentifier: mainCell)
+            $0.register(UINib.init(nibName: mainSectionView, bundle: nil), forHeaderFooterViewReuseIdentifier: mainSectionView)
         }
     }
     
@@ -150,10 +140,10 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.view.endEditing(true)
     }
     
-    @objc func handleProfileButtonTap(_ sender: Any) {
-        print("프로필 버튼 클릭")
+    func loadAllHistoryWord() {
+        self.interactor?.loadAllHistoryWordList(request: .init(target: .main))
     }
-   
+    
     func loadHistoryWord(target: AppStoreSearch.HistoryWord.TargetTableView, keyWord: String? = nil) {
         self.interactor?.loadHistoryWordList(request: .init(target: target, keyWord: keyWord))
         self.updateSearchWordType(type: .history)
@@ -230,13 +220,18 @@ extension AppStoreSearchViewController: SearchResultTableViewCellDelegate {
         self.requestSoftWareDataList(keyWord: word)
     }
     
-    func didScrollSearchResultTableView() {
+    func hideSearchBarKeyBoard() {
         self.searchingController.searchBar.endEditing(true)
+    }
+    
+    func routeToDetailPage(index: Int) {
+        self.router?.routeToMemoDetailPage(index: index)
     }
 }
 
 extension AppStoreSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        //이슈: 첫 진입시에만 포커싱될때 포커스 아웃됨(튕김)
         guard let text = searchController.searchBar.text, text.count > 0 else { return }
         
         self.loadHistoryWord(target: .search, keyWord: text)
@@ -260,8 +255,9 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("서치 버튼 클릭")
-        guard let text = searchBar.text, text.count > 0 else { return }
         
+        guard let text = searchBar.text, text.count > 0 else { return }
+        self.searchingController.searchBar.endEditing(true)
         self.requestSoftWareDataList(keyWord: text)
     }
     
@@ -274,11 +270,7 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
 }
 
 extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "최근 검색어" //MARK: 임시
-    }
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let historyWordList = self.vmHistoryWordList,
@@ -302,8 +294,17 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: mainSectionView) as! MainTableViewSectionView
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return mainSectionHeight
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return mainCellHeight
     }
 }
 

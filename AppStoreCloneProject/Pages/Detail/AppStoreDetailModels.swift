@@ -10,15 +10,17 @@ import UIKit
 enum AppStoreDetail {
     // MARK: Use cases
     
-    //  enum Something {
-    //    struct Request {
-    //    }
-    //
-    //    struct Response {
-    //    }
-    //
-    //    struct ViewModel{
-    //    }
-    //  }
+      enum FetchData {
+        struct Request {
+        }
+    
+        struct Response {
+            var data: SearchResultModel?
+        }
+    
+        struct ViewModel{
+            var data: SearchResultModel?
+        }
+      }
     
 }

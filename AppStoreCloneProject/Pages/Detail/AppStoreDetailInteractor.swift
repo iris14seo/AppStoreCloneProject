@@ -8,26 +8,22 @@
 import UIKit
 
 protocol AppStoreDetailBusinessLogic {
-    //func doSomething(request: AppStoreDetail.Something.Request)
+    func fetchDetailData()
 }
 
 protocol AppStoreDetailDataStore {
-    //var name: String { get set }
+    var softWareData: SearchResultModel? { get set }
 }
 
-class AppStoreDetailInteractor: AppStoreDetailBusinessLogic, AppStoreDetailDataStore
-{
+class AppStoreDetailInteractor: AppStoreDetailBusinessLogic, AppStoreDetailDataStore {
     var presenter: AppStoreDetailPresentationLogic?
     var worker: AppStoreDetailWorker?
-    //var name: String = ""
+    
+    var softWareData: SearchResultModel?
     
     // MARK: Do something
     
-    //  func doSomething(request: AppStoreDetail.Something.Request) {
-    //    worker = AppStoreDetailWorker()
-    //    worker?.doSomeWork()
-    //
-    //    let response = AppStoreDetail.Something.Response()
-    //    presenter?.presentSomething(response: response)
-    //  }
+    func fetchDetailData() {
+        self.presenter?.presentFetchDetailData(response: AppStoreDetail.FetchData.Response(data: self.softWareData))
+    }
 }

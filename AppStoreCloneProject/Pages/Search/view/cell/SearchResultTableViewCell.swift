@@ -35,20 +35,26 @@ class SearchResultTableViewCell: UITableViewCell {
 
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet var containerView: UIView!
     
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var ratingView: UIView!
-    @IBOutlet weak var downLoadButton: UIButton!
-    @IBOutlet weak var bottomCollectionView: UICollectionView!
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var descLabel: UILabel!
+    @IBOutlet var ratingView: UIView!
+    @IBOutlet var downLoadButton: UIButton!
+    
+    @IBOutlet var screenShotImageView1: UIImageView!
+    @IBOutlet var screenShotImageView2: UIImageView!
+    @IBOutlet var screenShotImageView3: UIImageView!
+    
+    @IBOutlet var screenShotImageViewList: [UIImageView]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
         initStyle()
+        bindRxEvent()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -86,6 +92,21 @@ class SearchResultTableViewCell: UITableViewCell {
                 print("\(self?.titleLabel.text ?? "")다운로드 버튼 클릭")
             }).disposed(by: self.disposeBag)
         }
+        
+        self.screenShotImageViewList.forEach {
+            $0.layer.cornerRadius = 5
+            $0.clipsToBounds = true
+        }
+    }
+    
+    func bindRxEvent() {
+        self.downLoadButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            guard let topViewController = UIApplication.topViewController() else {
+                return
+            }
+            showOKAlert(vc: topViewController, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 클릭")
+        }).disposed(by: self.disposeBag)
     }
     
     func updateCellData(data: SoftWareCellData?) {
@@ -96,6 +117,12 @@ class SearchResultTableViewCell: UITableViewCell {
         self.titleLabel.text = data.title
         self.descLabel.text = data.description
         self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
-        self.bottomCollectionView.backgroundColor = .green
+        
+        guard let urlStringList = data.screenShotURLList, urlStringList.count > 3 else {
+            return
+        }
+        self.screenShotImageView1.setCacheImageURL(URL(string: urlStringList[0]))
+        self.screenShotImageView2.setCacheImageURL(URL(string: urlStringList[1]))
+        self.screenShotImageView3.setCacheImageURL(URL(string: urlStringList[2]))
     }
 }

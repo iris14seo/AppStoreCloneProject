@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2c3-nw-u4j">
-                        <rect key="frame" x="15" y="0.0" width="285" height="40"/>
+                        <rect key="frame" x="15" y="0.0" width="305" height="40"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icSearch" translatesAutoresizingMaskIntoConstraints="NO" id="8ZP-BF-Jg8">
                                 <rect key="frame" x="0.0" y="12.5" width="15" height="15"/>
@@ -32,17 +32,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqG-zJ-g59" userLabel="line">
+                                <rect key="frame" x="20" y="39" width="285" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="e1h-4v-kPM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="VqG-zJ-g59" firstAttribute="leading" secondItem="2c3-nw-u4j" secondAttribute="leading" constant="20" id="0LW-Is-9cI"/>
                             <constraint firstItem="8ZP-BF-Jg8" firstAttribute="centerY" secondItem="2c3-nw-u4j" secondAttribute="centerY" id="3rN-R1-4Q6"/>
                             <constraint firstItem="Dg1-yj-S1h" firstAttribute="top" secondItem="2c3-nw-u4j" secondAttribute="top" constant="5" id="4WO-lf-aUb"/>
+                            <constraint firstAttribute="bottom" secondItem="VqG-zJ-g59" secondAttribute="bottom" id="4fH-O3-ltj"/>
                             <constraint firstAttribute="bottom" secondItem="Dg1-yj-S1h" secondAttribute="bottom" constant="5" id="BSk-yH-e5N"/>
                             <constraint firstItem="8ZP-BF-Jg8" firstAttribute="leading" secondItem="2c3-nw-u4j" secondAttribute="leading" id="LSB-Qc-tme"/>
                             <constraint firstItem="8ZP-BF-Jg8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2c3-nw-u4j" secondAttribute="top" id="P87-7s-w2Z"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8ZP-BF-Jg8" secondAttribute="bottom" id="QIO-Vt-BtP"/>
                             <constraint firstItem="Dg1-yj-S1h" firstAttribute="leading" secondItem="8ZP-BF-Jg8" secondAttribute="trailing" constant="6" id="fAy-B5-XWo"/>
-                            <constraint firstAttribute="trailing" secondItem="Dg1-yj-S1h" secondAttribute="trailing" id="ioH-26-Zma"/>
+                            <constraint firstAttribute="trailing" secondItem="Dg1-yj-S1h" secondAttribute="trailing" constant="20" id="ioH-26-Zma"/>
+                            <constraint firstAttribute="trailing" secondItem="VqG-zJ-g59" secondAttribute="trailing" id="pxx-8t-M30"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -50,7 +60,7 @@
                     <constraint firstItem="2c3-nw-u4j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="HXf-Z3-rvL"/>
                     <constraint firstItem="2c3-nw-u4j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Mth-z9-Bzb"/>
                     <constraint firstAttribute="bottom" secondItem="2c3-nw-u4j" secondAttribute="bottom" id="dKn-YV-hww"/>
-                    <constraint firstAttribute="trailing" secondItem="2c3-nw-u4j" secondAttribute="trailing" constant="20" id="o9A-yg-bNi"/>
+                    <constraint firstAttribute="trailing" secondItem="2c3-nw-u4j" secondAttribute="trailing" id="o9A-yg-bNi"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

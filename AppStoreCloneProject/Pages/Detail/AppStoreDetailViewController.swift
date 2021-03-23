@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 protocol AppStoreDetailDisplayLogic: class {
-    //func displaySomething(viewModel: AppStoreDetail.Something.ViewModel)
+    func displayDetailData(viewModel: AppStoreDetail.FetchData.ViewModel)
 }
 
 typealias AppStoreDetailPage = AppStoreDetailViewController
@@ -59,19 +61,128 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //doSomething()
+        self.initStyle()
+        self.fetchDetailData()
+        self.bindRxEvent()
     }
+    
+    @IBOutlet var scrollView: UIScrollView!
+    
+    @IBOutlet var topView: UIView!
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var shortDescLabel: UILabel!
+    @IBOutlet var downloadButton: UIButton!
+    @IBOutlet var shareButton: UIButton!
+    
+    @IBOutlet var moreInfoView: UIView!
+    
+    @IBOutlet var screenShotCollectionVIew: UICollectionView!
+    
+    @IBOutlet var longDescView: UIView!
+    @IBOutlet var longDescLabel: UILabel!
+    
+    @IBOutlet var developerView: UIView!
+    @IBOutlet var developerIDLabel: UILabel!
+    @IBOutlet var developerTextLabel: UILabel!
+    
+    //data
+    var vmSoftWareData: SearchResultModel?
     
     // MARK: Do something
     
-    //@IBOutlet weak var nameTextField: UITextField!
+    func initStyle() {
+        self.scrollView.do {
+            $0.backgroundColor = .systemBackground
+        }
+        
+        self.iconImageView.do {
+            $0.layer.cornerRadius = 10
+            $0.clipsToBounds = true
+        }
+        
+        self.titleLabel.do {
+            $0.setFontAndColor(f: .boldSystemFont(ofSize: 18), c: .label)
+            $0.textAlignment = .left
+            $0.numberOfLines = 1
+            $0.text = ""
+        }
+        
+        self.shortDescLabel.do {
+            $0.setFontAndColor(f: .systemFont(ofSize: 11), c: .secondaryLabel)
+            $0.textAlignment = .left
+            $0.numberOfLines = 0
+            $0.text = ""
+        }
+        
+        self.downloadButton.do {
+            $0.layer.cornerRadius = 10
+            $0.clipsToBounds = true
+            $0.setTitle("받기", for: .normal)
+            $0.titleLabel?.setFontAndColor(f: .boldSystemFont(ofSize: 11), c: .white)
+        }
+        
+        self.shareButton.do {
+            $0.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        }
+        
+        self.longDescLabel.do {
+            $0.setFontAndColor(f: .systemFont(ofSize: 12), c: .label)
+            $0.textAlignment = .left
+            $0.numberOfLines = 0
+            $0.text = ""
+        }
+        
+        self.developerIDLabel.do {
+            $0.setFontAndColor(f: .systemFont(ofSize: 14), c: .link)
+            $0.textAlignment = .left
+            $0.numberOfLines = 1
+            $0.text = ""
+        }
+        
+        self.developerTextLabel.do {
+            $0.setFontAndColor(f: .systemFont(ofSize: 11), c: .secondaryLabel)
+            $0.textAlignment = .left
+            $0.numberOfLines = 1
+            $0.text = "개발자"
+        }
+    }
     
-    //  func doSomething() {
-    //    let request = AppStoreDetail.Something.Request()
-    //    interactor?.doSomething(request: request)
-    //  }
+    func bindRxEvent() {
+        self.downloadButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            showOKAlert(vc: self, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 클릭")
+        }).disposed(by: self.disposeBag)
+        
+        self.shareButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            showOKAlert(vc: self, title: "공유", message: "\(self.titleLabel.text ?? "") 공유 버튼 클릭")
+        }).disposed(by: self.disposeBag)
+    } 
     
-    //  func displaySomething(viewModel: AppStoreDetail.Something.ViewModel) {
-    //    //nameTextField.text = viewModel.name
-    //  }
+    func fetchDetailData() {
+        self.interactor?.fetchDetailData()
+    }
+    
+    func displayDetailData(viewModel: AppStoreDetail.FetchData.ViewModel) {
+        guard let vm = viewModel.data else {
+            return
+        }
+        
+        self.vmSoftWareData = vm
+        self.updateData(data: vm)
+    }
+    
+    func updateData(data: SearchResultModel?) {
+        guard let data = data else {
+            return
+        }
+        
+        self.titleLabel.text = data.trackName ?? "앱 이름"
+        self.shortDescLabel.text = data.genres?.first ?? "설명"
+        self.iconImageView.setCacheImageURL(URL(string: data.artworkUrl60 ?? ""))
+        self.longDescLabel.text = data.description
+        self.developerIDLabel.text = data.sellerName
+    }
+    
 }

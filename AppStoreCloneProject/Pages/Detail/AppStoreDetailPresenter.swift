@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppStoreDetailPresentationLogic {
-    //func presentSomething(response: AppStoreDetail.Something.Response)
+    func presentFetchDetailData(response: AppStoreDetail.FetchData.Response)
 }
 
 class AppStoreDetailPresenter: AppStoreDetailPresentationLogic {
@@ -16,8 +16,7 @@ class AppStoreDetailPresenter: AppStoreDetailPresentationLogic {
     
     // MARK: Do something
     
-    //    func presentSomething(response: AppStoreDetail.Something.Response) {
-    //        let viewModel = AppStoreDetail.Something.ViewModel()
-    //        viewController?.displaySomething(viewModel: viewModel)
-    //    }
+    func presentFetchDetailData(response: AppStoreDetail.FetchData.Response) {
+        viewController?.displayDetailData(viewModel: .init(data: response.data))
+    }
 }

@@ -16,7 +16,6 @@
 		BB8C981F26050D91003B40F8 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C981A26050D91003B40F8 /* String+Extension.swift */; };
 		BB8C982026050D91003B40F8 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C981B26050D91003B40F8 /* UITextField+Extension.swift */; };
 		BB8C982126050D91003B40F8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C981C26050D91003B40F8 /* UIImage+Extension.swift */; };
-		BB8C982226050D91003B40F8 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C981D26050D91003B40F8 /* CALayer+Extension.swift */; };
 		BB8C982326050D91003B40F8 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C981E26050D91003B40F8 /* Sets.swift */; };
 		BB8C983A2605132F003B40F8 /* AppStoreSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C98342605132F003B40F8 /* AppStoreSearchInteractor.swift */; };
 		BB8C983B2605132F003B40F8 /* AppStoreSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C98352605132F003B40F8 /* AppStoreSearchPresenter.swift */; };
@@ -43,6 +42,13 @@
 		BBA69E4D2608FEBA00E237FF /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E4B2608FEBA00E237FF /* SearchResultTableViewCell.xib */; };
 		BBA69E54260A1A1C00E237FF /* SoftWareDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */; };
 		BBA69E57260A2B5700E237FF /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E56260A2B5600E237FF /* SearchModel.swift */; };
+		BBA69E5C260A2F6300E237FF /* ScreenShotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E5A260A2F6300E237FF /* ScreenShotCollectionViewCell.swift */; };
+		BBA69E5D260A2F6300E237FF /* ScreenShotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E5B260A2F6300E237FF /* ScreenShotCollectionViewCell.xib */; };
+		BBA69E68260A374A00E237FF /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E66260A374A00E237FF /* CustomAlert.swift */; };
+		BBA69E69260A374A00E237FF /* CustomXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E67260A374A00E237FF /* CustomXibView.swift */; };
+		BBA69E6D260A394600E237FF /* MainTableViewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E6C260A394600E237FF /* MainTableViewSectionView.swift */; };
+		BBA69E70260A39A300E237FF /* MainTableViewSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E6F260A39A300E237FF /* MainTableViewSectionView.xib */; };
+		BBCC5271260A564300BCF8B1 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC5270260A564300BCF8B1 /* UIApplication+Extension.swift */; };
 		BBDF993D26073EAE00F4BB20 /* HistoryWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF993B26073EAE00F4BB20 /* HistoryWordTableViewCell.swift */; };
 		BBDF993E26073EAE00F4BB20 /* HistoryWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDF993C26073EAE00F4BB20 /* HistoryWordTableViewCell.xib */; };
 		BBDF99422607410400F4BB20 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */; };
@@ -64,7 +70,6 @@
 		BB8C981A26050D91003B40F8 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		BB8C981B26050D91003B40F8 /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		BB8C981C26050D91003B40F8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		BB8C981D26050D91003B40F8 /* CALayer+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		BB8C981E26050D91003B40F8 /* Sets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
 		BB8C98342605132F003B40F8 /* AppStoreSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreSearchInteractor.swift; sourceTree = "<group>"; };
 		BB8C98352605132F003B40F8 /* AppStoreSearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreSearchPresenter.swift; sourceTree = "<group>"; };
@@ -91,6 +96,13 @@
 		BBA69E4B2608FEBA00E237FF /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftWareDataModel.swift; sourceTree = "<group>"; };
 		BBA69E56260A2B5600E237FF /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		BBA69E5A260A2F6300E237FF /* ScreenShotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBA69E5B260A2F6300E237FF /* ScreenShotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotCollectionViewCell.xib; sourceTree = "<group>"; };
+		BBA69E66260A374A00E237FF /* CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		BBA69E67260A374A00E237FF /* CustomXibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomXibView.swift; sourceTree = "<group>"; };
+		BBA69E6C260A394600E237FF /* MainTableViewSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewSectionView.swift; sourceTree = "<group>"; };
+		BBA69E6F260A39A300E237FF /* MainTableViewSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewSectionView.xib; sourceTree = "<group>"; };
+		BBCC5270260A564300BCF8B1 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BBDF993B26073EAE00F4BB20 /* HistoryWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWordTableViewCell.swift; sourceTree = "<group>"; };
 		BBDF993C26073EAE00F4BB20 /* HistoryWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryWordTableViewCell.xib; sourceTree = "<group>"; };
 		BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +179,9 @@
 		BB8C98102605053D003B40F8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8702166A2609A53400D05C08 /* RXViewController.swift */,
+				BBA69E66260A374A00E237FF /* CustomAlert.swift */,
+				BBA69E67260A374A00E237FF /* CustomXibView.swift */,
 				BB8C981E26050D91003B40F8 /* Sets.swift */,
 			);
 			path = Utils;
@@ -203,7 +218,6 @@
 		BB8C981926050D2E003B40F8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BB8C981D26050D91003B40F8 /* CALayer+Extension.swift */,
 				BB8C981A26050D91003B40F8 /* String+Extension.swift */,
 				BB8C985B260641F6003B40F8 /* UIColor+Extension.swift */,
 				BB8C981C26050D91003B40F8 /* UIImage+Extension.swift */,
@@ -211,7 +225,7 @@
 				BB8C981B26050D91003B40F8 /* UITextField+Extension.swift */,
 				BB8C986226064495003B40F8 /* UINavigation+Extension.swift */,
 				BB8C986526064902003B40F8 /* UIViewController+Extension.swift */,
-				8702166A2609A53400D05C08 /* RXViewController.swift */,
+				BBCC5270260A564300BCF8B1 /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +247,7 @@
 		BB8C984126051340003B40F8 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				BBA69E5F260A2FCD00E237FF /* cell */,
 				BB8C984226051358003B40F8 /* AppStoreDetailPresenter.swift */,
 				BB8C984326051358003B40F8 /* AppStoreDetailWorker.swift */,
 				BB8C984426051358003B40F8 /* AppStoreDetailRouter.swift */,
@@ -250,6 +265,15 @@
 				BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */,
 			);
 			path = tableView;
+			sourceTree = "<group>";
+		};
+		BBA69E5F260A2FCD00E237FF /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				BBA69E5A260A2F6300E237FF /* ScreenShotCollectionViewCell.swift */,
+				BBA69E5B260A2F6300E237FF /* ScreenShotCollectionViewCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		BBDF99282606E8F700F4BB20 /* view */ = {
@@ -272,6 +296,8 @@
 				BBA69E452608F8DD00E237FF /* MainTableViewCell.xib */,
 				BBA69E4A2608FEBA00E237FF /* SearchResultTableViewCell.swift */,
 				BBA69E4B2608FEBA00E237FF /* SearchResultTableViewCell.xib */,
+				BBA69E6C260A394600E237FF /* MainTableViewSectionView.swift */,
+				BBA69E6F260A39A300E237FF /* MainTableViewSectionView.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -337,8 +363,10 @@
 			files = (
 				BBA69E422608F3A500E237FF /* NotFoundTableViewCell.xib in Resources */,
 				BBA69E4D2608FEBA00E237FF /* SearchResultTableViewCell.xib in Resources */,
+				BBA69E5D260A2F6300E237FF /* ScreenShotCollectionViewCell.xib in Resources */,
 				BB8C97F92604FE1C003B40F8 /* LaunchScreen.storyboard in Resources */,
 				BB8C97F62604FE1C003B40F8 /* Assets.xcassets in Resources */,
+				BBA69E70260A39A300E237FF /* MainTableViewSectionView.xib in Resources */,
 				BB8C985026051370003B40F8 /* AppStoreDetailViewController.xib in Resources */,
 				BBA69E472608F8DD00E237FF /* MainTableViewCell.xib in Resources */,
 				BBDF993E26073EAE00F4BB20 /* HistoryWordTableViewCell.xib in Resources */,
@@ -395,9 +423,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBA69E5C260A2F6300E237FF /* ScreenShotCollectionViewCell.swift in Sources */,
 				BBDF994C26075A3D00F4BB20 /* NetworkManager.swift in Sources */,
+				BBA69E68260A374A00E237FF /* CustomAlert.swift in Sources */,
+				BBCC5271260A564300BCF8B1 /* UIApplication+Extension.swift in Sources */,
 				BB8C984926051358003B40F8 /* AppStoreDetailWorker.swift in Sources */,
 				BB8C983A2605132F003B40F8 /* AppStoreSearchInteractor.swift in Sources */,
+				BBA69E6D260A394600E237FF /* MainTableViewSectionView.swift in Sources */,
 				BB8C983B2605132F003B40F8 /* AppStoreSearchPresenter.swift in Sources */,
 				BB8C982126050D91003B40F8 /* UIImage+Extension.swift in Sources */,
 				BB8C983F2605132F003B40F8 /* AppStoreSearchWorker.swift in Sources */,
@@ -412,6 +444,7 @@
 				BB8C984D26051358003B40F8 /* AppStoreDetailInteractor.swift in Sources */,
 				BB8C984C26051358003B40F8 /* AppStoreDetailViewController.swift in Sources */,
 				BBDF993D26073EAE00F4BB20 /* HistoryWordTableViewCell.swift in Sources */,
+				BBA69E69260A374A00E237FF /* CustomXibView.swift in Sources */,
 				BB8C982026050D91003B40F8 /* UITextField+Extension.swift in Sources */,
 				BBA69E412608F3A500E237FF /* NotFoundTableViewCell.swift in Sources */,
 				BBDF99632607B06400F4BB20 /* ITunesSearchDataModel.swift in Sources */,
@@ -422,7 +455,6 @@
 				BB8C982326050D91003B40F8 /* Sets.swift in Sources */,
 				BBDF99422607410400F4BB20 /* SearchResultTableViewController.swift in Sources */,
 				BB8C986326064495003B40F8 /* UINavigation+Extension.swift in Sources */,
-				BB8C982226050D91003B40F8 /* CALayer+Extension.swift in Sources */,
 				BB8C983D2605132F003B40F8 /* AppStoreSearchRouter.swift in Sources */,
 				BB8C984826051358003B40F8 /* AppStoreDetailPresenter.swift in Sources */,
 				BB8C984B26051358003B40F8 /* AppStoreDetailModels.swift in Sources */,

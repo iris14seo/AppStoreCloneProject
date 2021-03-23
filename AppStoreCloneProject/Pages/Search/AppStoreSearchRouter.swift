@@ -8,7 +8,7 @@
 import UIKit
 
 @objc protocol AppStoreSearchRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToMemoDetailPage(index: Int)
 }
 
 protocol AppStoreSearchDataPassing {
@@ -21,32 +21,20 @@ class AppStoreSearchRouter: NSObject, AppStoreSearchRoutingLogic, AppStoreSearch
     
     // MARK: Routing
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func routeToMemoDetailPage(index: Int) {
+        let destinationVC = AppStoreDetailPage()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToDetail(index: index, source: dataStore!, destination: &destinationDS)
+        navigateToDetail(departure: viewController!, destination: destinationVC)
+    }
     
     // MARK: Navigation
-    
-    //func navigateToSomewhere(source: AppStoreSearchViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+    func navigateToDetail(departure: AppStoreSearchPage, destination: AppStoreDetailPage) {
+        departure.navigationController?.pushViewController(destination, animated: true)
+    }
     
     // MARK: Passing data
-    
-    //func passDataToSomewhere(source: AppStoreSearchDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToDetail(index: Int, source: AppStoreSearchDataStore, destination: inout AppStoreDetailDataStore) {
+        destination.softWareData = source.softWareDataList?[index]
+    }
 }

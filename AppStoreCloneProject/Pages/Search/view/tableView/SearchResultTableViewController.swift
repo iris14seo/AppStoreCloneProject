@@ -11,7 +11,8 @@ import RxCocoa
 
 protocol SearchResultTableViewCellDelegate {
     func onClickHistoryCellForSearch(word: String)
-    func didScrollSearchResultTableView()
+    func hideSearchBarKeyBoard()
+    func routeToDetailPage(index: Int)
 }
 
 class SearchResultTableViewController: RXTableViewController {
@@ -19,6 +20,10 @@ class SearchResultTableViewController: RXTableViewController {
     let historyWordCell = "HistoryWordTableViewCell"
     let searchResultCell = "SearchResultTableViewCell"
     let notFoundCell = "NotFoundTableViewCell"
+    
+    let historyWordCellHeight: CGFloat = 40
+    let searchResultCellHeight: CGFloat = 295
+    let notFoundCellHeight: CGFloat = UIScreen.main.bounds.height  - 100
     
     //data
     var historyWordList: [String]?
@@ -43,7 +48,7 @@ class SearchResultTableViewController: RXTableViewController {
             $0.delegate = self
             $0.dataSource = self
             $0.separatorColor = .clear
-            $0.backgroundColor = .yellow
+            
             $0.register(UINib(nibName: historyWordCell, bundle: nil), forCellReuseIdentifier: historyWordCell)
             $0.register(UINib(nibName: searchResultCell, bundle: nil), forCellReuseIdentifier: searchResultCell)
             $0.register(UINib(nibName: notFoundCell, bundle: nil), forCellReuseIdentifier: notFoundCell)
@@ -98,29 +103,38 @@ class SearchResultTableViewController: RXTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch self.currentResultType {
         case .history:
-            return 40
+            return historyWordCellHeight
+        
         case .search:
-            return 250
+            return searchResultCellHeight
+        
         case .notFound:
-            return UITableView.automaticDimension
+            return notFoundCellHeight
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.delegate?.hideSearchBarKeyBoard() // 이슈: 다른 방식으로 키보드 숨길 수 없을까?
+
         switch self.currentResultType {
         case .history:
             guard (self.historyWordList?.count ?? 0) > indexPath.row else {
                 return
             }
-            self.delegate?.onClickHistoryCellForSearch(word: self.historyWordList?[indexPath.row] ?? "")
+            
+            let keyWord = self.historyWordList?[indexPath.row] ?? ""
+            self.keyWord = keyWord
+            self.delegate?.onClickHistoryCellForSearch(word: keyWord)
+        
         case .search:
-            print("상세 페이지로 이동")
+            self.delegate?.routeToDetailPage(index: indexPath.row)
+        
         case .notFound:
                 break
         }
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegate?.didScrollSearchResultTableView()
+        self.delegate?.hideSearchBarKeyBoard()
     }
 }
