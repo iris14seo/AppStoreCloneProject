@@ -43,11 +43,11 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
             cellData.wrapperType = data.wrapperType
             cellData.title = data.artistName ?? ""
             cellData.description = data.collectionName
-            cellData.iconImageURL = data.previewURL
+            cellData.iconImageURL = data.artworkUrl60
             cellData.ratingScore = Double(data.discNumber ?? 0)
             cellData.downloadCount = data.discCount
             cellData.downloadURL = data.artistViewURL
-            cellData.bottomImageURLList = [data.collectionViewURL ?? ""]
+            cellData.bottomImageURLList = [data.artworkUrl100 ?? ""]
             cellDataList.append(cellData)
         }
         

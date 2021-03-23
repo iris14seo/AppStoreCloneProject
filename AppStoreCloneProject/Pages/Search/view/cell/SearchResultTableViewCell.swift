@@ -62,7 +62,7 @@ class SearchResultTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         
         self.iconImageView.do {
-            $0.layer.cornerRadius = 25
+            $0.layer.cornerRadius = 10
             $0.clipsToBounds = true
         }
         
@@ -96,7 +96,7 @@ class SearchResultTableViewCell: UITableViewCell {
         }
         self.titleLabel.text = data.title
         self.descLabel.text = data.description
-        //self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
+        self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
         self.bottomCollectionView.backgroundColor = .green
     }
 }
