@@ -25,6 +25,8 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func initStyle() {
+        self.selectionStyle = .none
+        
         self.historyWordLabel.do {
             $0.setFontAndColor(f: .systemFont(ofSize: 23), c: .systemBlue)
         }

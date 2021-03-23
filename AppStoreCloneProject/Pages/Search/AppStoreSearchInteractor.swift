@@ -9,11 +9,13 @@ import UIKit
 import RxSwift
 
 protocol AppStoreSearchBusinessLogic {
+    func updateSearchTableViewType(type: AppStoreSearch.ResultType)
     func loadHistoryWordList(request: AppStoreSearch.HistoryWord.Request)
     func requestSearchWordList(request: AppStoreSearch.SearchWord.Request)
 }
 
 protocol AppStoreSearchDataStore {
+    var searchTableViewResultType: AppStoreSearch.ResultType { get set }
     var historyWordList: [String]? { get set }
     var iTunesSearchDataList: [ITunesSearchData]? { get set } //MARK: [도전과제] 음악말고 다양한 DataModel 추가하면 'var searchedDataList: [Any]? { get set }' 로 변경하기
 }
@@ -21,6 +23,8 @@ protocol AppStoreSearchDataStore {
 class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataStore {
     var presenter: AppStoreSearchPresentationLogic?
     var worker = AppStoreSearchWorker()
+    
+    var searchTableViewResultType: AppStoreSearch.ResultType = .history
     var historyWordList: [String]?
     var iTunesSearchDataList: [ITunesSearchData]?
     
@@ -33,13 +37,17 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     
     // MARK: Do something
     
+    func updateSearchTableViewType(type: AppStoreSearch.ResultType) {
+        self.searchTableViewResultType = type
+    }
+    
     func loadHistoryWordList(request: AppStoreSearch.HistoryWord.Request) {
         
         self.worker.loadHistoryWordList().asObservable()
             .subscribe(onNext: { response in
                 self.historyWordList = response
                 
-                var response = AppStoreSearch.HistoryWord.Response()
+                var response = AppStoreSearch.HistoryWord.Response(target: request.target)
                 if let filterWord = request.keyWord {
                     response.historyWordList = self.historyWordList?.filter{ $0.lowercased().contains(filterWord) }
                 } else {

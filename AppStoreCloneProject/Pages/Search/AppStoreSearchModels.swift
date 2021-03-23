@@ -19,21 +19,23 @@ enum AppStoreSearch {
      */
     enum HistoryWord {
         struct Request {
-            var dataType: DataType
+            var target: TargetTableView
             var keyWord: String?
-            
-            enum DataType {
-                case all
-                case filtered
-            }
         }
         
         struct Response {
+            var target: TargetTableView
             var historyWordList: [String]?
         }
         
         struct ViewModel{
+            var target: TargetTableView
             var historyWordList: [String]?
+        }
+        
+        enum TargetTableView {
+            case main
+            case search
         }
     }
     
@@ -56,20 +58,20 @@ enum AppStoreSearch {
         }
         
         struct ViewModel{
-            var iTunesSearchDataList: [ITunesSearchData]?
+            var iTunesSearchDataList: [ResultTableViewCellData]?
         }
-        
-        /**검색 TableView에서 발생 가능한 타입정리
-         
-         # 타입
-         - history: 로컬 최근검색한 경우
-         - search: API 검색한 경우
-         - notFound: API 검색결과 없는 경우
-         */
-        enum ResultType {
-            case history
-            case search
-            case notFound
-        }
+    }
+    
+    /**검색 TableView에서 발생 가능한 타입정리
+     
+     # 타입
+     - history: 로컬 최근검색한 경우
+     - search: API 검색한 경우
+     - notFound: API 검색결과 없는 경우
+     */
+    enum ResultType {
+        case history
+        case search
+        case notFound
     }
 }

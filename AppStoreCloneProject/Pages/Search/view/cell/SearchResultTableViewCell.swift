@@ -25,11 +25,11 @@ public struct ResultTableViewCellData: Equatable {
     var wrapperType: String?
     var title: String?
     var description: String?
-    var iconImage: UIImage?
+    var iconImageURL: String?
     var ratingScore: Double?
     var downloadCount: Int?
     var downloadURL: String?
-    var imageURLList: [String]?
+    var bottomImageURLList: [String]?
 }
 
 class SearchResultTableViewCell: UITableViewCell {
@@ -59,6 +59,8 @@ class SearchResultTableViewCell: UITableViewCell {
     }
     
     func initStyle() {
+        self.selectionStyle = .none
+        
         self.iconImageView.do {
             $0.layer.cornerRadius = 25
             $0.clipsToBounds = true
@@ -87,7 +89,14 @@ class SearchResultTableViewCell: UITableViewCell {
         }
     }
     
-    func updateCellData(data: ResultTableViewCellData) {
-        
+    func updateCellData(data: ResultTableViewCellData?) {
+        guard let data = data else {
+            //디폴트 데이터 노츌
+            return
+        }
+        self.titleLabel.text = data.title
+        self.descLabel.text = data.description
+        //self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
+        self.bottomCollectionView.backgroundColor = .green
     }
 }

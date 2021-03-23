@@ -33,8 +33,8 @@ class HistoryWordTableViewCell: UITableViewCell {
         }
     }
     
-    func updateCellData(historyWord: String?) {
-        if let text = historyWord {
+    func updateCellData(data: String?) {
+        if let text = data {
             self.historyWordLabel.text = text
         }
     }
