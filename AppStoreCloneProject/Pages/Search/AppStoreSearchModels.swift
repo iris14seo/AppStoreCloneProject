@@ -9,7 +9,14 @@ import UIKit
 
 enum AppStoreSearch {
     
-    //Use Case1 - 최근 검색어 조회하기(전체 목록 vs 입력된 검색어 기반 필터 목록)
+    /**Use Case1 - 로컬 최근검색어 기반 검색
+     
+     # 전체 목록 노출
+     - CoreData에 저장된 검색어목록 페이징 처리하여 노출
+     
+     # 필터된 목록 노출
+     - 키워드 입력 후, 해당 단어 기반으로 필터된 검색어목록 노출
+     */
     enum HistoryWord {
         struct Request {
             var dataType: DataType
@@ -30,7 +37,15 @@ enum AppStoreSearch {
         }
     }
     
-    //Use Case2 - 입력된 단어로 API 검색하기 //키보드에서 enter 누른 경우 OR 테이블 뷰에서 didSelectRow한 경우
+    /**Use Case2 - 입력된 키워드 기반 검색
+     
+     # 로컬 최근검색 시나리오
+     - SearchBar에 키워드 입력한 경우
+     
+     # API 검색 시나리오
+     - 키워드 입력 후, KeyBoard에서 enter 누른 경우
+     - 검색 TableView에서 didSelectRow한 경우
+     */
     enum SearchWord {
         struct Request {
             var keyWord: String
@@ -44,25 +59,17 @@ enum AppStoreSearch {
             var iTunesSearchDataList: [ITunesSearchData]?
         }
         
-        struct FormmatedSearchData: Equatable {
-            var wrapperType, kind: String?
-            var artistID, collectionID, trackID: Int?
-            var artistName, collectionName, trackName, collectionCensoredName: String?
-            var trackCensoredName: String?
-            var artistViewURL, collectionViewURL, trackViewURL: String?
-            var previewURL: String?
-            var artworkUrl60, artworkUrl100: String?
-            let collectionPrice, trackPrice: Double?
-            var collectionExplicitness, trackExplicitness: String?
-            var discCount, discNumber, trackCount, trackNumber: Int?
-            var trackTimeMillis: Int?
-            var country, currency, primaryGenreName: String?
+        /**검색 TableView에서 발생 가능한 타입정리
+         
+         # 타입
+         - history: 로컬 최근검색한 경우
+         - search: API 검색한 경우
+         - notFound: API 검색결과 없는 경우
+         */
+        enum ResultType {
+            case history
+            case search
+            case notFound
         }
     }
-}
-
-public enum SearchResultType {
-    case history
-    case search
-    case notFound
 }

@@ -12,7 +12,7 @@ protocol AppStoreDetailDisplayLogic: class {
 }
 
 typealias AppStoreDetailPage = AppStoreDetailViewController
-class AppStoreDetailViewController: UIViewController, AppStoreDetailDisplayLogic {
+class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic {
     var interactor: AppStoreDetailBusinessLogic?
     var router: (NSObjectProtocol & AppStoreDetailRoutingLogic & AppStoreDetailDataPassing)?
     

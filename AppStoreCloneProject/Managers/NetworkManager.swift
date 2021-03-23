@@ -25,7 +25,7 @@ protocol APIProtocol {
     var baseURLString: String { get }
     var path: APIPath { get }
     var queryParameters: [String: Any]? { get }
-    var method: HTTPMethod { get } //실제로는 GET만 사용
+    var method: HTTPMethod { get }
 }
 
 struct APIBaseURL {
@@ -38,10 +38,10 @@ enum APIPath: String {
 }
 
 enum HTTPMethod: String {
-    case get = "GET"
+    case get = "GET" //이번 프로젝트에선 얘만 사용
     case post = "POST"
-    //case put = "PUT"
-    //case delete = "DELETE"
+    //case put = "PUT" //잘 안씀
+    //case delete = "DELETE" //잘 안씀
 }
 
 typealias CompletionHandler = (APIResult<[ITunesSearchData]?>) -> Void
@@ -61,8 +61,9 @@ class NetworkManager {
         self.session = URLSession(configuration: self.sessionConfiguration)
     }
     
-    /**
-    JSON 요청 함수
+    /**JSON 요청 함수
+     
+     #매개변수
      - baseURLString: String
      - path: APIPath
      - queryParameters: 파라미터
@@ -75,7 +76,7 @@ class NetworkManager {
                  method: HTTPMethod,
                  completionHandler: @escaping CompletionHandler) {
         
-        // - URL 가공
+        //URL 가공
         guard let url = URL(string: baseURLString + path.rawValue) else {
             completionHandler(.failure(error: .urlNotSupportError))
             return
@@ -106,13 +107,13 @@ class NetworkManager {
         
         print(urlRequest)
         
-        // - 네트워킹 시작
+        //네트워킹 시작
         let task = session?.dataTask(with: urlRequest) { (data, response, error) in
             
             guard error == nil else {
-                //MARK: 왜 디스패치 큐 해야함??
+                //MARK: [질문] 왜 디스패치 큐??
                 //DispatchQueue.main.async {
-                    completionHandler(.failure(error: .responseError))
+                completionHandler(.failure(error: .responseError))
                 //}
                 return
             }
@@ -123,7 +124,7 @@ class NetworkManager {
                 switch response.statusCode {
                 case 200 ..< 300:
                     do {
-                        //Json타입의 데이터를 디코딩
+                        //JSON타입의 데이터를 디코딩
                         let decoder = JSONDecoder()
                         let itunesResponse = try decoder.decode(ITunesSearchDataResponse.self, from: resultData)
                         dump(itunesResponse)
@@ -144,12 +145,12 @@ class NetworkManager {
         task?.resume()
     }
     
-    /**
-     데이타 타입을 체크하여 escape된 형태로 변환해주는 배열 함수
+    /**데이타 타입을 체크하여 escape된 형태로 변환해주는 배열 함수
+     
+     #매개변수
      - fromKey: 키값
-     - value: value값
-     - returns: 키/value 배열
-     */
+     - value: value값*/
+     /// - Returns: 키/value 배열
     public func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
         
@@ -176,11 +177,11 @@ class NetworkManager {
         return components
     }
     
-    /**
-     문자를 URL escape 해주는 함수
-     - string: 문자
-     - returns: escape 처리 된 문자
-     */
+    /**문자를 URL escape 해주는 함수
+     
+     #매개변수
+     - string: 문자*/
+    /// - Returns: escape 처리 된 문자
     public func escape(_ string: String) -> String {
         let generalDelimitersToEncode = ":#[]@"
         let subDelimitersToEncode = "!$&'()*+,;="
@@ -212,12 +213,11 @@ class NetworkManager {
         return escaped
     }
     
-    /**
-     파라미터 인코딩 변환해서 & 값으로 연결 해주는 함수
-     - parameters:
-     - parameters: 파라미터
-     - returns: 문자열
-     */
+    /**파라미터 인코딩 변환해서 & 값으로 연결 해주는 함수
+     
+     #매개변수
+     - parameters: 파라미터*/
+    /// - Returns: 문자열
     private func query(_ parameters: [String: Any]) -> String {
         var components: [(String, String)] = []
         
@@ -231,9 +231,7 @@ class NetworkManager {
 }
 
 extension NSNumber {
-    /**
-     Bool인지 체크
-     - returns: Bool 값이 참인지 아닌지 여부 값
-     */
+    /**Bool인지 체크*/
+    /// - Returns: Bool 값이 참인지 아닌지 여부 값
     var isBool: Bool { return CFBooleanGetTypeID() == CFGetTypeID(self) }
 }

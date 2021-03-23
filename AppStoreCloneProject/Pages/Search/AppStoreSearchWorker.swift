@@ -18,7 +18,8 @@ class AppStoreSearchWorker: APIProtocol {
     let defaults = UserDefaults.standard
     let testUserDefaultArray: [String]? = ["카카오","카카오톡","카카오 뱅크","뱅크","카카오페이","카패","게임","애플","테스트","캌ㅋ","ㅋㅋㅇ","카카오택시","카톡","은행","배그","ㅁㅇㄹㅁ","하이","1","2","3","4","5","6","7","netflix","play"]
     
-    //전체 최근 검색어 Array 가져오기
+    /**CoreData에서 최근 검색어목록 가져오기
+     */
     func loadHistoryWordList() -> Observable<[String]?> {
         return Observable.create { (observer) -> Disposable in
             
@@ -33,6 +34,8 @@ class AppStoreSearchWorker: APIProtocol {
         }
     }
     
+    /**iTunes Search API에서 검색결과 조회
+     */
     func requestItunesSearchList(keyWord: String) -> Observable<[ITunesSearchData]?> {
         return Observable.create { (observer) -> Disposable in
             

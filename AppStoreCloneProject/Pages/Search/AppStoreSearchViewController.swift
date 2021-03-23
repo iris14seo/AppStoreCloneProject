@@ -17,7 +17,7 @@ protocol AppStoreSearchDisplayLogic: class {
 }
 
 typealias AppStoreSearchPage = AppStoreSearchViewController
-class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic {
+class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic {
     
     var interactor: AppStoreSearchBusinessLogic?
     var router: (NSObjectProtocol & AppStoreSearchRoutingLogic & AppStoreSearchDataPassing)?
@@ -73,9 +73,7 @@ class AppStoreSearchViewController: UIViewController, AppStoreSearchDisplayLogic
     }
     
     // MARK: Do something
-    
-    let disposeBag = DisposeBag()
-    
+        
     //navigation
     let profileButtonWidth: CGFloat = 40
     let profileButtonTraillingConstarint: CGFloat = 20

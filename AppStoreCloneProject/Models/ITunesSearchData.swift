@@ -9,11 +9,19 @@ import Foundation
 
 // MARK: - ITunesSearchData
 
+/**iTunes Search API 조회시 받아오는, response 구조체
+ 
+    #파라미터
+    - resultCount
+    - results
+ */
 struct ITunesSearchDataResponse: Codable {
     var resultCount: Int?
     var results: [ITunesSearchData]?
 }
 
+/**iTunes Search API 조회시 받아오는, response의 results에서 사용되는 구조체
+ */
 struct ITunesSearchData: Codable {
     var wrapperType, kind: String?
     var artistID, collectionID, trackID: Int?

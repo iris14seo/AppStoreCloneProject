@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C7187D31C43ADB571293ADB /* Pods_AppStoreCloneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58BFEC818956A5F140BB1F25 /* Pods_AppStoreCloneProject.framework */; };
+		8702166B2609A53400D05C08 /* RXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702166A2609A53400D05C08 /* RXViewController.swift */; };
 		BB8C97ED2604FE1B003B40F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C97EC2604FE1B003B40F8 /* AppDelegate.swift */; };
 		BB8C97F42604FE1B003B40F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB8C97F22604FE1B003B40F8 /* Main.storyboard */; };
 		BB8C97F62604FE1C003B40F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8C97F52604FE1C003B40F8 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		4A58D35DC1C4D777E3EDE733 /* Pods-AppStoreCloneProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneProject.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreCloneProject/Pods-AppStoreCloneProject.debug.xcconfig"; sourceTree = "<group>"; };
 		58BFEC818956A5F140BB1F25 /* Pods_AppStoreCloneProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStoreCloneProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8702166A2609A53400D05C08 /* RXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewController.swift; sourceTree = "<group>"; };
 		BB8C97E92604FE1B003B40F8 /* AppStoreCloneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreCloneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8C97EC2604FE1B003B40F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8C97F32604FE1B003B40F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				BB8C981B26050D91003B40F8 /* UITextField+Extension.swift */,
 				BB8C986226064495003B40F8 /* UINavigation+Extension.swift */,
 				BB8C986526064902003B40F8 /* UIViewController+Extension.swift */,
+				8702166A2609A53400D05C08 /* RXViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				BB8C983F2605132F003B40F8 /* AppStoreSearchWorker.swift in Sources */,
 				BB8C983C2605132F003B40F8 /* AppStoreSearchModels.swift in Sources */,
 				BB8C983E2605132F003B40F8 /* AppStoreSearchViewController.swift in Sources */,
+				8702166B2609A53400D05C08 /* RXViewController.swift in Sources */,
 				BBDF994F26075A5200F4BB20 /* ImageCacheManager.swift in Sources */,
 				BBA69E4C2608FEBA00E237FF /* SearchResultTableViewCell.swift in Sources */,
 				BB8C984A26051358003B40F8 /* AppStoreDetailRouter.swift in Sources */,

@@ -6,24 +6,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-//MARK: test 코드
-class SearchResultTableViewController: UITableViewController {
+class SearchResultTableViewController: RXTableViewController {
 
     let historyWordCell = "HistoryWordTableViewCell"
     let searchResultCell = "SearchResultTableViewCell"
     let notFoundCell = "NotFoundTableViewCell"
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initStyle()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func initStyle() {
