@@ -92,6 +92,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     
     lazy var searchResultTableViewController: SearchResultTableViewController = {
         let tv = SearchResultTableViewController()
+        tv.delegate = self
         return tv
     }()
     
@@ -199,15 +200,18 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     func updateSearchWordTableView(dataList: [Any]?, type: AppStoreSearch.ResultType) {
         dump(dataList)
         
-        
-        self.updateSearchWordType(type: type)
-        
-        if type == .history {
-            let historyList = dataList as? [String]
-            self.searchResultTableViewController.historyWordList = historyList
-        } else if type == .search {
-            let searchList = dataList as? [ResultTableViewCellData]
-            self.searchResultTableViewController.searchDataList = searchList
+        if (dataList?.count ?? 0) > 0 {
+            
+            if type == .history {
+                let historyList = dataList as? [String]
+                self.searchResultTableViewController.historyWordList = historyList
+            } else if type == .search {
+                let searchList = dataList as? [ResultTableViewCellData]
+                self.searchResultTableViewController.searchDataList = searchList
+            }
+            
+        } else {
+            self.updateSearchWordType(type: .notFound)
         }
         
         DispatchQueue.main.async {
@@ -217,6 +221,17 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     
     func updateSearchWordType(type: AppStoreSearch.ResultType) {
         self.searchResultTableViewController.currentResultType = type
+    }
+}
+
+extension AppStoreSearchViewController: SearchResultTableViewCellDelegate {
+    func onClickHistoryCellForSearch(word: String) {
+        self.searchingController.searchBar.text = word
+        self.requestITunesSearchDataList(keyWord: word)
+    }
+    
+    func didScrollSearchResultTableView() {
+        self.searchingController.searchBar.endEditing(true)
     }
 }
 
@@ -285,14 +300,6 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
         cell.updateCellData(word: historyWordList[indexPath.row])
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedWord = self.vmHistoryWordList?[indexPath.row] else { return }
-        
-        print("선택한 단어로 검색하기")
-        self.searchingController.searchBar.text = selectedWord
-        self.requestITunesSearchDataList(keyWord: selectedWord)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
