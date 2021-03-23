@@ -159,7 +159,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.updateSearchWordType(type: .history)
     }
     
-    func requestITunesSearchDataList(keyWord: String) {
+    func requestSoftWareDataList(keyWord: String) {
         self.interactor?.requestSearchWordList(request: .init(keyWord: keyWord))
         self.updateSearchWordType(type: .search)
     }
@@ -179,7 +179,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     }
     
     func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel) {
-        guard let searchWordList = viewModel.iTunesSearchDataList else {
+        guard let searchWordList = viewModel.softWareDataList else {
             return
         }
         
@@ -206,7 +206,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
                 let historyList = dataList as? [String]
                 self.searchResultTableViewController.historyWordList = historyList
             } else if type == .search {
-                let searchList = dataList as? [ResultTableViewCellData]
+                let searchList = dataList as? [SoftWareCellData]
                 self.searchResultTableViewController.searchDataList = searchList
             }
             
@@ -227,7 +227,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
 extension AppStoreSearchViewController: SearchResultTableViewCellDelegate {
     func onClickHistoryCellForSearch(word: String) {
         self.searchingController.searchBar.text = word
-        self.requestITunesSearchDataList(keyWord: word)
+        self.requestSoftWareDataList(keyWord: word)
     }
     
     func didScrollSearchResultTableView() {
@@ -262,7 +262,7 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
         print("서치 버튼 클릭")
         guard let text = searchBar.text, text.count > 0 else { return }
         
-        self.requestITunesSearchDataList(keyWord: text)
+        self.requestSoftWareDataList(keyWord: text)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

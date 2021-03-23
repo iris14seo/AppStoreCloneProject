@@ -10,11 +10,18 @@ import RxSwift
 
 class AppStoreSearchWorker: APIProtocol {
     
+    enum ParameterEntity: String {
+        case movie, podcast, music, musicVideo, audiobook, shortFilm, tvShow, software, ebook, all
+    }
+    
+    let parameterLimit = 20
+    
     var baseURLString: String = APIBaseURL.url
     var path: APIPath = .searchPath
     var queryParameters: [String : Any]?
     var method: HTTPMethod = .get
     
+    //MARK: test code
     let defaults = UserDefaults.standard
     let testUserDefaultArray: [String]? = ["카카오","카카오톡","카카오 뱅크","뱅크","카카오페이","카패","게임","애플","테스트","캌ㅋ","ㅋㅋㅇ","카카오택시","카톡","은행","배그","ㅁㅇㄹㅁ","하이","1","2","3","4","5","6","7","netflix","play"]
     
@@ -36,15 +43,16 @@ class AppStoreSearchWorker: APIProtocol {
     
     /**iTunes Search API에서 검색결과 조회
      */
-    func requestItunesSearchList(keyWord: String) -> Observable<[ITunesSearchData]?> {
+    func requestSoftWareDataList(keyWord: String) -> Observable<[SearchResultModel]?> {//SoftWareData
         return Observable.create { (observer) -> Disposable in
             
             self.queryParameters = [
                 "country" : "kr",
-                "media" : "music", //movie, podcast, music, musicVideo, audiobook, shortFilm, tvShow, software, ebook, all
-                "limit" : 20
+                "entity" : ParameterEntity.software.rawValue,
+                "limit" : self.parameterLimit,
+                "term" : keyWord
             ]
-            self.queryParameters?["term"] = keyWord
+            //self.queryParameters?["term"] = keyWord
             
             NetworkManager.shared.requestJSON(self.baseURLString, path: self.path, queryParameters: self.queryParameters, method: self.method, completionHandler: { (response) in
                 switch response {

@@ -21,15 +21,14 @@ import RxSwift
  - 다운로드 URL
  - 콜렉션뷰 이미지 URLs
  */
-public struct ResultTableViewCellData: Equatable {
-    var wrapperType: String?
+public struct SoftWareCellData: Equatable {
     var title: String?
     var description: String?
     var iconImageURL: String?
     var ratingScore: Double?
     var downloadCount: Int?
     var downloadURL: String?
-    var bottomImageURLList: [String]?
+    var screenShotURLList: [String]?
 }
 
 class SearchResultTableViewCell: UITableViewCell {
@@ -89,7 +88,7 @@ class SearchResultTableViewCell: UITableViewCell {
         }
     }
     
-    func updateCellData(data: ResultTableViewCellData?) {
+    func updateCellData(data: SoftWareCellData?) {
         guard let data = data else {
             //디폴트 데이터 노츌
             return

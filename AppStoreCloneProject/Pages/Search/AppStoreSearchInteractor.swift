@@ -17,7 +17,7 @@ protocol AppStoreSearchBusinessLogic {
 protocol AppStoreSearchDataStore {
     var searchTableViewResultType: AppStoreSearch.ResultType { get set }
     var historyWordList: [String]? { get set }
-    var iTunesSearchDataList: [ITunesSearchData]? { get set } //MARK: [도전과제] 음악말고 다양한 DataModel 추가하면 'var searchedDataList: [Any]? { get set }' 로 변경하기
+    var softWareDataList: [SearchResultModel]? { get set } //MARK: [도전과제] 음악말고 다양한 DataModel 추가하면 'var searchedDataList: [Any]? { get set }' 로 변경하기
 }
 
 class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataStore {
@@ -26,7 +26,7 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     
     var searchTableViewResultType: AppStoreSearch.ResultType = .history
     var historyWordList: [String]?
-    var iTunesSearchDataList: [ITunesSearchData]?
+    var softWareDataList: [SearchResultModel]?
     
     let disposeBag = DisposeBag()
     /*
@@ -63,11 +63,11 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     }
     
     func requestSearchWordList(request: AppStoreSearch.SearchWord.Request) {
-        self.worker.requestItunesSearchList(keyWord: request.keyWord).asObservable()
+        self.worker.requestSoftWareDataList(keyWord: request.keyWord).asObservable()
             .subscribe(onNext: { [weak self] (result) in
                 
-                self?.iTunesSearchDataList = result
-                self?.presenter?.presentSearchWordList(response: .init(iTunesSearchDataList: self?.iTunesSearchDataList))
+                self?.softWareDataList = result
+                self?.presenter?.presentSearchWordList(response: .init(softWareDataList: self?.softWareDataList))
                 
             }, onError: { [weak self] (error) in
                 self?.presenter?.presentError(error: error)

@@ -41,12 +41,14 @@
 		BBA69E472608F8DD00E237FF /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E452608F8DD00E237FF /* MainTableViewCell.xib */; };
 		BBA69E4C2608FEBA00E237FF /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E4A2608FEBA00E237FF /* SearchResultTableViewCell.swift */; };
 		BBA69E4D2608FEBA00E237FF /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E4B2608FEBA00E237FF /* SearchResultTableViewCell.xib */; };
+		BBA69E54260A1A1C00E237FF /* SoftWareDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */; };
+		BBA69E57260A2B5700E237FF /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E56260A2B5600E237FF /* SearchModel.swift */; };
 		BBDF993D26073EAE00F4BB20 /* HistoryWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF993B26073EAE00F4BB20 /* HistoryWordTableViewCell.swift */; };
 		BBDF993E26073EAE00F4BB20 /* HistoryWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDF993C26073EAE00F4BB20 /* HistoryWordTableViewCell.xib */; };
 		BBDF99422607410400F4BB20 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */; };
 		BBDF994C26075A3D00F4BB20 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */; };
 		BBDF994F26075A5200F4BB20 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */; };
-		BBDF99632607B06400F4BB20 /* ITunesSearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99622607B06400F4BB20 /* ITunesSearchData.swift */; };
+		BBDF99632607B06400F4BB20 /* ITunesSearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99622607B06400F4BB20 /* ITunesSearchDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,12 +89,14 @@
 		BBA69E452608F8DD00E237FF /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		BBA69E4A2608FEBA00E237FF /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		BBA69E4B2608FEBA00E237FF /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftWareDataModel.swift; sourceTree = "<group>"; };
+		BBA69E56260A2B5600E237FF /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		BBDF993B26073EAE00F4BB20 /* HistoryWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWordTableViewCell.swift; sourceTree = "<group>"; };
 		BBDF993C26073EAE00F4BB20 /* HistoryWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryWordTableViewCell.xib; sourceTree = "<group>"; };
 		BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
-		BBDF99622607B06400F4BB20 /* ITunesSearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesSearchData.swift; sourceTree = "<group>"; };
+		BBDF99622607B06400F4BB20 /* ITunesSearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesSearchDataModel.swift; sourceTree = "<group>"; };
 		EA74DDA3CC96BE09662696A1 /* Pods-AppStoreCloneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneProject.release.xcconfig"; path = "Target Support Files/Pods-AppStoreCloneProject/Pods-AppStoreCloneProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,7 +193,9 @@
 		BB8C98132605056E003B40F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BBDF99622607B06400F4BB20 /* ITunesSearchData.swift */,
+				BBDF99622607B06400F4BB20 /* ITunesSearchDataModel.swift */,
+				BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */,
+				BBA69E56260A2B5600E237FF /* SearchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,8 +401,10 @@
 				BB8C983B2605132F003B40F8 /* AppStoreSearchPresenter.swift in Sources */,
 				BB8C982126050D91003B40F8 /* UIImage+Extension.swift in Sources */,
 				BB8C983F2605132F003B40F8 /* AppStoreSearchWorker.swift in Sources */,
+				BBA69E57260A2B5700E237FF /* SearchModel.swift in Sources */,
 				BB8C983C2605132F003B40F8 /* AppStoreSearchModels.swift in Sources */,
 				BB8C983E2605132F003B40F8 /* AppStoreSearchViewController.swift in Sources */,
+				BBA69E54260A1A1C00E237FF /* SoftWareDataModel.swift in Sources */,
 				8702166B2609A53400D05C08 /* RXViewController.swift in Sources */,
 				BBDF994F26075A5200F4BB20 /* ImageCacheManager.swift in Sources */,
 				BBA69E4C2608FEBA00E237FF /* SearchResultTableViewCell.swift in Sources */,
@@ -406,7 +414,7 @@
 				BBDF993D26073EAE00F4BB20 /* HistoryWordTableViewCell.swift in Sources */,
 				BB8C982026050D91003B40F8 /* UITextField+Extension.swift in Sources */,
 				BBA69E412608F3A500E237FF /* NotFoundTableViewCell.swift in Sources */,
-				BBDF99632607B06400F4BB20 /* ITunesSearchData.swift in Sources */,
+				BBDF99632607B06400F4BB20 /* ITunesSearchDataModel.swift in Sources */,
 				BBA69E462608F8DD00E237FF /* MainTableViewCell.swift in Sources */,
 				BB8C981F26050D91003B40F8 /* String+Extension.swift in Sources */,
 				BB8C986626064902003B40F8 /* UIViewController+Extension.swift in Sources */,

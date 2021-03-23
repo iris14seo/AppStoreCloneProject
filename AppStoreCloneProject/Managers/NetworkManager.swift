@@ -44,7 +44,7 @@ enum HTTPMethod: String {
     //case delete = "DELETE" //잘 안씀
 }
 
-typealias CompletionHandler = (APIResult<[ITunesSearchData]?>) -> Void
+typealias CompletionHandler = (APIResult<[SearchResultModel]?>) -> Void//SoftWareData
 
 class NetworkManager {
     
@@ -53,8 +53,8 @@ class NetworkManager {
     private var session: URLSession?
     
     private var sessionConfiguration: URLSessionConfiguration = .default
-    private let requestCachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy //MARK [공부하기]
-    private let timeoutInterval: TimeInterval = 60.0 //MARK [공부하기]
+    private let requestCachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
+    private let timeoutInterval: TimeInterval = 60.0
     
     private init() {
         self.sessionConfiguration.requestCachePolicy = requestCachePolicy
@@ -126,10 +126,10 @@ class NetworkManager {
                     do {
                         //JSON타입의 데이터를 디코딩
                         let decoder = JSONDecoder()
-                        let itunesResponse = try decoder.decode(ITunesSearchDataResponse.self, from: resultData)
-                        dump(itunesResponse)
+                        let softWareResponse = try decoder.decode(SearchModel.self, from: resultData)
+                        dump(softWareResponse)
                         
-                        completionHandler(.success(result: itunesResponse.results))
+                        completionHandler(.success(result: softWareResponse.results))
                     } catch let jsonError as NSError {
                         print("JSON decode failed: \(jsonError.localizedDescription)")
                         completionHandler(.failure(error: .decodeError))

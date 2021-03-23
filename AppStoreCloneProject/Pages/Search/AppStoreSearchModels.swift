@@ -54,11 +54,11 @@ enum AppStoreSearch {
         }
         
         struct Response {
-            var iTunesSearchDataList: [ITunesSearchData]?
+            var softWareDataList: [SearchResultModel]?
         }
         
         struct ViewModel{
-            var iTunesSearchDataList: [ResultTableViewCellData]?
+            var softWareDataList: [SoftWareCellData]?
         }
     }
     

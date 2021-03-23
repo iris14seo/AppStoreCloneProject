@@ -22,7 +22,7 @@ class SearchResultTableViewController: RXTableViewController {
     
     //data
     var historyWordList: [String]?
-    var searchDataList: [ResultTableViewCellData]?
+    var searchDataList: [SoftWareCellData]?
     var currentResultType: AppStoreSearch.ResultType = .history
     var keyWord: String = ""
     
