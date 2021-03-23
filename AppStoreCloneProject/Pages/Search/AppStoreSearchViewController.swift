@@ -69,7 +69,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.initStyle()
         self.initHistoryWordTableView()
         
-        self.loadAllHistoryWord()
+        self.loadAllHistoryWord() //MARK: [이슈] viewWillAppear로 위치 옮기기
     }
     
     // MARK: Do something

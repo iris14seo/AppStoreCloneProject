@@ -36,7 +36,8 @@ class ImageCacheManager {
     
     /**
      통신 캐쉬 이미지 요청 함수
-     - parameters:
+     
+     # 매개변수
      - url: URL
      - success: 성공 block
      - failure: 실패 block

@@ -26,11 +26,6 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     var softWareDataList: [SearchResultModel]?
     
     let disposeBag = DisposeBag()
-    /*
-     //MARK: [도전과제] API 기반 검색에 'paging 처리 기능 추가' 가능해지면 작업할 것
-     var pageIndex: Int = 0
-     let pageSize: Int = defaultPageSize
-     */
     
     // MARK: Do something
     
@@ -71,6 +66,9 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     }
     
     func requestSearchWordList(request: AppStoreSearch.SearchWord.Request) {
+        
+        self.updateHistoryWordUserDefault(keyWord: request.keyWord)
+        
         self.worker.requestSoftWareDataList(keyWord: request.keyWord).asObservable()
             .subscribe(onNext: { [weak self] (result) in
                 
@@ -82,4 +80,11 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
             }).disposed(by: self.disposeBag)
     }
     
+    private func updateHistoryWordUserDefault(keyWord: String) {
+        if HistoryWordUserDefaultManager.shared.isExistWord(word: keyWord) {
+            HistoryWordUserDefaultManager.shared.removeWord(word: keyWord)
+        } else {
+            HistoryWordUserDefaultManager.shared.addWord(word: keyWord)
+        }
+    }
 }
