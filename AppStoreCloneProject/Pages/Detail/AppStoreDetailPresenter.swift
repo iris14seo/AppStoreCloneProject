@@ -68,4 +68,17 @@ class AppStoreDetailPresenter: AppStoreDetailPresentationLogic {
         
         return supportedDeviceList
     }
+    
+    func getRatingScore(originNum: Double?) -> Double {
+        guard let originNum = originNum else {
+            return 0.0
+        }
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.roundingMode = .floor
+        numberFormatter.minimumSignificantDigits = 0
+        numberFormatter.maximumSignificantDigits = 1
+
+        return Double(numberFormatter.string(from: NSNumber(value: originNum)) ?? "") ?? 0.0
+    }
 }

@@ -10,8 +10,8 @@
 		005751782447DAFDA2FD1FB9 /* Pods_AppStoreCloneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE530D94C046EEC6BD9C7F5 /* Pods_AppStoreCloneProject.framework */; };
 		8702166B2609A53400D05C08 /* RXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702166A2609A53400D05C08 /* RXViewController.swift */; };
 		873D3941260AC202001CED23 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873D3940260AC202001CED23 /* Int+Extension.swift */; };
-		87EF7C24260B1BF700591B7C /* PaddingCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EF7C22260B1BF700591B7C /* PaddingCVCell.swift */; };
-		87EF7C25260B1BF700591B7C /* PaddingCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EF7C23260B1BF700591B7C /* PaddingCVCell.xib */; };
+		87EF7C24260B1BF700591B7C /* SummaryInfoCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EF7C22260B1BF700591B7C /* SummaryInfoCVCell.swift */; };
+		87EF7C25260B1BF700591B7C /* SummaryInfoCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EF7C23260B1BF700591B7C /* SummaryInfoCVCell.xib */; };
 		BB8C97ED2604FE1B003B40F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C97EC2604FE1B003B40F8 /* AppDelegate.swift */; };
 		BB8C97F42604FE1B003B40F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB8C97F22604FE1B003B40F8 /* Main.storyboard */; };
 		BB8C97F62604FE1C003B40F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8C97F52604FE1C003B40F8 /* Assets.xcassets */; };
@@ -66,8 +66,8 @@
 		795CBA88F21DE19254882FB8 /* Pods-AppStoreCloneProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneProject.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreCloneProject/Pods-AppStoreCloneProject.debug.xcconfig"; sourceTree = "<group>"; };
 		8702166A2609A53400D05C08 /* RXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXViewController.swift; sourceTree = "<group>"; };
 		873D3940260AC202001CED23 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
-		87EF7C22260B1BF700591B7C /* PaddingCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingCVCell.swift; sourceTree = "<group>"; };
-		87EF7C23260B1BF700591B7C /* PaddingCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaddingCVCell.xib; sourceTree = "<group>"; };
+		87EF7C22260B1BF700591B7C /* SummaryInfoCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInfoCVCell.swift; sourceTree = "<group>"; };
+		87EF7C23260B1BF700591B7C /* SummaryInfoCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryInfoCVCell.xib; sourceTree = "<group>"; };
 		BB8C97E92604FE1B003B40F8 /* AppStoreCloneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreCloneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8C97EC2604FE1B003B40F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB8C97F32604FE1B003B40F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -282,8 +282,8 @@
 			children = (
 				BBA69E5A260A2F6300E237FF /* ScreenShotCVCell.swift */,
 				BBA69E5B260A2F6300E237FF /* ScreenShotCVCell.xib */,
-				87EF7C22260B1BF700591B7C /* PaddingCVCell.swift */,
-				87EF7C23260B1BF700591B7C /* PaddingCVCell.xib */,
+				87EF7C22260B1BF700591B7C /* SummaryInfoCVCell.swift */,
+				87EF7C23260B1BF700591B7C /* SummaryInfoCVCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87EF7C25260B1BF700591B7C /* PaddingCVCell.xib in Resources */,
+				87EF7C25260B1BF700591B7C /* SummaryInfoCVCell.xib in Resources */,
 				BBA69E422608F3A500E237FF /* NotFoundTVCell.xib in Resources */,
 				BBA69E4D2608FEBA00E237FF /* SearchResultTVCell.xib in Resources */,
 				BBA69E5D260A2F6300E237FF /* ScreenShotCVCell.xib in Resources */,
@@ -458,7 +458,7 @@
 				BB8C984C26051358003B40F8 /* AppStoreDetailViewController.swift in Sources */,
 				BBDF993D26073EAE00F4BB20 /* HistoryWordTVCell.swift in Sources */,
 				873D3941260AC202001CED23 /* Int+Extension.swift in Sources */,
-				87EF7C24260B1BF700591B7C /* PaddingCVCell.swift in Sources */,
+				87EF7C24260B1BF700591B7C /* SummaryInfoCVCell.swift in Sources */,
 				BBA69E69260A374A00E237FF /* CustomXibView.swift in Sources */,
 				BB8C982026050D91003B40F8 /* UITextField+Extension.swift in Sources */,
 				BBA69E412608F3A500E237FF /* NotFoundTVCell.swift in Sources */,

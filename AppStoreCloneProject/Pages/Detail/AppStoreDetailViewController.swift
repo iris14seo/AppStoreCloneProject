@@ -76,7 +76,11 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     @IBOutlet var downloadButton: UIButton!
     @IBOutlet var shareButton: UIButton!
     
-    @IBOutlet var moreInfoView: UIView!
+    @IBOutlet var summaryInfoView: UIView!
+    @IBOutlet var summaryInfoCollectionView: UICollectionView!
+    let summaryInfoCVCell = "SummaryInfoCVCell"
+    let summaryInfoCVCellHeight: Double = 80
+    let summaryInfoCVCellCount: Int = 5
     
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
@@ -138,6 +142,22 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         
         self.shareButton.do {
             $0.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        }
+        
+        self.summaryInfoCollectionView.do {
+            $0.register(UINib.init(nibName: summaryInfoCVCell, bundle: nil), forCellWithReuseIdentifier: summaryInfoCVCell)
+            $0.delegate = self
+            $0.dataSource = self
+            $0.backgroundColor = .clear
+            $0.allowsMultipleSelection = false
+            $0.showsHorizontalScrollIndicator = false
+            $0.showsVerticalScrollIndicator = false
+            
+            if let layout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.scrollDirection = .horizontal
+                layout.minimumInteritemSpacing = 10
+                layout.minimumLineSpacing = 0
+            }
         }
         
         self.screenShotCollectionView.do {
@@ -261,27 +281,49 @@ extension AppStoreDetailViewController: UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let screenShotList = self.screenShotImageUrlStringList, screenShotList.count > 0 else {
+        switch collectionView {
+        case self.summaryInfoCollectionView:
+            return self.summaryInfoCVCellCount
+            
+        case self.screenShotCollectionView:
+            guard let screenShotList = self.screenShotImageUrlStringList, screenShotList.count > 0 else {
+                return 0
+            }
+            return screenShotList.count
+            
+        default:
             return 0
         }
-        
-        return screenShotList.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let screenShotList = self.screenShotImageUrlStringList,
-              screenShotList.count > indexPath.row else {
+        switch collectionView {
+        case self.summaryInfoCollectionView:
+            let uCell: SummaryInfoCVCell = collectionView.dequeueReusableCell(withReuseIdentifier: summaryInfoCVCell, for: indexPath) as! SummaryInfoCVCell
+            let isLastCell = indexPath.row == 4
+            uCell.updateCellData(type: indexPath.row, data: self.vmSoftWareData, isLastCell: isLastCell)
+            
+            return uCell
+            
+        case self.screenShotCollectionView:
+            guard let screenShotList = self.screenShotImageUrlStringList,
+                  screenShotList.count > indexPath.row else {
+                return UICollectionViewCell()
+            }
+            
+            let uCell: ScreenShotCVCell = collectionView.dequeueReusableCell(withReuseIdentifier: screenShotCVCell, for: indexPath) as! ScreenShotCVCell
+            
+            let imageUrl = URL(string: screenShotList[indexPath.row])
+            ImageCacheManager.shared.getCacheImagebyURL(imageUrl, { (image) in
+                uCell.updateCellData(image: image)
+            })
+            
+            return uCell
+            
+        default:
             return UICollectionViewCell()
         }
         
-        let uCell: ScreenShotCVCell = collectionView.dequeueReusableCell(withReuseIdentifier: screenShotCVCell, for: indexPath) as! ScreenShotCVCell
-        
-        let imageUrl = URL(string: screenShotList[indexPath.row])
-        ImageCacheManager.shared.getCacheImagebyURL(imageUrl, { (image) in
-            uCell.updateCellData(image: image)
-        })
-        
-        return uCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SummaryInfoCVCell" id="gTV-IL-0wX" customClass="SummaryInfoCVCell" customModule="AppStoreCloneProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6H-Qh-3Xi">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydk-xi-cMX" userLabel="rightLine">
+                                <rect key="frame" x="79" y="20" width="1" height="40"/>
+                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="ONJ-Xd-L0z"/>
+                                    <constraint firstAttribute="height" constant="40" id="qgP-F2-8Sk"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2tJ-Cw-Wda">
+                                <rect key="frame" x="12" y="11" width="56" height="58"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상단 라벨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-JO-fhQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="TNo-Ps-9DF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중간 라벨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUu-HN-h4F">
+                                        <rect key="frame" x="0.0" y="20" width="56" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-63-Do5">
+                                        <rect key="frame" x="0.0" y="38" width="56" height="20"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKN-e8-wmA" customClass="CosmosView" customModule="Cosmos">
+                                                <rect key="frame" x="0.0" y="0.0" width="56" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하단 라벨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yt-jT-SiZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="bHz-kQ-7aA"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2tJ-Cw-Wda" firstAttribute="centerX" secondItem="B6H-Qh-3Xi" secondAttribute="centerX" id="MPX-Un-rso"/>
+                            <constraint firstItem="ydk-xi-cMX" firstAttribute="centerY" secondItem="B6H-Qh-3Xi" secondAttribute="centerY" id="NNy-vh-R1i"/>
+                            <constraint firstItem="2tJ-Cw-Wda" firstAttribute="centerY" secondItem="B6H-Qh-3Xi" secondAttribute="centerY" id="TFV-bx-rxp"/>
+                            <constraint firstAttribute="trailing" secondItem="ydk-xi-cMX" secondAttribute="trailing" id="YFN-Ys-DxR"/>
+                            <constraint firstItem="2tJ-Cw-Wda" firstAttribute="top" relation="greaterThanOrEqual" secondItem="B6H-Qh-3Xi" secondAttribute="top" constant="10" id="ZyR-9O-FZR"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2tJ-Cw-Wda" secondAttribute="trailing" constant="11" id="beX-8F-3FF"/>
+                            <constraint firstItem="2tJ-Cw-Wda" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="B6H-Qh-3Xi" secondAttribute="leading" constant="10" id="lFy-QH-agO"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2tJ-Cw-Wda" secondAttribute="bottom" constant="10" id="xhN-vG-YFh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="B6H-Qh-3Xi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="BZP-9y-BoS"/>
+                <constraint firstItem="B6H-Qh-3Xi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="MkJ-j4-qDv"/>
+                <constraint firstAttribute="bottom" secondItem="B6H-Qh-3Xi" secondAttribute="bottom" id="Okd-RC-7WY"/>
+                <constraint firstAttribute="trailing" secondItem="B6H-Qh-3Xi" secondAttribute="trailing" id="cpy-Ic-ue4"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomLabel" destination="8Yt-jT-SiZ" id="Qgf-j2-wlg"/>
+                <outlet property="middleLabel" destination="rUu-HN-h4F" id="qSC-2Y-kD2"/>
+                <outlet property="ratingStarView" destination="hKN-e8-wmA" id="aAr-l7-Lkf"/>
+                <outlet property="rightLineView" destination="ydk-xi-cMX" id="OUP-LN-Vkp"/>
+                <outlet property="topLabel" destination="DGs-JO-fhQ" id="Czv-XZ-w6S"/>
+            </connections>
+            <point key="canvasLocation" x="7" y="121"/>
+        </collectionViewCell>
+    </objects>
+    <designables>
+        <designable name="hKN-e8-wmA">
+            <size key="intrinsicContentSize" width="20" height="0.0"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
