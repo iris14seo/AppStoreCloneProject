@@ -73,6 +73,14 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.fetchMainTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.do {
+            $0.navigationBar.prefersLargeTitles = true
+        }
+    }
+    
     // MARK: Do something
     
     lazy var searchResultTableViewController: SearchResultTableViewController = {
@@ -136,10 +144,6 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
             $0.register(UINib(nibName: mainCell, bundle: nil), forCellReuseIdentifier: mainCell)
             $0.register(UINib.init(nibName: mainSectionView, bundle: nil), forHeaderFooterViewReuseIdentifier: mainSectionView)
         }
-    }
-    
-    func bindSearchController() {
-        //self.searchingController.rx
     }
     
     func fetchMainTableView() {
@@ -213,6 +217,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     }
 }
 
+// SearchResultTVCellDelegate
 extension AppStoreSearchViewController: SearchResultTVCellDelegate {
     func onClickHistoryCellForSearch(keyWord: String) {
         self.searchingController.searchBar.text = keyWord
@@ -228,14 +233,13 @@ extension AppStoreSearchViewController: SearchResultTVCellDelegate {
     }
 }
 
-extension AppStoreSearchViewController: UISearchResultsUpdating {
+// UISearchResultsUpdating, UISearchBarDelegate
+extension AppStoreSearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, text.count > 0 else { return }
         self.fetchFilteredHistoryWord(keyWord: text)
     }
-}
-
-extension AppStoreSearchViewController: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             print("서치바 딜리트 버튼 Tap")
@@ -268,6 +272,7 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
     
 }
 
+// UITableViewDelegate, UITableViewDataSource
 extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
