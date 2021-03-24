@@ -152,8 +152,9 @@ class SearchResultTVCell: UITableViewCell {
         self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
         self.ratingView.rating = data.ratingScore ?? 0
         self.downloadCountLabel.text = (data.downloadCount ?? 0).downloadUnit
-        
         self.screenShotImageUrlStringList = data.screenShotURLList
+        
+        self.screenShotCollectionView.reloadData()
     }
     
     //func updateCollectionViewHeightConstraint() {
