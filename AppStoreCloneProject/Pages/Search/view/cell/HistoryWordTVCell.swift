@@ -33,7 +33,7 @@ class HistoryWordTVCell: UITableViewCell {
         }
         
         self.historyWordLabel.do {
-            $0.setFontAndColor(f: .systemFont(ofSize: 14), c: .black)
+            $0.setFontAndColor(f: .systemFont(ofSize: 13), c: .black)
             $0.text = ""
             $0.textAlignment = .left
         }

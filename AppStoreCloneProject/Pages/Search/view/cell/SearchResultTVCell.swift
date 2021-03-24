@@ -71,18 +71,21 @@ class SearchResultTVCell: UITableViewCell {
         self.iconImageView.do {
             $0.layer.cornerRadius = 10
             $0.clipsToBounds = true
+            $0.image = nil
         }
         
         self.titleLabel.do {
             $0.setFontAndColor(f: .systemFont(ofSize: 16), c: .label)
             $0.textAlignment = .left
             $0.numberOfLines = 1
+            $0.text = ""
         }
         
         self.descLabel.do {
             $0.setFontAndColor(f: .systemFont(ofSize: 14), c: .secondaryLabel)
             $0.textAlignment = .left
             $0.numberOfLines = 1
+            $0.text = ""
         }
         
         self.ratingView.do {
@@ -92,19 +95,21 @@ class SearchResultTVCell: UITableViewCell {
             $0.settings.filledColor = UIColor.secondaryLabel
             $0.settings.filledBorderColor = UIColor.secondaryLabel
             $0.settings.emptyBorderColor = UIColor.secondaryLabel
+            $0.rating = 0
         }
         
         self.downloadCountLabel.do {
             $0.setFontAndColor(f: .systemFont(ofSize: 12), c: .secondaryLabel)
             $0.textAlignment = .left
             $0.numberOfLines = 1
+            $0.text = ""
         }
         
         self.screenShotCollectionView.do {
             $0.register(UINib.init(nibName: screenShotCVCell, bundle: nil), forCellWithReuseIdentifier: screenShotCVCell)
             $0.delegate = self
             $0.dataSource = self
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
             $0.allowsMultipleSelection = false
             $0.showsHorizontalScrollIndicator = false
             $0.showsVerticalScrollIndicator = false
@@ -178,4 +183,5 @@ extension SearchResultTVCell: UICollectionViewDelegate, UICollectionViewDataSour
         
         return uCell
     }
+    
 }

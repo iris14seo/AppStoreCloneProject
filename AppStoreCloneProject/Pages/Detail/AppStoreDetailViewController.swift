@@ -144,7 +144,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
             $0.register(UINib.init(nibName: screenShotCVCell, bundle: nil), forCellWithReuseIdentifier: screenShotCVCell)
             $0.delegate = self
             $0.dataSource = self
-            $0.backgroundColor = .black
+            $0.backgroundColor = .clear
             $0.allowsMultipleSelection = false
             $0.showsHorizontalScrollIndicator = false
             $0.showsVerticalScrollIndicator = false
