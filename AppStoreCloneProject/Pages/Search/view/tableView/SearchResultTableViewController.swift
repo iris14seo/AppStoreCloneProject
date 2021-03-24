@@ -84,7 +84,7 @@ class SearchResultTableViewController: RXTableViewController {
             }
         case .search:
             if let cell = tableView.dequeueReusableCell(withIdentifier: self.searchResultCell, for: indexPath) as? SearchResultTVCell {
-                guard self.searchResultCell.count > indexPath.row else {
+                guard (self.searchDataList?.count ?? 0) > indexPath.row else {
                     return UITableViewCell()
                 }
                 cell.updateCellData(data: self.searchDataList?[indexPath.row])

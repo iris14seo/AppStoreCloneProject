@@ -65,6 +65,16 @@ class SearchResultTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        //MARK: 애플에서 퍼포먼스 이슈로 비추한단다.
+        //MARK: https://fluffy.es/solve-duplicated-cells/
+        self.iconImageView.image = nil
+        self.titleLabel.text = nil
+        self.descLabel.text = nil
+        self.ratingView.rating = 0
+        self.downloadCountLabel.text = nil
+    }
+    
     func initStyle() {
         self.selectionStyle = .none
         
@@ -146,13 +156,12 @@ class SearchResultTVCell: UITableViewCell {
         self.screenShotImageUrlStringList = data.screenShotURLList
     }
     
-    func updateCollectionViewHeightConstraint() {
+    //func updateCollectionViewHeightConstraint() {
         //콜렉션뷰 높이 0.65 비율 맞게 업데이트
         //myCollectionViewHeightConstraint.constant = CGFloat(self.cellHeight)
-        
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
-    }
+//        self.setNeedsLayout()
+//        self.layoutIfNeeded()
+//    }
 }
 
 extension SearchResultTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
