@@ -21,7 +21,7 @@ class SearchResultTableViewController: RXTableViewController {
     let searchResultCell = "SearchResultTableViewCell"
     let notFoundCell = "NotFoundTableViewCell"
     
-    let historyWordCellHeight: CGFloat = 40
+    let historyWordCellHeight: CGFloat = 50
     let searchResultCellHeight: CGFloat = 295
     let notFoundCellHeight: CGFloat = UIScreen.main.bounds.height  - 100
     

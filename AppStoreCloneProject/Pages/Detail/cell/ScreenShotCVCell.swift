@@ -1,5 +1,5 @@
 //
-//  ScreenShotCollectionViewCell.swift
+//  ScreenShotCVCell.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScreenShotCollectionViewCell: UICollectionViewCell {
+class ScreenShotCVCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

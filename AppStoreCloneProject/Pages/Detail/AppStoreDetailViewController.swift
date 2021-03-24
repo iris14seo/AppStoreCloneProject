@@ -78,6 +78,11 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     @IBOutlet var moreInfoView: UIView!
     
     @IBOutlet var screenShotCollectionVIew: UICollectionView!
+
+    @IBOutlet var supportDeviceView: UIView!
+    @IBOutlet var iphoneImageView: UIImageView!
+    @IBOutlet var ipadImageView: UIImageView!
+    @IBOutlet var supportDeviceLabel: UILabel!
     
     @IBOutlet var longDescView: UIView!
     @IBOutlet var longDescLabel: UILabel!
@@ -92,6 +97,10 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     // MARK: Do something
     
     func initStyle() {
+        self.navigationController?.do {
+            $0.navigationBar.prefersLargeTitles = false
+        }
+        
         self.scrollView.do {
             $0.backgroundColor = .systemBackground
         }
@@ -124,6 +133,10 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         
         self.shareButton.do {
             $0.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        }
+        
+        self.supportDeviceLabel.do {
+            $0.setFontAndColor(f: .boldSystemFont(ofSize: 15), c: .secondaryLabel)
         }
         
         self.longDescLabel.do {
@@ -180,7 +193,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         
         self.titleLabel.text = data.trackName ?? "앱 이름"
         self.shortDescLabel.text = data.genres?.first ?? "설명"
-        self.iconImageView.setCacheImageURL(URL(string: data.artworkUrl60 ?? ""))
+        self.iconImageView.setCacheImageURL(URL(string: data.artworkUrl100 ?? ""))
         self.longDescLabel.text = data.description
         self.developerIDLabel.text = data.sellerName
     }

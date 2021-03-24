@@ -26,6 +26,12 @@ class HistoryWordTableViewCell: UITableViewCell {
     func initStyle() {
         self.selectionStyle = .none
         
+        self.iconImageView.do {
+            let image = UIImage(named: "icSearch")?.withRenderingMode(.alwaysTemplate)
+            $0.image = image
+            $0.tintColor = UIColor.tertiaryLabel
+        }
+        
         self.historyWordLabel.do {
             $0.setFontAndColor(f: .systemFont(ofSize: 14), c: .black)
             $0.text = ""
