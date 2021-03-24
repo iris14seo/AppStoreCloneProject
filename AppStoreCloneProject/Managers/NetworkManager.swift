@@ -120,14 +120,14 @@ class NetworkManager {
             
             if let resultData = data,
                let response = response as? HTTPURLResponse {
-                dump(resultData)
+                //dump(resultData)
                 switch response.statusCode {
                 case 200 ..< 300:
                     do {
                         //JSON타입의 데이터를 디코딩
                         let decoder = JSONDecoder()
                         let softWareResponse = try decoder.decode(SearchModel.self, from: resultData)
-                        dump(softWareResponse)
+                        //dump(softWareResponse)
                         
                         completionHandler(.success(result: softWareResponse.results))
                     } catch let jsonError as NSError {

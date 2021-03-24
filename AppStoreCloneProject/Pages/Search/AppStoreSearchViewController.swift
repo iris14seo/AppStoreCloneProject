@@ -288,7 +288,7 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: self.mainCell, for: indexPath) as! MainTVCell
-        cell.updateCellData(word: historyWordList[indexPath.row])
+        cell.updateCellData(text: historyWordList[indexPath.row])
         
         return cell
     }

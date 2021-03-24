@@ -32,11 +32,11 @@ class MainTVCell: UITableViewCell {
         }
         
         self.historyWordLabel.do {
-            $0.setFontAndColor(f: .systemFont(ofSize: 22), c: .systemBlue)
+            $0.setFontAndColor(f: .systemFont(ofSize: 18), c: .systemBlue)
         }
     }
     
-    func updateCellData(word: String) {
-        self.historyWordLabel.text = word
+    func updateCellData(text: String) {
+        self.historyWordLabel.text = text
     }
 }

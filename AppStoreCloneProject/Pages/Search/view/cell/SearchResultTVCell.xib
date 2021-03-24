@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,16 +28,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iwm-RQ-tnb">
-                                <rect key="frame" x="80" y="20" width="176" height="95"/>
+                                <rect key="frame" x="80" y="20" width="176" height="58.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqJ-ds-ElJ" userLabel="제목">
-                                        <rect key="frame" x="0.0" y="0.0" width="176" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="176" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 설명이 들어가는 부분입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcg-J0-vbd" userLabel="설명">
-                                        <rect key="frame" x="0.0" y="60" width="176" height="15"/>
+                                        <rect key="frame" x="0.0" y="23.5" width="176" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="7JM-kb-Zie"/>
                                         </constraints>
@@ -46,7 +46,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVz-MV-ybs">
-                                        <rect key="frame" x="0.0" y="79" width="176" height="16"/>
+                                        <rect key="frame" x="0.0" y="42.5" width="176" height="16"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hu6-3a-MwN" userLabel="별점" customClass="CosmosView" customModule="Cosmos">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="16"/>
@@ -74,9 +74,9 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glI-xd-7wO">
-                                <rect key="frame" x="267" y="32" width="40" height="40"/>
+                                <rect key="frame" x="262" y="25" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="49K-NZ-yS3"/>
+                                    <constraint firstAttribute="width" constant="45" id="49K-NZ-yS3"/>
                                     <constraint firstAttribute="width" secondItem="glI-xd-7wO" secondAttribute="height" multiplier="1:1" id="Pm4-aW-H5T"/>
                                 </constraints>
                                 <state key="normal" image="icloud.and.arrow.down" catalog="system">
@@ -84,11 +84,8 @@
                                 </state>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-JX-fFs">
-                                <rect key="frame" x="20" y="115" width="287" height="180"/>
+                                <rect key="frame" x="20" y="78.5" width="287" height="216.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="Sov-Ef-1qU"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dfk-y1-le6">
                                     <size key="itemSize" width="120" height="180"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -106,8 +103,8 @@
                             <constraint firstItem="CNq-uJ-HUM" firstAttribute="top" secondItem="Osb-DR-Adw" secondAttribute="top" constant="25" id="Zb5-JZ-uoB"/>
                             <constraint firstItem="m8K-JX-fFs" firstAttribute="trailing" secondItem="glI-xd-7wO" secondAttribute="trailing" id="a8l-dI-5Z2"/>
                             <constraint firstItem="m8K-JX-fFs" firstAttribute="top" secondItem="iwm-RQ-tnb" secondAttribute="bottom" id="bX2-Hy-tfk"/>
-                            <constraint firstItem="glI-xd-7wO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iwm-RQ-tnb" secondAttribute="trailing" constant="10" id="f5y-wt-F44"/>
-                            <constraint firstItem="glI-xd-7wO" firstAttribute="top" secondItem="Osb-DR-Adw" secondAttribute="top" constant="32" id="iX6-6A-vSt"/>
+                            <constraint firstItem="glI-xd-7wO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iwm-RQ-tnb" secondAttribute="trailing" constant="5" id="f5y-wt-F44"/>
+                            <constraint firstItem="glI-xd-7wO" firstAttribute="top" secondItem="Osb-DR-Adw" secondAttribute="top" constant="25" id="iX6-6A-vSt"/>
                             <constraint firstAttribute="bottom" secondItem="m8K-JX-fFs" secondAttribute="bottom" id="mYG-Xz-JN6"/>
                             <constraint firstItem="m8K-JX-fFs" firstAttribute="leading" secondItem="CNq-uJ-HUM" secondAttribute="leading" id="zn9-u6-TgI"/>
                         </constraints>

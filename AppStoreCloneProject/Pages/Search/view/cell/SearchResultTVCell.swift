@@ -66,8 +66,6 @@ class SearchResultTVCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        //MARK: 애플에서 퍼포먼스 이슈로 비추한단다.
-        //MARK: https://fluffy.es/solve-duplicated-cells/
         self.iconImageView.image = nil
         self.titleLabel.text = nil
         self.descLabel.text = nil
@@ -85,7 +83,7 @@ class SearchResultTVCell: UITableViewCell {
         }
         
         self.titleLabel.do {
-            $0.setFontAndColor(f: .systemFont(ofSize: 16), c: .label)
+            $0.setFontAndColor(f: .systemFont(ofSize: 17), c: .label)
             $0.textAlignment = .left
             $0.numberOfLines = 1
             $0.text = ""
@@ -139,7 +137,7 @@ class SearchResultTVCell: UITableViewCell {
             guard let topViewController = UIApplication.topViewController() else {
                 return
             }
-            showOKAlert(vc: topViewController, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 클릭")
+            showOKAlert(vc: topViewController, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 Tap")
         }).disposed(by: self.disposeBag)
     }
     
@@ -156,13 +154,6 @@ class SearchResultTVCell: UITableViewCell {
         
         self.screenShotCollectionView.reloadData()
     }
-    
-    //func updateCollectionViewHeightConstraint() {
-        //콜렉션뷰 높이 0.65 비율 맞게 업데이트
-        //myCollectionViewHeightConstraint.constant = CGFloat(self.cellHeight)
-//        self.setNeedsLayout()
-//        self.layoutIfNeeded()
-//    }
 }
 
 extension SearchResultTVCell: UICollectionViewDelegate, UICollectionViewDataSource {

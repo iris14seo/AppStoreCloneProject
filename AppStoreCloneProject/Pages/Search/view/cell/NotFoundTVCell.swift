@@ -35,7 +35,7 @@ class NotFoundTVCell: UITableViewCell {
         }
         
         self.keyWordLabel.do {
-            $0.setFontAndColor(f: .systemFont(ofSize: 15), c: .secondarySystemFill)
+            $0.setFontAndColor(f: .systemFont(ofSize: 15), c: .secondaryLabel)
             $0.textAlignment = .center
         }
     }

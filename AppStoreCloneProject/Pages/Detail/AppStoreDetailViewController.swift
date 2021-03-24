@@ -194,12 +194,12 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     func bindRxEvent() {
         self.downloadButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let self = self else { return }
-            showOKAlert(vc: self, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 클릭")
+            showOKAlert(vc: self, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 Tap")
         }).disposed(by: self.disposeBag)
         
         self.shareButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let self = self else { return }
-            showOKAlert(vc: self, title: "공유", message: "\(self.titleLabel.text ?? "") 공유 버튼 클릭")
+            showOKAlert(vc: self, title: "공유", message: "\(self.titleLabel.text ?? "") 공유 버튼 Tap")
         }).disposed(by: self.disposeBag)
     } 
     
