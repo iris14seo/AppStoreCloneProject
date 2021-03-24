@@ -9,8 +9,4 @@ import UIKit
 
 class AppStoreDetailWorker {
     
-    //    func doSomeWork(){
-    //
-    //    }
-    
 }

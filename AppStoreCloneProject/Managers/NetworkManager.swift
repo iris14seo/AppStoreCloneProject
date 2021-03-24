@@ -3,7 +3,7 @@
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/21.
-//
+//MARK: escape 처리, safe 처리
 
 import Foundation
 
@@ -44,7 +44,7 @@ enum HTTPMethod: String {
     //case delete = "DELETE" //잘 안씀
 }
 
-typealias CompletionHandler = (APIResult<[SearchResultModel]?>) -> Void//SoftWareData
+typealias CompletionHandler = (APIResult<[SearchResultModel]?>) -> Void
 
 class NetworkManager {
     
@@ -100,7 +100,7 @@ class NetworkManager {
                 let data = try JSONSerialization.data(withJSONObject: queryParameters as Any, options: [])
                 urlRequest.httpBody = data
             } catch let error as NSError {
-                fatalError("Parameters JSON Style make error: \(error)")
+                fatalError("Json 생성중 에러발생: \(error)")
             }
             break
         }
@@ -111,10 +111,7 @@ class NetworkManager {
         let task = session?.dataTask(with: urlRequest) { (data, response, error) in
             
             guard error == nil else {
-                //MARK: [질문] 왜 디스패치 큐??
-                //DispatchQueue.main.async {
                 completionHandler(.failure(error: .responseError))
-                //}
                 return
             }
             
@@ -158,26 +155,31 @@ class NetworkManager {
             for (nestedKey, value) in dictionary {
                 components += queryComponents(fromKey: "\(key)[\(nestedKey)]", value: value)
             }
+            
         } else if let array = value as? [Any] {
             for value in array {
                 components += queryComponents(fromKey: "\(key)[]", value: value)
             }
+            
         } else if let value = value as? NSNumber {
             if value.isBool {
                 components.append((escape(key), escape(value.boolValue ? "1" : "0")))
             } else {
                 components.append((escape(key), escape("\(value)")))
             }
+            
         } else if let bool = value as? Bool {
             components.append((escape(key), escape(bool ? "1" : "0")))
+            
         } else {
             components.append((escape(key), escape("\(value)")))
+            
         }
         
         return components
     }
     
-    /**문자를 URL escape 해주는 함수
+    /**문자를 'URL escape' 해주는 함수
      
      #매개변수
      - string: 문자*/

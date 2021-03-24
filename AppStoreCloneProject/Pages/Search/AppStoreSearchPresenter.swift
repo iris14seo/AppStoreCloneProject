@@ -39,7 +39,6 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
     
     func getResultTableViewCellDataList(dataList: [SearchResultModel]?) -> [SoftWareCellDataModel]? {
         
-        //MARK: 임시 작업
         guard let dataList = dataList else {
             return nil
         }

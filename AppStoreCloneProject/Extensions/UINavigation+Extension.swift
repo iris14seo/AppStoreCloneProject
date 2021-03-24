@@ -24,7 +24,7 @@ extension UINavigationItem {
     func setTitle(title: String = "",
                   hideTitleAtFirst: Bool = false) {
         
-        self.titleView = hideTitleAtFirst ? UILabel() : nil //hide navigationItem titleView at first
+        self.titleView = hideTitleAtFirst ? UILabel() : nil //처음에 네비 타이틀 숨기기
         self.title = title
     }
 }

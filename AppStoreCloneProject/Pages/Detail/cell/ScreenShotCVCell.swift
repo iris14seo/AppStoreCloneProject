@@ -32,7 +32,6 @@ class ScreenShotCVCell: UICollectionViewCell {
     
     func updateCellData(image: UIImage?) {
         guard let img = image else {
-            //이미지 없음
             return
         }
         

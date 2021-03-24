@@ -8,22 +8,24 @@
 import UIKit
 
 /**
- Search API 결과 모델 정의 클래스
- https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/
+ Search API Search API 조회시 받아오는, response 구조체
  */
 struct SearchModel: Codable {
-    //let resultCount: Int?
+    let resultCount: Int?
     let results: [SearchResultModel]?
     
     private enum CodingKeys: String, CodingKey {
+        case resultCount = "resultCount"
         case results = "results"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        let resultCount = try container.decode(Int.self, forKey: .resultCount)
         let results = try container.decode([SearchResultModel].self, forKey: .results)
         
+        self.resultCount = resultCount
         self.results = results
     }
 }
@@ -221,8 +223,8 @@ struct SearchResultModel: Codable {
 extension KeyedDecodingContainer {
     
     /**
-     Custom Decode Safe 함수
-     - parameters:
+     Decode Safe 함수
+     #매개변수
      - type: T
      - key: key
      - returns: T
@@ -251,7 +253,7 @@ extension KeyedDecodingContainer {
     
     /**
      Int64 Decode Safe 함수
-     - parameters:
+     #매개변수
      - key: key
      - returns: Int64 숫자
      */
@@ -270,7 +272,7 @@ extension KeyedDecodingContainer {
     
     /**
      Double Decode Safe 함수
-     - parameters:
+     #매개변수
      - key: key
      - returns: Double 숫자
      */
@@ -293,7 +295,7 @@ extension Date {
     
     /**
      애플 날짜 형식 문자로 부터 Date 타입으로 변환 함수
-     - parameters:
+     #매개변수
      - dateString: 날짜 문자열
      - returns: 날짜
      */
@@ -309,14 +311,13 @@ extension Date {
     
     /**
      애플 날짜 형식 문자로 부터 Date 타입으로 변환 함수
-     - parameters:
+     #매개변수
      - dateString: 날짜 문자열
      - dateFormat: Date Format
      - returns: 날짜
      */
     static func convertStringToDate(_ dateString: String, dateFormat: String) -> Date? {
         let dateFormatter = DateFormatter()
-        //dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.date(from: dateString)
     }

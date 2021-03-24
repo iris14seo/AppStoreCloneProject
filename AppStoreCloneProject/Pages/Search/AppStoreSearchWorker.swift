@@ -21,9 +21,6 @@ class AppStoreSearchWorker: APIProtocol {
     var queryParameters: [String : Any]?
     var method: HTTPMethod = .get
     
-    //MARK: test code
-    //let testUserDefaultArray: [String]? = ["카카오","카카오톡","카카오 뱅크","뱅크","카카오페이","카패","게임","애플","테스트","캌ㅋ","ㅋㅋㅇ","카카오택시","카톡","은행","배그","ㅁㅇㄹㅁ","하이","1","2","3","4","5","6","7","netflix","play"]
-    
     /**UserDefault에서 최근 검색어목록 가져오기
      */
     func loadHistoryWordList() -> Observable<[String]?> {
@@ -78,3 +75,6 @@ class AppStoreSearchWorker: APIProtocol {
         }
     }
 }
+
+//MARK: test code
+//let testUserDefaultArray: [String]? = ["카카오","카카오톡","카카오 뱅크","뱅크","카카오페이","카패","게임","애플","테스트","캌ㅋ","ㅋㅋㅇ","카카오택시","카톡","은행","배그","ㅁㅇㄹㅁ","하이","1","2","3","4","5","6","7","netflix","play"]

@@ -12,7 +12,7 @@ enum AppStoreSearch {
     /**Use Case1 - 로컬 최근검색어 기반 검색
      
      # 전체 목록 노출
-     - UserDefault에 저장된 검색어목록 페이징 처리하여 노출
+     - UserDefault에 저장된 검색어목록 노출
      */
     enum AllHistoryWord {
         struct Request {
@@ -54,6 +54,7 @@ enum AppStoreSearch {
      # API 검색 시나리오
      - 키워드 입력 후, KeyBoard에서 enter 누른 경우
      - 검색 TableView에서 didSelectRow한 경우
+     - 메인 TableView에서 didSelectRow한 경우
      */
     enum SearchWord {
         struct Request {

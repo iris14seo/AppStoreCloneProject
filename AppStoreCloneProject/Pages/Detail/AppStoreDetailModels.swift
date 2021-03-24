@@ -8,6 +8,7 @@
 import UIKit
 
 enum AppStoreDetail {
+    
     // MARK: Use cases
     
     enum FetchData {

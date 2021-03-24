@@ -23,11 +23,5 @@ class CustomXibView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        //에러 났었음
-        //required init?(coder: NSCoder) {
-        //fatalError("init(coder:) has not been implemented")
-        //}
-        //해결: https://stackoverflow.com/questions/38966565/fatal-error-initcoder-has-not-been-implemented-error-despite-being-implement
     }
 }

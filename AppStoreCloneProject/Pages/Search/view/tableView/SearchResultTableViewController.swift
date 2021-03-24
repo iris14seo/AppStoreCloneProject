@@ -16,7 +16,7 @@ protocol SearchResultTVCellDelegate {
 }
 
 class SearchResultTableViewController: RXTableViewController {
-
+    
     let historyWordCell = "HistoryWordTVCell"
     let searchResultCell = "SearchResultTVCell"
     let notFoundCell = "NotFoundTVCell"
@@ -35,7 +35,7 @@ class SearchResultTableViewController: RXTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initStyle()
     }
     
@@ -54,13 +54,13 @@ class SearchResultTableViewController: RXTableViewController {
             $0.register(UINib(nibName: notFoundCell, bundle: nil), forCellReuseIdentifier: notFoundCell)
         }
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.currentResultType {
         case .localHistory:
@@ -104,10 +104,10 @@ class SearchResultTableViewController: RXTableViewController {
         switch self.currentResultType {
         case .localHistory:
             return historyWordCellHeight
-        
+            
         case .apiSearch:
             return searchResultCellHeight
-        
+            
         case .noResult:
             return notFoundCellHeight
         }
@@ -125,12 +125,12 @@ class SearchResultTableViewController: RXTableViewController {
             let keyWord = self.historyWordList?[indexPath.row] ?? ""
             self.keyWord = keyWord
             self.delegate?.onClickHistoryCellForSearch(keyWord: keyWord)
-        
+            
         case .apiSearch:
             self.delegate?.routeToDetailPage(index: indexPath.row)
-        
+            
         case .noResult:
-                break
+            break
         }
     }
 }
