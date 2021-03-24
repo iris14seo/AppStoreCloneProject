@@ -16,6 +16,10 @@ class ScreenShotCVCell: UICollectionViewCell {
         // Initialization code
         initStyle()
     }
+    
+    override func prepareForReuse() {
+        self.imageView.image = nil
+    }
 
     func initStyle() {
         self.imageView.do {
