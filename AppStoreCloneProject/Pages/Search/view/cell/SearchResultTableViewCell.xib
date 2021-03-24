@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,10 +28,10 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iwm-RQ-tnb">
-                                <rect key="frame" x="80" y="20" width="136.5" height="58.5"/>
+                                <rect key="frame" x="80" y="20" width="176" height="58.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqJ-ds-ElJ" userLabel="제목">
-                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="176" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="0Wb-yQ-rcq"/>
                                         </constraints>
@@ -40,19 +40,38 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱 설명이 들어가는 부분입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcg-J0-vbd" userLabel="설명">
-                                        <rect key="frame" x="0.0" y="23.5" width="136.5" height="15"/>
+                                        <rect key="frame" x="0.0" y="23.5" width="176" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="7JM-kb-Zie"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hu6-3a-MwN" userLabel="별점">
-                                        <rect key="frame" x="0.0" y="42.5" width="136.5" height="16"/>
-                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVz-MV-ybs">
+                                        <rect key="frame" x="0.0" y="42.5" width="176" height="16"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hu6-3a-MwN" userLabel="별점" customClass="CosmosView" customModule="Cosmos">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10만" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4J3-lp-q3t">
+                                                <rect key="frame" x="123" y="1.5" width="24" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="2dO-Xk-ovZ"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4J3-lp-q3t" secondAttribute="trailing" id="3wD-zh-tgI"/>
+                                            <constraint firstItem="hu6-3a-MwN" firstAttribute="top" secondItem="EVz-MV-ybs" secondAttribute="top" id="I39-C7-dIt"/>
+                                            <constraint firstAttribute="bottom" secondItem="4J3-lp-q3t" secondAttribute="bottom" id="bcU-bV-7rS"/>
+                                            <constraint firstItem="4J3-lp-q3t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EVz-MV-ybs" secondAttribute="top" id="biq-IB-bJh"/>
+                                            <constraint firstItem="4J3-lp-q3t" firstAttribute="leading" secondItem="hu6-3a-MwN" secondAttribute="trailing" constant="3" id="cTa-Dg-8O8"/>
+                                            <constraint firstAttribute="height" constant="16" id="ePM-gn-dfP"/>
+                                            <constraint firstAttribute="bottom" secondItem="hu6-3a-MwN" secondAttribute="bottom" id="l3z-vR-YSx"/>
+                                            <constraint firstItem="hu6-3a-MwN" firstAttribute="leading" secondItem="EVz-MV-ybs" secondAttribute="leading" id="wPX-Z8-A7G"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -116,8 +135,9 @@
                 <outlet property="containerView" destination="Osb-DR-Adw" id="get-1l-be5"/>
                 <outlet property="descLabel" destination="dcg-J0-vbd" id="SPe-dP-SK5"/>
                 <outlet property="downLoadButton" destination="glI-xd-7wO" id="ag5-fn-tfR"/>
+                <outlet property="downloadCountLabel" destination="4J3-lp-q3t" id="Oxr-zN-ilH"/>
                 <outlet property="iconImageView" destination="CNq-uJ-HUM" id="uWp-Tt-LcM"/>
-                <outlet property="ratingView" destination="hu6-3a-MwN" id="zhS-NO-lLl"/>
+                <outlet property="ratingView" destination="hu6-3a-MwN" id="laI-Rw-XdG"/>
                 <outlet property="screenShotImageView1" destination="gBS-Hk-dCL" id="rDR-aS-oaH"/>
                 <outlet property="screenShotImageView2" destination="ek3-F3-dHg" id="CLD-rg-zbo"/>
                 <outlet property="screenShotImageView3" destination="12u-3X-JeI" id="pQX-AN-UUg"/>
@@ -129,16 +149,21 @@
             <point key="canvasLocation" x="-265.94202898550725" y="9.7098214285714288"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="hu6-3a-MwN">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+    </designables>
     <resources>
         <image name="icloud.and.arrow.down" catalog="system" width="128" height="112"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

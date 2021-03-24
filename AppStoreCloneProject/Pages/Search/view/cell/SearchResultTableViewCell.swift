@@ -8,7 +8,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
-
+import Cosmos
 
 /**검색 TableView의 search 타입 데이터 모델
  
@@ -40,7 +40,8 @@ class SearchResultTableViewCell: UITableViewCell {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descLabel: UILabel!
-    @IBOutlet var ratingView: UIView!
+    @IBOutlet var ratingView: CosmosView!
+    @IBOutlet var downloadCountLabel: UILabel!
     @IBOutlet var downLoadButton: UIButton!
     
     @IBOutlet var screenShotImageView1: UIImageView!
@@ -78,23 +79,34 @@ class SearchResultTableViewCell: UITableViewCell {
         }
         
         self.descLabel.do {
-            $0.setFontAndColor(f: .systemFont(ofSize: 11), c: .secondaryLabel)
+            $0.setFontAndColor(f: .systemFont(ofSize: 14), c: .secondaryLabel)
             $0.textAlignment = .left
             $0.numberOfLines = 1
         }
         
         self.ratingView.do {
-            $0.backgroundColor = .purple
+            $0.settings.updateOnTouch = false
+            $0.settings.starSize = 15
+            $0.settings.starMargin = 0.0
+            $0.settings.filledColor = UIColor.secondaryLabel
+            $0.settings.filledBorderColor = UIColor.secondaryLabel
+            $0.settings.emptyBorderColor = UIColor.secondaryLabel
+        }
+        
+        self.downloadCountLabel.do {
+            $0.setFontAndColor(f: .systemFont(ofSize: 12), c: .secondaryLabel)
+            $0.textAlignment = .left
+            $0.numberOfLines = 1
         }
         
         self.downLoadButton.do {
             $0.rx.tap.asDriver().drive(onNext: { [weak self] in
-                print("\(self?.titleLabel.text ?? "")다운로드 버튼 클릭")
+                print("\(self?.titleLabel.text ?? "") 다운로드 버튼 클릭")
             }).disposed(by: self.disposeBag)
         }
         
         self.screenShotImageViewList.forEach {
-            $0.layer.cornerRadius = 5
+            $0.layer.cornerRadius = 8
             $0.clipsToBounds = true
         }
     }
@@ -111,13 +123,15 @@ class SearchResultTableViewCell: UITableViewCell {
     
     func updateCellData(data: SoftWareCellData?) {
         guard let data = data else {
-            //디폴트 데이터 노츌
             return
         }
         self.titleLabel.text = data.title
         self.descLabel.text = data.description
         self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
+        self.ratingView.rating = data.ratingScore ?? 0
+        self.downloadCountLabel.text = (data.downloadCount ?? 0).downloadUnit
         
+        //MARK: 콜렉션뷰로 노출하기
         guard let urlStringList = data.screenShotURLList, urlStringList.count > 3 else {
             return
         }
