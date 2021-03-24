@@ -62,8 +62,9 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         super.viewDidLoad()
         
         self.initStyle()
-        self.fetchDetailData()
         self.bindRxEvent()
+        
+        self.fetchDetailData()
     }
     
     @IBOutlet var scrollView: UIScrollView!
@@ -77,7 +78,10 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     
     @IBOutlet var moreInfoView: UIView!
     
-    @IBOutlet var screenShotCollectionVIew: UICollectionView!
+    @IBOutlet var screenShotCollectionView: UICollectionView!
+    let screenShotCVCell = "ScreenShotCVCell"
+    let screenShotCVCellHeight: Double = 250
+    let screenShotImageRatio: CGFloat =  53 / 94
 
     @IBOutlet var supportDeviceView: UIView!
     @IBOutlet var iphoneImageView: UIImageView!
@@ -92,7 +96,8 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     @IBOutlet var developerTextLabel: UILabel!
     
     //data
-    var vmSoftWareData: SearchResultModel?
+    private var vmSoftWareData: AppStoreDetail.SoftWareDetailDataModel?
+    private var screenShotImageUrlStringList: [String]?
     
     // MARK: Do something
     
@@ -135,8 +140,33 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
             $0.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         }
         
+        self.screenShotCollectionView.do {
+            $0.register(UINib.init(nibName: screenShotCVCell, bundle: nil), forCellWithReuseIdentifier: screenShotCVCell)
+            $0.delegate = self
+            $0.dataSource = self
+            $0.backgroundColor = .black
+            $0.allowsMultipleSelection = false
+            $0.showsHorizontalScrollIndicator = false
+            $0.showsVerticalScrollIndicator = false
+            
+            if let layout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.scrollDirection = .horizontal
+                layout.minimumInteritemSpacing = 0
+                layout.minimumLineSpacing = 0
+            }
+        }
+        
+        self.iphoneImageView.do {
+            $0.isHidden = true
+        }
+        
+        self.ipadImageView.do {
+            $0.isHidden = true
+        }
+        
         self.supportDeviceLabel.do {
-            $0.setFontAndColor(f: .boldSystemFont(ofSize: 15), c: .secondaryLabel)
+            $0.setFontAndColor(f: .boldSystemFont(ofSize: 12), c: .secondaryLabel)
+            $0.text = ""
         }
         
         self.longDescLabel.do {
@@ -186,16 +216,74 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         self.updateData(data: vm)
     }
     
-    func updateData(data: SearchResultModel?) {
+    func updateData(data: AppStoreDetail.SoftWareDetailDataModel?) {
         guard let data = data else {
             return
         }
         
-        self.titleLabel.text = data.trackName ?? "앱 이름"
-        self.shortDescLabel.text = data.genres?.first ?? "설명"
-        self.iconImageView.setCacheImageURL(URL(string: data.artworkUrl100 ?? ""))
-        self.longDescLabel.text = data.description
-        self.developerIDLabel.text = data.sellerName
+        self.titleLabel.text = data.title ?? "앱 이름"
+        self.shortDescLabel.text = data.genres
+        self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
+       
+        self.screenShotImageUrlStringList = data.screenShotURLList
+        
+        let isSupportIphone = data.supportedDevices?.contains(.iPhone) ?? false
+        let isSupportIpad = data.supportedDevices?.contains(.iPad) ?? false
+        self.iphoneImageView.isHidden = !isSupportIphone
+        self.ipadImageView.isHidden = !isSupportIpad
+        self.supportDeviceLabel.text = getSupportedDevicesText(isSupportIphone: isSupportIphone, isSupportIpad: isSupportIpad)
+        
+        self.longDescLabel.text = data.longDescription
+        self.developerIDLabel.text = data.developerID
     }
     
+    func getSupportedDevicesText(isSupportIphone: Bool, isSupportIpad: Bool) -> String? {
+        var text = ""
+        if isSupportIphone { text.append("iPhone")
+        }
+        if isSupportIpad {
+            text.append("iPad")
+        }
+        
+        return text
+    }
+    
+}
+
+extension AppStoreDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let screenShotList = self.screenShotImageUrlStringList, screenShotList.count > 0 else {
+            return 0
+        }
+        
+        return screenShotList.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let screenShotList = self.screenShotImageUrlStringList,
+              screenShotList.count > indexPath.row else {
+            return UICollectionViewCell()
+        }
+        
+        let uCell: ScreenShotCVCell = collectionView.dequeueReusableCell(withReuseIdentifier: screenShotCVCell, for: indexPath) as! ScreenShotCVCell
+        
+        let imageUrl = URL(string: screenShotList[indexPath.row])
+        ImageCacheManager.shared.getCacheImagebyURL(imageUrl, { (image) in
+            uCell.updateCellData(image: image)
+        })
+        
+        return uCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return getCollectionViewCellSize(height: screenShotCVCellHeight, ratio: screenShotImageRatio)
+    }
+    
+    func getCollectionViewCellSize(height: Double, ratio: CGFloat) -> CGSize{
+        return CGSize(width: height * Double(ratio) , height: height)
+    }
 }

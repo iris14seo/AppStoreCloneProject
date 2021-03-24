@@ -21,7 +21,7 @@ import Cosmos
  - 다운로드 URL
  - 콜렉션뷰 이미지 URLs
  */
-public struct SoftWareCellData: Equatable {
+public struct SoftWareCellDataModel: Equatable {
     var title: String?
     var description: String?
     var iconImageURL: String?
@@ -121,7 +121,7 @@ class SearchResultTVCell: UITableViewCell {
         }).disposed(by: self.disposeBag)
     }
     
-    func updateCellData(data: SoftWareCellData?) {
+    func updateCellData(data: SoftWareCellDataModel?) {
         guard let data = data else {
             return
         }

@@ -30,16 +30,16 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
         self.viewController?.displayError(error: error)
     }
     
-    func getResultTableViewCellDataList(dataList: [SearchResultModel]?) -> [SoftWareCellData]? {
+    func getResultTableViewCellDataList(dataList: [SearchResultModel]?) -> [SoftWareCellDataModel]? {
         
         //MARK: 임시 작업
         guard let dataList = dataList else {
             return nil
         }
         
-        var cellDataList = [SoftWareCellData]()
+        var cellDataList = [SoftWareCellDataModel]()
         for data in dataList {
-            var cellData = SoftWareCellData()
+            var cellData = SoftWareCellDataModel()
             cellData.title = data.trackName ?? "앱 이름"
             cellData.description = data.genres?.first ?? "설명"
             cellData.iconImageURL = data.artworkUrl60

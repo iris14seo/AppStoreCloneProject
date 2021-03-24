@@ -27,9 +27,9 @@ class HistoryWordTVCell: UITableViewCell {
         self.selectionStyle = .none
         
         self.iconImageView.do {
-            let image = UIImage(named: "icSearch")?.withRenderingMode(.alwaysTemplate)
+            let image = UIImage(named: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
             $0.image = image
-            $0.tintColor = UIColor.tertiaryLabel
+            $0.tintColor = UIColor.secondaryLabel
         }
         
         self.historyWordLabel.do {

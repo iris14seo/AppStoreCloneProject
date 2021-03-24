@@ -98,6 +98,21 @@ class ImageCacheManager {
         
         task?.resume()
     }
+    
+    func getCacheImagebyURL(_ url: URL?, _ success: ((_ image: UIImage) -> Void)? = nil) {
+        let urlString = url?.absoluteString ?? ""
+        if urlString.isEmpty {
+            return
+        }
+        
+        ImageCacheManager.shared.requestImageURL(url, { (image) in
+            if let success = success {
+                success(image)
+            }
+        }) { (error) in
+            print(error)
+        }
+    }
 }
 
 /*

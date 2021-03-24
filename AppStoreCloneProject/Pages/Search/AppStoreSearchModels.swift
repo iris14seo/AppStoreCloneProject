@@ -12,7 +12,7 @@ enum AppStoreSearch {
     /**Use Case1 - 로컬 최근검색어 기반 검색
      
      # 전체 목록 노출
-     - CoreData에 저장된 검색어목록 페이징 처리하여 노출
+     - UserDefault에 저장된 검색어목록 페이징 처리하여 노출
      
      # 필터된 목록 노출
      - 키워드 입력 후, 해당 단어 기반으로 필터된 검색어목록 노출
@@ -58,7 +58,7 @@ enum AppStoreSearch {
         }
         
         struct ViewModel{
-            var softWareDataList: [SoftWareCellData]?
+            var softWareDataList: [SoftWareCellDataModel]?
         }
     }
     

@@ -20,7 +20,7 @@
                 <outlet property="longDescLabel" destination="ebG-y8-a4e" id="E32-pz-wRO"/>
                 <outlet property="longDescView" destination="bnl-0W-hhm" id="0PS-Gp-osJ"/>
                 <outlet property="moreInfoView" destination="8rV-UC-aIt" id="Y3f-YV-Uqu"/>
-                <outlet property="screenShotCollectionVIew" destination="kEb-Ez-hF8" id="Ei0-aV-JRJ"/>
+                <outlet property="screenShotCollectionView" destination="kEb-Ez-hF8" id="Ei0-aV-JRJ"/>
                 <outlet property="scrollView" destination="Kqj-1s-p6u" id="jxH-iT-9fM"/>
                 <outlet property="shareButton" destination="x7P-8Q-pLK" id="DEO-XW-ixI"/>
                 <outlet property="shortDescLabel" destination="jvj-n9-aSU" id="DPd-9M-a8v"/>
@@ -40,7 +40,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KT1-Qr-Nzi">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="961.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="911.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz5-hb-Qul" userLabel="상단뷰">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
@@ -134,46 +134,60 @@
                                         <constraint firstAttribute="bottom" secondItem="caA-5g-7pL" secondAttribute="bottom" id="l2M-4I-g8Y"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rV-UC-aIt">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rV-UC-aIt" userLabel="추가정보뷰">
                                     <rect key="frame" x="0.0" y="131" width="375" height="80"/>
-                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="iI8-zf-rQo"/>
                                     </constraints>
                                 </view>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-Ez-hF8" userLabel="스크린샷 컬렉션뷰">
-                                    <rect key="frame" x="0.0" y="211" width="375" height="300"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBk-fC-3HC" userLabel="스크린샷뷰">
+                                    <rect key="frame" x="0.0" y="211" width="375" height="250"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-Ez-hF8" userLabel="스크린샷 컬렉션뷰">
+                                            <rect key="frame" x="20" y="0.0" width="355" height="250"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="250" id="yED-Z4-abV"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t80-dI-RTm">
+                                                <size key="itemSize" width="137" height="250"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                        </collectionView>
+                                    </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="300" id="yED-Z4-abV"/>
+                                        <constraint firstItem="kEb-Ez-hF8" firstAttribute="top" secondItem="BBk-fC-3HC" secondAttribute="top" id="BcN-9k-YLa"/>
+                                        <constraint firstItem="kEb-Ez-hF8" firstAttribute="leading" secondItem="BBk-fC-3HC" secondAttribute="leading" constant="20" id="Gbd-Go-fmo"/>
+                                        <constraint firstAttribute="bottom" secondItem="kEb-Ez-hF8" secondAttribute="bottom" id="ZZm-IE-FxW"/>
+                                        <constraint firstAttribute="trailing" secondItem="kEb-Ez-hF8" secondAttribute="trailing" id="o8m-gv-OUC"/>
                                     </constraints>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t80-dI-RTm">
-                                        <size key="itemSize" width="128" height="128"/>
-                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </collectionViewFlowLayout>
-                                </collectionView>
+                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glM-K6-cb8" userLabel="지원기기뷰">
-                                    <rect key="frame" x="0.0" y="511" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="461" width="375" height="50"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uuT-bd-IEq">
-                                            <rect key="frame" x="20" y="10" width="129" height="25"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="uuT-bd-IEq">
+                                            <rect key="frame" x="20" y="10" width="89.5" height="25"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nU5-eg-PSd" userLabel="아이폰 이미지">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nU5-eg-PSd" userLabel="아이폰 이미지">
                                                     <rect key="frame" x="0.0" y="0.0" width="15" height="25"/>
+                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="15" id="0fG-Rr-64B"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CCa-di-bfI" userLabel="아이패드 이미지">
-                                                    <rect key="frame" x="25" y="0.0" width="25" height="25"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ipad" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CCa-di-bfI" userLabel="아이패드 이미지">
+                                                    <rect key="frame" x="18" y="-0.5" width="18" height="26"/>
+                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="GnO-Je-8UR"/>
+                                                        <constraint firstAttribute="width" constant="18" id="GnO-Je-8UR"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기기 타이틀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SX-5t-Cmz">
-                                                    <rect key="frame" x="60" y="0.0" width="69" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SX-5t-Cmz">
+                                                    <rect key="frame" x="39" y="0.0" width="50.5" height="25"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -191,7 +205,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEF-dH-va5" userLabel="grayLine">
-                                    <rect key="frame" x="0.0" y="561" width="375" height="1"/>
+                                    <rect key="frame" x="0.0" y="511" width="375" height="1"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAw-79-Ldr">
                                             <rect key="frame" x="20" y="0.0" width="355" height="1"/>
@@ -208,7 +222,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnl-0W-hhm" userLabel="상세설명뷰">
-                                    <rect key="frame" x="0.0" y="562" width="375" height="319.5"/>
+                                    <rect key="frame" x="0.0" y="512" width="375" height="319.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3uA-Pr-t8M">
                                             <rect key="frame" x="20" y="15" width="335" height="304.5"/>
@@ -232,7 +246,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-2t-iMy" userLabel="개발자뷰">
-                                    <rect key="frame" x="0.0" y="881.5" width="375" height="80"/>
+                                    <rect key="frame" x="0.0" y="831.5" width="375" height="80"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자 아이디" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3y-uY-hv4">
                                             <rect key="frame" x="20" y="20" width="335" height="17"/>
@@ -281,6 +295,8 @@
         </view>
     </objects>
     <resources>
+        <image name="ipad" catalog="system" width="109" height="128"/>
+        <image name="iphone" catalog="system" width="108" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -293,9 +309,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

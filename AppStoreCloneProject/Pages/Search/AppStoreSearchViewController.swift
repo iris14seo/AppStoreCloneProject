@@ -196,7 +196,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
                 let historyList = dataList as? [String]
                 self.searchResultTableViewController.historyWordList = historyList
             } else if type == .search {
-                let searchList = dataList as? [SoftWareCellData]
+                let searchList = dataList as? [SoftWareCellDataModel]
                 self.searchResultTableViewController.searchDataList = searchList
             }
             
