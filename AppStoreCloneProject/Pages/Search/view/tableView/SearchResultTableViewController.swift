@@ -21,9 +21,9 @@ class SearchResultTableViewController: RXTableViewController {
     let searchResultCell = "SearchResultTVCell"
     let notFoundCell = "NotFoundTVCell"
     
-    let historyWordCellHeight: CGFloat = 50
-    let searchResultCellHeight: CGFloat = 295
-    let notFoundCellHeight: CGFloat = UIScreen.main.bounds.height  - 100
+    let historyWordCellHeight: CGFloat = 50.0
+    let searchResultCellHeight: CGFloat = 295.0
+    let notFoundCellHeight: CGFloat = UIScreen.main.bounds.height - 100
     
     //data
     var historyWordList: [String]?
@@ -114,8 +114,8 @@ class SearchResultTableViewController: RXTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate?.hideSearchBarKeyBoard() // 이슈: 다른 방식으로 키보드 숨길 수 없을까?
-
+        self.delegate?.hideSearchBarKeyBoard()
+        
         switch self.currentResultType {
         case .localHistory:
             guard (self.historyWordList?.count ?? 0) > indexPath.row else {
@@ -132,9 +132,5 @@ class SearchResultTableViewController: RXTableViewController {
         case .noResult:
                 break
         }
-    }
-
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegate?.hideSearchBarKeyBoard()
     }
 }

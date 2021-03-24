@@ -142,10 +142,6 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         //self.searchingController.rx
     }
     
-    @objc func handleSwipeGesture() {
-        self.view.endEditing(true)
-    }
-    
     func fetchMainTableView() {
         self.interactor?.loadAllHistoryWordList(request: .init())
     }
@@ -234,7 +230,6 @@ extension AppStoreSearchViewController: SearchResultTVCellDelegate {
 
 extension AppStoreSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //이슈: 첫 진입시에만 포커싱될때 포커스 아웃됨(튕김)
         guard let text = searchController.searchBar.text, text.count > 0 else { return }
         self.fetchFilteredHistoryWord(keyWord: text)
     }
@@ -249,20 +244,18 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
         let newText = NSString(string: searchBar.text!).replacingCharacters(in: range, with: text)
-        print("서치바 텍스트 입력중 자동 검색", newText)
         
-        //MARK: 서치바 텍스트 입력중 자동 검색
+        print("서치바 텍스트 입력중 자동 검색", newText)
         self.fetchFilteredHistoryWord(keyWord: newText)
         
         return true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("서치바 키보드 엔터 버튼 Tap")
         self.searchingController.searchBar.endEditing(true)
-        
+
+        print("서치바 키보드 엔터 버튼 Tap")
         guard let text = searchBar.text, text.count > 0 else { return }
         self.requestAPISearch(keyWord: text)
     }
@@ -311,12 +304,5 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return mainCellHeight
-    }
-}
-
-extension AppStoreSearchViewController: UIScrollViewDelegate {
-    //MARK: 투머치 자주 불림
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.searchingController.searchBar.endEditing(true)
     }
 }
