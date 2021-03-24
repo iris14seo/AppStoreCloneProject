@@ -270,6 +270,14 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
 
 extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return mainSectionHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return mainCellHeight
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let historyWordList = self.allHistoryWordList,
@@ -298,11 +306,18 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
         return view
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return mainSectionHeight
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return mainCellHeight
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let wordList = self.allHistoryWordList,
+              wordList.count > indexPath.row else {
+            return
+        }
+        
+        //메인 테이블뷰 didSelectRow로 검색
+        self.searchingController.searchBar.becomeFirstResponder()
+        self.searchingController.searchBar.endEditing(true)
+        
+        let keyWord = wordList[indexPath.row]
+        self.searchingController.searchBar.text = keyWord
+        self.requestAPISearch(keyWord: keyWord)
     }
 }
