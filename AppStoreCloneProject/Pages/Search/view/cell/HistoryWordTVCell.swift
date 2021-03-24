@@ -1,5 +1,5 @@
 //
-//  HistoryWordTableViewCell.swift
+//  HistoryWordTVCell.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryWordTableViewCell: UITableViewCell {
+class HistoryWordTVCell: UITableViewCell {
 
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var historyWordLabel: UILabel!

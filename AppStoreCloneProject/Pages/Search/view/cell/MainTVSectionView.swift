@@ -1,5 +1,5 @@
 //
-//  MainTableViewSectionView.swift
+//  MainTVSectionView.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTableViewSectionView: UITableViewHeaderFooterView {
+class MainTVSectionView: UITableViewHeaderFooterView {
 
     @IBOutlet var sectionTitleLabel: UILabel!
     

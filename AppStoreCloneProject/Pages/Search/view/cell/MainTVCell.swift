@@ -1,5 +1,5 @@
 //
-//  MainTableViewCell.swift
+//  MainTVCell.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+class MainTVCell: UITableViewCell {
 
     @IBOutlet var historyWordLabel: UILabel!
     

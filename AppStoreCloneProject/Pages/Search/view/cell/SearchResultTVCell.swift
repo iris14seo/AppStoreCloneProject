@@ -1,5 +1,5 @@
 //
-//  SearchResultTableViewCell.swift
+//  SearchResultTVCell.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/23.
@@ -31,7 +31,7 @@ public struct SoftWareCellData: Equatable {
     var screenShotURLList: [String]?
 }
 
-class SearchResultTableViewCell: UITableViewCell {
+class SearchResultTVCell: UITableViewCell {
 
     let disposeBag = DisposeBag()
     

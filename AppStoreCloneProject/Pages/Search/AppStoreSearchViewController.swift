@@ -95,10 +95,10 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     }()
     
     //tableView
-    let mainCell = "MainTableViewCell"
+    let mainCell = "MainTVCell"
     let mainCellHeight: CGFloat = 40
     
-    let mainSectionView: String = "MainTableViewSectionView"
+    let mainSectionView: String = "MainTVSectionView"
     let mainSectionHeight: CGFloat = 45.0
     
     @IBOutlet var mainTableView: UITableView!
@@ -214,7 +214,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     }
 }
 
-extension AppStoreSearchViewController: SearchResultTableViewCellDelegate {
+extension AppStoreSearchViewController: SearchResultTVCellDelegate {
     func onClickHistoryCellForSearch(word: String) {
         self.searchingController.searchBar.text = word
         self.requestSoftWareDataList(keyWord: word)
@@ -288,14 +288,14 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.mainCell, for: indexPath) as! MainTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.mainCell, for: indexPath) as! MainTVCell
         cell.updateCellData(word: historyWordList[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: mainSectionView) as! MainTableViewSectionView
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: mainSectionView) as! MainTVSectionView
         return view
     }
     

@@ -1,5 +1,5 @@
 //
-//  NotFoundTableViewCell.swift
+//  NotFoundTVCell.swift
 //  AppStoreCloneProject
 //
 //  Created by MUN JEONG SEO on 2021/03/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotFoundTableViewCell: UITableViewCell {
+class NotFoundTVCell: UITableViewCell {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var notFoundLabel: UILabel!

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SearchResultTableViewCellDelegate {
+protocol SearchResultTVCellDelegate {
     func onClickHistoryCellForSearch(word: String)
     func hideSearchBarKeyBoard()
     func routeToDetailPage(index: Int)
@@ -17,9 +17,9 @@ protocol SearchResultTableViewCellDelegate {
 
 class SearchResultTableViewController: RXTableViewController {
 
-    let historyWordCell = "HistoryWordTableViewCell"
-    let searchResultCell = "SearchResultTableViewCell"
-    let notFoundCell = "NotFoundTableViewCell"
+    let historyWordCell = "HistoryWordTVCell"
+    let searchResultCell = "SearchResultTVCell"
+    let notFoundCell = "NotFoundTVCell"
     
     let historyWordCellHeight: CGFloat = 50
     let searchResultCellHeight: CGFloat = 295
@@ -31,7 +31,7 @@ class SearchResultTableViewController: RXTableViewController {
     var currentResultType: AppStoreSearch.ResultType = .history
     var keyWord: String = ""
     
-    var delegate: SearchResultTableViewCellDelegate?
+    var delegate: SearchResultTVCellDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,7 @@ class SearchResultTableViewController: RXTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch self.currentResultType {
         case .history:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: self.historyWordCell) as? HistoryWordTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: self.historyWordCell) as? HistoryWordTVCell {
                 guard (self.historyWordList?.count ?? 0) > indexPath.row else {
                     return UITableViewCell()
                 }
@@ -83,7 +83,7 @@ class SearchResultTableViewController: RXTableViewController {
                 return cell
             }
         case .search:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: self.searchResultCell, for: indexPath) as? SearchResultTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: self.searchResultCell, for: indexPath) as? SearchResultTVCell {
                 guard self.searchResultCell.count > indexPath.row else {
                     return UITableViewCell()
                 }
@@ -91,7 +91,7 @@ class SearchResultTableViewController: RXTableViewController {
                 return cell
             }
         case .notFound:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: self.notFoundCell, for: indexPath) as? NotFoundTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: self.notFoundCell, for: indexPath) as? NotFoundTVCell {
                 cell.updateCellData(keyWord: self.keyWord)
                 return cell
             }
