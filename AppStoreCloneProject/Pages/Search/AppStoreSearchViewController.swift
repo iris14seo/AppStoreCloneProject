@@ -89,6 +89,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
             $0.searchResultsUpdater = self
             $0.searchBar.delegate = self
             $0.searchBar.placeholder = "게임, 앱, 스토리 등"
+            $0.searchBar.setValue("취소", forKey: "cancelButtonText")
         }
         
         return sc
