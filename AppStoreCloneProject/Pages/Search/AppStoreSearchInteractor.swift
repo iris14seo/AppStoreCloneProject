@@ -49,7 +49,7 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
                 
                 var response = AppStoreSearch.FilteredHistoryWord.Response()
                 if let filterWord = request.keyWord {
-                    response.historyWordList = self.historyWordList?.filter{ $0.lowercased().contains(filterWord) }
+                    response.historyWordList = self.historyWordList?.filter{ $0.lowercased().contains(filterWord.lowercased()) }
                 } else {
                     response.historyWordList = nil
                 }
