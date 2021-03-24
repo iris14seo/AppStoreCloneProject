@@ -9,5 +9,7 @@ target 'AppStoreCloneProject' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SnapKit'
+  pod 'Cosmos', '~> 23.0'
+  pod 'OrderedSet', '5.0'
 
 end
