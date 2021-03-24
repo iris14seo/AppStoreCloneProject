@@ -44,11 +44,12 @@ class SearchResultTVCell: UITableViewCell {
     @IBOutlet var downloadCountLabel: UILabel!
     @IBOutlet var downLoadButton: UIButton!
     
-    @IBOutlet var screenShotImageView1: UIImageView!
-    @IBOutlet var screenShotImageView2: UIImageView!
-    @IBOutlet var screenShotImageView3: UIImageView!
+    @IBOutlet var screenShotCollectionView: UICollectionView!
+    let screenShotCVCell = "ScreenShotCVCell"
+    let minimumInteritemSpacing: CGFloat = 20
     
-    @IBOutlet var screenShotImageViewList: [UIImageView]!
+    //data
+    private var screenShotImageUrlStringList: [String]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -99,15 +100,21 @@ class SearchResultTVCell: UITableViewCell {
             $0.numberOfLines = 1
         }
         
-        self.downLoadButton.do {
-            $0.rx.tap.asDriver().drive(onNext: { [weak self] in
-                print("\(self?.titleLabel.text ?? "") 다운로드 버튼 클릭")
-            }).disposed(by: self.disposeBag)
-        }
-        
-        self.screenShotImageViewList.forEach {
-            $0.layer.cornerRadius = 8
-            $0.clipsToBounds = true
+        self.screenShotCollectionView.do {
+            $0.register(UINib.init(nibName: screenShotCVCell, bundle: nil), forCellWithReuseIdentifier: screenShotCVCell)
+            $0.delegate = self
+            $0.dataSource = self
+            $0.backgroundColor = .black
+            $0.allowsMultipleSelection = false
+            $0.showsHorizontalScrollIndicator = false
+            $0.showsVerticalScrollIndicator = false
+            $0.isUserInteractionEnabled = false
+            
+            if let layout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.scrollDirection = .horizontal
+                layout.minimumInteritemSpacing = minimumInteritemSpacing
+                layout.minimumLineSpacing = 0
+            }
         }
     }
     
@@ -131,12 +138,44 @@ class SearchResultTVCell: UITableViewCell {
         self.ratingView.rating = data.ratingScore ?? 0
         self.downloadCountLabel.text = (data.downloadCount ?? 0).downloadUnit
         
-        //MARK: 콜렉션뷰로 노출하기
-        guard let urlStringList = data.screenShotURLList, urlStringList.count > 3 else {
-            return
+        self.screenShotImageUrlStringList = data.screenShotURLList
+    }
+    
+    func updateCollectionViewHeightConstraint() {
+        //콜렉션뷰 높이 0.65 비율 맞게 업데이트
+        //myCollectionViewHeightConstraint.constant = CGFloat(self.cellHeight)
+        
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+    }
+}
+
+extension SearchResultTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let screenShotList = self.screenShotImageUrlStringList, screenShotList.count > 0 else {
+            return 0
         }
-        self.screenShotImageView1.setCacheImageURL(URL(string: urlStringList[0]))
-        self.screenShotImageView2.setCacheImageURL(URL(string: urlStringList[1]))
-        self.screenShotImageView3.setCacheImageURL(URL(string: urlStringList[2]))
+        
+        return screenShotList.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let screenShotList = self.screenShotImageUrlStringList,
+              screenShotList.count > indexPath.row else {
+            return UICollectionViewCell()
+        }
+        
+        let uCell: ScreenShotCVCell = collectionView.dequeueReusableCell(withReuseIdentifier: screenShotCVCell, for: indexPath) as! ScreenShotCVCell
+        
+        let imageUrl = URL(string: screenShotList[indexPath.row])
+        ImageCacheManager.shared.getCacheImagebyURL(imageUrl, { (image) in
+            uCell.updateCellData(image: image)
+        })
+        
+        return uCell
     }
 }

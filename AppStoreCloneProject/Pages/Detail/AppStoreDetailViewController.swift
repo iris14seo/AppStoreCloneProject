@@ -81,7 +81,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
     let screenShotCVCellHeight: Double = 250
-    let screenShotImageRatio: CGFloat =  53 / 94
+    let screenShotImageRatio: CGFloat =  0.5
 
     @IBOutlet var supportDeviceView: UIView!
     @IBOutlet var iphoneImageView: UIImageView!
@@ -239,9 +239,14 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     
     func getSupportedDevicesText(isSupportIphone: Bool, isSupportIpad: Bool) -> String? {
         var text = ""
-        if isSupportIphone { text.append("iPhone")
+        if isSupportIphone {
+            text.append("iPhone")
         }
+        
         if isSupportIpad {
+            if text.count > 0 {
+                text.append(", ")
+            }
             text.append("iPad")
         }
         

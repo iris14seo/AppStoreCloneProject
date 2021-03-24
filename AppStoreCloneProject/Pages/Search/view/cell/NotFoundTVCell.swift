@@ -30,7 +30,7 @@ class NotFoundTVCell: UITableViewCell {
         self.selectionStyle = .none
         
         self.notFoundLabel.do {
-            $0.setFontAndColor(f: .boldSystemFont(ofSize: 26), c: .black)
+            $0.setFontAndColor(f: .boldSystemFont(ofSize: 26), c: .label)
             $0.textAlignment = .center
         }
         

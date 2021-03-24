@@ -46,7 +46,7 @@ class AppStoreDetailPresenter: AppStoreDetailPresentationLogic {
         }
         
         var urlStringList = [String]()
-        for item in imageList[..<5] {
+        for item in imageList[..<screenShotMaxImageCount] {
             urlStringList.append(item)
         }
         return urlStringList

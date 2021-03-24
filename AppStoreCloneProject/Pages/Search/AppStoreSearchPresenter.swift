@@ -16,6 +16,8 @@ protocol AppStoreSearchPresentationLogic {
 class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
     weak var viewController: AppStoreSearchDisplayLogic?
     
+    private let screenShotMaxImageCount = 3
+    
     // MARK: Do something
     
     func presentHistoryWordList(response: AppStoreSearch.HistoryWord.Response) {
@@ -46,11 +48,23 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
             cellData.ratingScore = getRatingScore(originNum: data.averageUserRating)
             cellData.downloadCount = Int(data.userRatingCount ?? 0)
             cellData.downloadURL = data.trackViewUrl
-            cellData.screenShotURLList = data.screenshotUrls
+            cellData.screenShotURLList = self.getScreenShotUrlStringList(list: data.screenshotUrls)
             cellDataList.append(cellData)
         }
         
         return cellDataList
+    }
+    
+    func getScreenShotUrlStringList(list: [String]?) -> [String]? {
+        guard let imageList = list, (list?.count ?? 0) > screenShotMaxImageCount else {
+            return list
+        }
+        
+        var urlStringList = [String]()
+        for item in imageList[..<screenShotMaxImageCount] {
+            urlStringList.append(item)
+        }
+        return urlStringList
     }
     
     func getRatingScore(originNum: Double?) -> Double {
