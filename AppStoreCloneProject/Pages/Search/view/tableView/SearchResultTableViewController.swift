@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol SearchResultTVCellDelegate {
-    func onClickHistoryCellForSearch(word: String)
+    func onClickHistoryCellForSearch(keyWord: String)
     func hideSearchBarKeyBoard()
     func routeToDetailPage(index: Int)
 }
@@ -28,7 +28,7 @@ class SearchResultTableViewController: RXTableViewController {
     //data
     var historyWordList: [String]?
     var searchDataList: [SoftWareCellDataModel]?
-    var currentResultType: AppStoreSearch.ResultType = .history
+    var currentResultType: AppStoreSearch.ResultType = .localHistory
     var keyWord: String = ""
     
     var delegate: SearchResultTVCellDelegate?
@@ -63,18 +63,18 @@ class SearchResultTableViewController: RXTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.currentResultType {
-        case .history:
+        case .localHistory:
             return self.historyWordList?.count ?? 0
-        case .search:
+        case .apiSearch:
             return self.searchDataList?.count ?? 0
-        case .notFound:
+        case .noResult:
             return 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch self.currentResultType {
-        case .history:
+        case .localHistory:
             if let cell = tableView.dequeueReusableCell(withIdentifier: self.historyWordCell) as? HistoryWordTVCell {
                 guard (self.historyWordList?.count ?? 0) > indexPath.row else {
                     return UITableViewCell()
@@ -82,7 +82,7 @@ class SearchResultTableViewController: RXTableViewController {
                 cell.updateCellData(data: self.historyWordList?[indexPath.row])
                 return cell
             }
-        case .search:
+        case .apiSearch:
             if let cell = tableView.dequeueReusableCell(withIdentifier: self.searchResultCell, for: indexPath) as? SearchResultTVCell {
                 guard (self.searchDataList?.count ?? 0) > indexPath.row else {
                     return UITableViewCell()
@@ -90,7 +90,7 @@ class SearchResultTableViewController: RXTableViewController {
                 cell.updateCellData(data: self.searchDataList?[indexPath.row])
                 return cell
             }
-        case .notFound:
+        case .noResult:
             if let cell = tableView.dequeueReusableCell(withIdentifier: self.notFoundCell, for: indexPath) as? NotFoundTVCell {
                 cell.updateCellData(keyWord: self.keyWord)
                 return cell
@@ -102,13 +102,13 @@ class SearchResultTableViewController: RXTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch self.currentResultType {
-        case .history:
+        case .localHistory:
             return historyWordCellHeight
         
-        case .search:
+        case .apiSearch:
             return searchResultCellHeight
         
-        case .notFound:
+        case .noResult:
             return notFoundCellHeight
         }
     }
@@ -117,19 +117,19 @@ class SearchResultTableViewController: RXTableViewController {
         self.delegate?.hideSearchBarKeyBoard() // 이슈: 다른 방식으로 키보드 숨길 수 없을까?
 
         switch self.currentResultType {
-        case .history:
+        case .localHistory:
             guard (self.historyWordList?.count ?? 0) > indexPath.row else {
                 return
             }
             
             let keyWord = self.historyWordList?[indexPath.row] ?? ""
             self.keyWord = keyWord
-            self.delegate?.onClickHistoryCellForSearch(word: keyWord)
+            self.delegate?.onClickHistoryCellForSearch(keyWord: keyWord)
         
-        case .search:
+        case .apiSearch:
             self.delegate?.routeToDetailPage(index: indexPath.row)
         
-        case .notFound:
+        case .noResult:
                 break
         }
     }

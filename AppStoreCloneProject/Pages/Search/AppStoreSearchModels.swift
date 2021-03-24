@@ -72,13 +72,13 @@ enum AppStoreSearch {
     /**검색 TableView에서 발생 가능한 타입정리
      
      # 타입
-     - history: 로컬 최근검색한 경우
-     - search: API 검색한 경우
-     - notFound: API 검색결과 없는 경우
+     - localHistory: 로컬 최근검색한 경우
+     - apiSearch: API 검색한 경우
+     - noResult: API 검색결과 없는 경우
      */
     enum ResultType {
-        case history
-        case search
-        case notFound
+        case localHistory
+        case apiSearch
+        case noResult
     }
 }

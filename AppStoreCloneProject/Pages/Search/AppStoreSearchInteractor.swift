@@ -70,7 +70,7 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
             .subscribe(onNext: { [weak self] (result) in
                 
                 self?.softWareDataList = result
-                self?.presenter?.presentSearchWordList(response: .init(softWareDataList: self?.softWareDataList))
+                self?.presenter?.presentSearchWordList(response: .init(softWareDataList: result))
                 
             }, onError: { [weak self] (error) in
                 self?.presenter?.presentError(error: error)
