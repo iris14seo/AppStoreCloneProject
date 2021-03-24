@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 
 protocol AppStoreSearchBusinessLogic {
-    func loadAllHistoryWordList(request: AppStoreSearch.HistoryWord.Request)
-    func loadHistoryWordList(request: AppStoreSearch.HistoryWord.Request)
+    func loadAllHistoryWordList(request: AppStoreSearch.AllHistoryWord.Request)
+    func loadFilteredHistoryWordList(request: AppStoreSearch.FilteredHistoryWord.Request)
     func requestSearchWordList(request: AppStoreSearch.SearchWord.Request)
 }
 
@@ -29,35 +29,32 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     
     // MARK: Do something
     
-    func loadAllHistoryWordList(request: AppStoreSearch.HistoryWord.Request) {
+    func loadAllHistoryWordList(request: AppStoreSearch.AllHistoryWord.Request) {
         
         self.worker.loadHistoryWordList().asObservable()
             .subscribe(onNext: { response in
                 self.historyWordList = response
-                
-                var response = AppStoreSearch.HistoryWord.Response(target: request.target)
-                response.historyWordList = self.historyWordList
-                
-                self.presenter?.presentHistoryWordList(response: response)
-                
+                self.presenter?.presentAllHistoryWordList(response: .init(historyWordList: response))
             }, onError: { [weak self] (error) in
                 self?.presenter?.presentError(error: error)
             }).disposed(by: self.disposeBag)
-        
+
     }
     
-    func loadHistoryWordList(request: AppStoreSearch.HistoryWord.Request) {
+    func loadFilteredHistoryWordList(request: AppStoreSearch.FilteredHistoryWord.Request) {
         
         self.worker.loadHistoryWordList().asObservable()
             .subscribe(onNext: { response in
                 self.historyWordList = response
                 
-                var response = AppStoreSearch.HistoryWord.Response(target: request.target)
+                var response = AppStoreSearch.FilteredHistoryWord.Response()
                 if let filterWord = request.keyWord {
                     response.historyWordList = self.historyWordList?.filter{ $0.lowercased().contains(filterWord) }
+                } else {
+                    response.historyWordList = nil
                 }
                 
-                self.presenter?.presentHistoryWordList(response: response)
+                self.presenter?.presentFilteredHistoryWordList(response: response)
                 
             }, onError: { [weak self] (error) in
                 self?.presenter?.presentError(error: error)

@@ -13,33 +13,40 @@ enum AppStoreSearch {
      
      # 전체 목록 노출
      - UserDefault에 저장된 검색어목록 페이징 처리하여 노출
-     
-     # 필터된 목록 노출
-     - 키워드 입력 후, 해당 단어 기반으로 필터된 검색어목록 노출
      */
-    enum HistoryWord {
+    enum AllHistoryWord {
         struct Request {
-            var target: TargetTableView
-            var keyWord: String?
         }
         
         struct Response {
-            var target: TargetTableView
             var historyWordList: [String]?
         }
         
         struct ViewModel{
-            var target: TargetTableView
             var historyWordList: [String]?
-        }
-        
-        enum TargetTableView {
-            case main
-            case search
         }
     }
     
-    /**Use Case2 - 입력된 키워드 기반 검색
+    /**Use Case2 - 로컬 최근검색어 기반 검색
+     
+     # 필터된 목록 노출
+     - 키워드 입력 후, 해당 단어 기반으로 필터된 검색어목록 노출
+     */
+    enum FilteredHistoryWord {
+        struct Request {
+            var keyWord: String?
+        }
+        
+        struct Response {
+            var historyWordList: [String]?
+        }
+        
+        struct ViewModel{
+            var historyWordList: [String]?
+        }
+    }
+    
+    /**Use Case3 - 입력된 키워드 기반 검색
      
      # 로컬 최근검색 시나리오
      - SearchBar에 키워드 입력한 경우

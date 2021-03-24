@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwift
 
 protocol AppStoreSearchDisplayLogic: class {
-    func displayHistoryWordList(viewModel: AppStoreSearch.HistoryWord.ViewModel)
+    func displayAllHistoryWordList(viewModel: AppStoreSearch.AllHistoryWord.ViewModel)
+    func displayFilteredHistoryWordList(viewModel: AppStoreSearch.FilteredHistoryWord.ViewModel)
     func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel)
     func displayError(error: Error?)
 }
@@ -69,7 +70,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.initStyle()
         self.initHistoryWordTableView()
         
-        self.loadAllHistoryWord() //MARK: [이슈] viewWillAppear로 위치 옮기기
+        self.fetchAllHistoryWord() //MARK: [이슈] viewWillAppear로 위치 옮기기
     }
     
     // MARK: Do something
@@ -105,7 +106,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     @IBOutlet var mainTableView: UITableView!
     
     //data
-    var vmHistoryWordList: [String]?
+    var allHistoryWordList: [String]?
     
     func initNavigation() {
         self.navigationItem.do {
@@ -137,16 +138,20 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         }
     }
     
+    func bindSearchController() {
+        
+    }
+    
     @objc func handleSwipeGesture() {
         self.view.endEditing(true)
     }
     
-    func loadAllHistoryWord() {
-        self.interactor?.loadAllHistoryWordList(request: .init(target: .main))
+    func fetchAllHistoryWord() {
+        self.interactor?.loadAllHistoryWordList(request: .init())
     }
     
-    func loadHistoryWord(target: AppStoreSearch.HistoryWord.TargetTableView, keyWord: String? = nil) {
-        self.interactor?.loadHistoryWordList(request: .init(target: target, keyWord: keyWord))
+    func fetchSearchResult(cellType: AppStoreSearch.ResultType, keyWord: String? = nil) {
+        self.interactor?.loadFilteredHistoryWordList(request: .init(keyWord: keyWord))
         self.updateSearchWordType(type: .history)
     }
     
@@ -155,37 +160,27 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.updateSearchWordType(type: .search)
     }
     
-    func displayHistoryWordList(viewModel: AppStoreSearch.HistoryWord.ViewModel) {
+    func displayAllHistoryWordList(viewModel: AppStoreSearch.AllHistoryWord.ViewModel) {
         guard let historyWordList = viewModel.historyWordList else {
             return
         }
         
-        switch viewModel.target {
-        case .main:
-            self.updateHistoryWordTableView(dataList: historyWordList)
-        case .search:
-            self.updateSearchWordTableView(dataList: historyWordList, type: .history)
-        }
-        
-    }
-    
-    func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel) {
-        guard let searchWordList = viewModel.softWareDataList else {
-            return
-        }
-        
-        self.updateSearchWordTableView(dataList: searchWordList, type: .search)
-    }
-    
-    func displayError(error: Error?) {
-        print(error?.localizedDescription ?? "error is occured")
+        self.updateHistoryWordTableView(dataList: historyWordList)
     }
     
     func updateHistoryWordTableView(dataList: [String]?) {
         dump(dataList)
         
-        self.vmHistoryWordList = dataList
+        self.allHistoryWordList = dataList
         self.mainTableView.reloadData()
+    }
+    
+    func displayFilteredHistoryWordList(viewModel: AppStoreSearch.FilteredHistoryWord.ViewModel) {
+        guard let historyWordList = viewModel.historyWordList else {
+            return
+        }
+        
+        self.updateSearchWordTableView(dataList: historyWordList, type: .history)
     }
     
     func updateSearchWordTableView(dataList: [Any]?, type: AppStoreSearch.ResultType) {
@@ -213,6 +208,18 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
     func updateSearchWordType(type: AppStoreSearch.ResultType) {
         self.searchResultTableViewController.currentResultType = type
     }
+    
+    func displaySearchWordList(viewModel: AppStoreSearch.SearchWord.ViewModel) {
+        guard let searchWordList = viewModel.softWareDataList else {
+            return
+        }
+        
+        self.updateSearchWordTableView(dataList: searchWordList, type: .search)
+    }
+    
+    func displayError(error: Error?) {
+        print(error?.localizedDescription ?? "error is occured")
+    }
 }
 
 extension AppStoreSearchViewController: SearchResultTVCellDelegate {
@@ -234,21 +241,22 @@ extension AppStoreSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //이슈: 첫 진입시에만 포커싱될때 포커스 아웃됨(튕김)
         guard let text = searchController.searchBar.text, text.count > 0 else { return }
-        
-        self.loadHistoryWord(target: .search, keyWord: text)
+        self.fetchSearchResult(cellType: .search, keyWord: text)
     }
 }
 
 extension AppStoreSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.loadHistoryWord(target: .search)
+            //MARK: 필요한지 다시 고민
+            self.fetchSearchResult(cellType: .search)
         }
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text.isEmpty {
-            self.loadHistoryWord(target: .search)
+            //MARK: 필요한지 다시 고민
+            self.fetchSearchResult(cellType: .search)
         }
         
         return true
@@ -256,35 +264,34 @@ extension AppStoreSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("서치 버튼 클릭")
+        self.searchingController.searchBar.endEditing(true)
         
         guard let text = searchBar.text, text.count > 0 else { return }
-        self.searchingController.searchBar.endEditing(true)
         self.requestSoftWareDataList(keyWord: text)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("서치 취소 클릭")
-        
-        self.loadHistoryWord(target: .search)
+        self.fetchSearchResult(cellType: .search)
     }
     
 }
 
 extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSource {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let historyWordList = self.vmHistoryWordList,
+        guard let historyWordList = self.allHistoryWordList,
               !historyWordList.isEmpty else {
             return 0
         }
-                
+        
         return historyWordList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let historyWordList = self.vmHistoryWordList,
+        guard let historyWordList = self.allHistoryWordList,
               indexPath.row < historyWordList.count else {
             return UITableViewCell()
         }
