@@ -101,6 +101,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     
     //data
     private var vmSoftWareData: AppStoreDetail.SoftWareDetailDataModel?
+    private var downloadURL: String?
     private var screenShotImageUrlStringList: [String]?
     
     // MARK: Do something
@@ -214,12 +215,18 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     func bindRxEvent() {
         self.downloadButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let self = self else { return }
-            showOKAlert(vc: self, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 Tap")
+            showOKAlert(vc: self, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼을 클릭하였습니다.")
         }).disposed(by: self.disposeBag)
         
         self.shareButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let self = self else { return }
-            showOKAlert(vc: self, title: "공유", message: "\(self.titleLabel.text ?? "") 공유 버튼 Tap")
+            
+            guard let url = self.downloadURL else {
+                showOKAlert(vc: self, title: "공유", message: "URL 데이터를 불러오지 못했습니다.")
+                return
+            }
+            let vc = UIActivityViewController(activityItems: [url], applicationActivities: [])
+            self.present(vc, animated: true, completion: nil)
         }).disposed(by: self.disposeBag)
     } 
     
@@ -244,7 +251,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         self.titleLabel.text = data.title ?? "앱 이름"
         self.shortDescLabel.text = data.genres
         self.iconImageView.setCacheImageURL(URL(string: data.iconImageURL ?? ""))
-       
+        self.downloadURL = data.downloadURL
         self.screenShotImageUrlStringList = data.screenShotURLList
         
         let isSupportIphone = data.supportedDevices?.contains(.iPhone) ?? false

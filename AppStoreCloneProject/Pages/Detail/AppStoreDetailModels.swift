@@ -44,6 +44,7 @@ enum AppStoreDetail {
         var title: String?
         var genres: String?
         var iconImageURL: String?
+        var downloadURL: String?
         var ratingScore: Double?
         var downloadCount: String?
         var recommenedAge: String?
