@@ -86,7 +86,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
     let screenShotCVCellHeight: Double = 350
-    let screenShotImageRatio: CGFloat =  225 / 350
+    let screenShotImageRatio: CGFloat =  225 / 380
 
     @IBOutlet var supportDeviceView: UIView!
     @IBOutlet var iphoneImageView: UIImageView!

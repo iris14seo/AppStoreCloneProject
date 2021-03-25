@@ -47,7 +47,7 @@ class SearchResultTVCell: UITableViewCell {
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
     let screenShotCVCellHeight: Double = 180.0
-    let screenShotImageRatio: CGFloat = 7 / 10
+    let screenShotImageRatio: CGFloat = 11 / 20
     let minimumInteritemSpacing: CGFloat = 20
     
     //data

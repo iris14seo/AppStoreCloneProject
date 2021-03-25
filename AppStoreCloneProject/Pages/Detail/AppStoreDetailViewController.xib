@@ -41,7 +41,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KT1-Qr-Nzi">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="1051.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1061.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz5-hb-Qul" userLabel="상단뷰">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
@@ -159,13 +159,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBk-fC-3HC" userLabel="스크린샷뷰">
-                                    <rect key="frame" x="0.0" y="231" width="375" height="370"/>
+                                    <rect key="frame" x="0.0" y="231" width="375" height="380"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-Ez-hF8" userLabel="스크린샷 컬렉션뷰">
-                                            <rect key="frame" x="20" y="0.0" width="355" height="370"/>
+                                            <rect key="frame" x="20" y="0.0" width="355" height="380"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t80-dI-RTm">
-                                                <size key="itemSize" width="225" height="350"/>
+                                                <size key="itemSize" width="225" height="380"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -177,12 +177,12 @@
                                         <constraint firstItem="kEb-Ez-hF8" firstAttribute="top" secondItem="BBk-fC-3HC" secondAttribute="top" id="BcN-9k-YLa"/>
                                         <constraint firstItem="kEb-Ez-hF8" firstAttribute="leading" secondItem="BBk-fC-3HC" secondAttribute="leading" constant="20" id="Gbd-Go-fmo"/>
                                         <constraint firstAttribute="bottom" secondItem="kEb-Ez-hF8" secondAttribute="bottom" id="ZZm-IE-FxW"/>
-                                        <constraint firstAttribute="height" constant="370" id="bmA-pN-32h"/>
+                                        <constraint firstAttribute="height" constant="380" id="bmA-pN-32h"/>
                                         <constraint firstAttribute="trailing" secondItem="kEb-Ez-hF8" secondAttribute="trailing" id="o8m-gv-OUC"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glM-K6-cb8" userLabel="지원기기뷰">
-                                    <rect key="frame" x="0.0" y="601" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="611" width="375" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="uuT-bd-IEq">
                                             <rect key="frame" x="20" y="10" width="89.5" height="25"/>
@@ -220,7 +220,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEF-dH-va5" userLabel="grayLine">
-                                    <rect key="frame" x="0.0" y="651" width="375" height="1"/>
+                                    <rect key="frame" x="0.0" y="661" width="375" height="1"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAw-79-Ldr">
                                             <rect key="frame" x="20" y="0.0" width="355" height="1"/>
@@ -237,7 +237,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnl-0W-hhm" userLabel="상세설명뷰">
-                                    <rect key="frame" x="0.0" y="652" width="375" height="319.5"/>
+                                    <rect key="frame" x="0.0" y="662" width="375" height="319.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3uA-Pr-t8M">
                                             <rect key="frame" x="20" y="15" width="335" height="304.5"/>
@@ -261,7 +261,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-2t-iMy" userLabel="개발자뷰">
-                                    <rect key="frame" x="0.0" y="971.5" width="375" height="80"/>
+                                    <rect key="frame" x="0.0" y="981.5" width="375" height="80"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개발자 아이디" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3y-uY-hv4">
                                             <rect key="frame" x="20" y="20" width="335" height="17"/>
