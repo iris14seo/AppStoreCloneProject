@@ -79,8 +79,9 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     @IBOutlet var summaryInfoView: UIView!
     @IBOutlet var summaryInfoCollectionView: UICollectionView!
     let summaryInfoCVCell = "SummaryInfoCVCell"
-    let summaryInfoCVCellHeight: Double = 80
+    let summaryInfoCVCellHeight: Double = 100
     let summaryInfoCVCellCount: Int = 5
+    let summaryInfoCVCellRatio: CGFloat =  1
     
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
@@ -334,7 +335,16 @@ extension AppStoreDetailViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return getCollectionViewCellSize(height: screenShotCVCellHeight, ratio: screenShotImageRatio)
+        
+        switch collectionView {
+        case self.summaryInfoCollectionView:
+            return getCollectionViewCellSize(height: summaryInfoCVCellHeight, ratio: summaryInfoCVCellRatio)
+        case self.screenShotCollectionView:
+            return getCollectionViewCellSize(height: screenShotCVCellHeight, ratio: screenShotImageRatio)
+        default:
+            return CGSize.init()
+        }
+        
     }
     
     func getCollectionViewCellSize(height: Double, ratio: CGFloat) -> CGSize{
