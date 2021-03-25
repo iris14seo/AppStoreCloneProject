@@ -75,6 +75,3 @@ class AppStoreSearchWorker: APIProtocol {
         }
     }
 }
-
-//MARK: test code
-//let testUserDefaultArray: [String]? = ["카카오","카카오톡","카카오 뱅크","뱅크","카카오페이","카패","게임","애플","테스트","캌ㅋ","ㅋㅋㅇ","카카오택시","카톡","은행","배그","ㅁㅇㄹㅁ","하이","1","2","3","4","5","6","7","netflix","play"]

@@ -55,13 +55,13 @@ struct SoftwareDataModel: Codable {
     let trackContentRating: String?
     let sellerName: String?
     let primaryGenreId: String?
-    let currentVersionReleaseDate: Date?
+    let currentVersionReleaseDate: String?
     let isVppDeviceBasedLicensingEnabled: Bool?
     let genreIds: [String]?
     let releaseNotes: String?
     let minimumOsVersion: String?
     let primaryGenreName: String?
-    let releaseDate: Date?
+    let releaseDate: String?
     let currency: String?
     let wrapperType: String?
     let version: String?
@@ -195,13 +195,13 @@ struct SoftwareDataModel: Codable {
         self.trackContentRating = trackContentRating ?? ""
         self.sellerName = sellerName ?? ""
         self.primaryGenreId = primaryGenreId ?? ""
-        self.currentVersionReleaseDate = Date.convertAppleStringToDate(currentVersionReleaseDate ?? "")
+        self.currentVersionReleaseDate = currentVersionReleaseDate ?? ""
         self.isVppDeviceBasedLicensingEnabled = isVppDeviceBasedLicensingEnabled ?? false
         self.genreIds = genreIds ?? []
         self.releaseNotes = releaseNotes ?? ""
         self.minimumOsVersion = minimumOsVersion ?? ""
         self.primaryGenreName = primaryGenreName ?? ""
-        self.releaseDate = Date.convertAppleStringToDate(releaseDate ?? "")
+        self.releaseDate = releaseDate ?? ""
         self.currency = currency ?? ""
         self.wrapperType = wrapperType ?? ""
         self.version = version ?? ""
@@ -287,39 +287,6 @@ extension KeyedDecodingContainer {
             return Double(value)
         }
         return 0.0
-    }
-    
-}
-
-extension Date {
-    
-    /**
-     애플 날짜 형식 문자로 부터 Date 타입으로 변환 함수
-     #매개변수
-     - dateString: 날짜 문자열
-     - returns: 날짜
-     */
-    static func convertAppleStringToDate(_ dateString: String?) -> Date? {
-        guard let dateString = dateString else {
-            return nil
-        }
-        if dateString.isEmpty {
-            return nil
-        }
-        return convertStringToDate(dateString, dateFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
-    }
-    
-    /**
-     애플 날짜 형식 문자로 부터 Date 타입으로 변환 함수
-     #매개변수
-     - dateString: 날짜 문자열
-     - dateFormat: Date Format
-     - returns: 날짜
-     */
-    static func convertStringToDate(_ dateString: String, dateFormat: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
-        return dateFormatter.date(from: dateString)
     }
     
 }
