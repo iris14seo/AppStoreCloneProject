@@ -73,9 +73,10 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.fetchMainTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        self.view.layoutIfNeeded()
         self.navigationController?.do {
             $0.navigationBar.prefersLargeTitles = true
         }
