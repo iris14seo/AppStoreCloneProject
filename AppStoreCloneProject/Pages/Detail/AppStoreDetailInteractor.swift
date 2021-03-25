@@ -12,14 +12,14 @@ protocol AppStoreDetailBusinessLogic {
 }
 
 protocol AppStoreDetailDataStore {
-    var softWareData: SearchResultModel? { get set }
+    var softWareData: SoftwareDataModel? { get set }
 }
 
 class AppStoreDetailInteractor: AppStoreDetailBusinessLogic, AppStoreDetailDataStore {
     var presenter: AppStoreDetailPresentationLogic?
     var worker: AppStoreDetailWorker?
     
-    var softWareData: SearchResultModel?
+    var softWareData: SoftwareDataModel?
     
     // MARK: Do something
     

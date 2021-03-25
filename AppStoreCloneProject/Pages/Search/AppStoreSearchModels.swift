@@ -62,7 +62,7 @@ enum AppStoreSearch {
         }
         
         struct Response {
-            var softWareDataList: [SearchResultModel]?
+            var softWareDataList: [SoftwareDataModel]?
         }
         
         struct ViewModel{

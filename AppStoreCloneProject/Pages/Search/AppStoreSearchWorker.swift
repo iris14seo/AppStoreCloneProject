@@ -51,7 +51,7 @@ class AppStoreSearchWorker: APIProtocol {
     
     /**iTunes Search API에서 검색결과 조회
      */
-    func requestSoftWareDataList(keyWord: String) -> Observable<[SearchResultModel]?> {
+    func requestSoftWareDataList(keyWord: String) -> Observable<[SoftwareDataModel]?> {
         return Observable.create { (observer) -> Disposable in
             
             self.queryParameters = [

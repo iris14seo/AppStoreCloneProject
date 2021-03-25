@@ -37,7 +37,7 @@ class AppStoreSearchPresenter: AppStoreSearchPresentationLogic {
         self.viewController?.displayError(error: error)
     }
     
-    func getResultTableViewCellDataList(dataList: [SearchResultModel]?) -> [SoftWareCellDataModel]? {
+    func getResultTableViewCellDataList(dataList: [SoftwareDataModel]?) -> [SoftWareCellDataModel]? {
         
         guard let dataList = dataList else {
             return nil

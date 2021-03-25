@@ -37,14 +37,13 @@
 		BB8C985C260641F6003B40F8 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C985B260641F6003B40F8 /* UIColor+Extension.swift */; };
 		BB8C986326064495003B40F8 /* UINavigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C986226064495003B40F8 /* UINavigation+Extension.swift */; };
 		BB8C986626064902003B40F8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C986526064902003B40F8 /* UIViewController+Extension.swift */; };
+		BB9A3D5C260C9760009E4747 /* SoftwareDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9A3D5B260C9760009E4747 /* SoftwareDataModel.swift */; };
 		BBA69E412608F3A500E237FF /* NotFoundTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E3F2608F3A500E237FF /* NotFoundTVCell.swift */; };
 		BBA69E422608F3A500E237FF /* NotFoundTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E402608F3A500E237FF /* NotFoundTVCell.xib */; };
 		BBA69E462608F8DD00E237FF /* MainTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E442608F8DD00E237FF /* MainTVCell.swift */; };
 		BBA69E472608F8DD00E237FF /* MainTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E452608F8DD00E237FF /* MainTVCell.xib */; };
 		BBA69E4C2608FEBA00E237FF /* SearchResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E4A2608FEBA00E237FF /* SearchResultTVCell.swift */; };
 		BBA69E4D2608FEBA00E237FF /* SearchResultTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E4B2608FEBA00E237FF /* SearchResultTVCell.xib */; };
-		BBA69E54260A1A1C00E237FF /* SoftWareDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */; };
-		BBA69E57260A2B5700E237FF /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E56260A2B5600E237FF /* SearchModel.swift */; };
 		BBA69E5C260A2F6300E237FF /* ScreenShotCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E5A260A2F6300E237FF /* ScreenShotCVCell.swift */; };
 		BBA69E5D260A2F6300E237FF /* ScreenShotCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBA69E5B260A2F6300E237FF /* ScreenShotCVCell.xib */; };
 		BBA69E68260A374A00E237FF /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA69E66260A374A00E237FF /* CustomAlert.swift */; };
@@ -58,7 +57,6 @@
 		BBDF99422607410400F4BB20 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */; };
 		BBDF994C26075A3D00F4BB20 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */; };
 		BBDF994F26075A5200F4BB20 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */; };
-		BBDF99632607B06400F4BB20 /* ITunesSearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDF99622607B06400F4BB20 /* ITunesSearchDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,14 +93,13 @@
 		BB8C985B260641F6003B40F8 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		BB8C986226064495003B40F8 /* UINavigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extension.swift"; sourceTree = "<group>"; };
 		BB8C986526064902003B40F8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		BB9A3D5B260C9760009E4747 /* SoftwareDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftwareDataModel.swift; sourceTree = "<group>"; };
 		BBA69E3F2608F3A500E237FF /* NotFoundTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundTVCell.swift; sourceTree = "<group>"; };
 		BBA69E402608F3A500E237FF /* NotFoundTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotFoundTVCell.xib; sourceTree = "<group>"; };
 		BBA69E442608F8DD00E237FF /* MainTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVCell.swift; sourceTree = "<group>"; };
 		BBA69E452608F8DD00E237FF /* MainTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTVCell.xib; sourceTree = "<group>"; };
 		BBA69E4A2608FEBA00E237FF /* SearchResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTVCell.swift; sourceTree = "<group>"; };
 		BBA69E4B2608FEBA00E237FF /* SearchResultTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTVCell.xib; sourceTree = "<group>"; };
-		BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftWareDataModel.swift; sourceTree = "<group>"; };
-		BBA69E56260A2B5600E237FF /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		BBA69E5A260A2F6300E237FF /* ScreenShotCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotCVCell.swift; sourceTree = "<group>"; };
 		BBA69E5B260A2F6300E237FF /* ScreenShotCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotCVCell.xib; sourceTree = "<group>"; };
 		BBA69E66260A374A00E237FF /* CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
@@ -116,7 +113,6 @@
 		BBDF99412607410400F4BB20 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		BBDF994B26075A3D00F4BB20 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BBDF994E26075A5200F4BB20 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
-		BBDF99622607B06400F4BB20 /* ITunesSearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesSearchDataModel.swift; sourceTree = "<group>"; };
 		ECF715FD5AF6487D19A691CF /* Pods-AppStoreCloneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneProject.release.xcconfig"; path = "Target Support Files/Pods-AppStoreCloneProject/Pods-AppStoreCloneProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,9 +213,7 @@
 		BB8C98132605056E003B40F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BBDF99622607B06400F4BB20 /* ITunesSearchDataModel.swift */,
-				BBA69E53260A1A1C00E237FF /* SoftWareDataModel.swift */,
-				BBA69E56260A2B5600E237FF /* SearchModel.swift */,
+				BB9A3D5B260C9760009E4747 /* SoftwareDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -442,14 +436,13 @@
 				BBCC5271260A564300BCF8B1 /* UIApplication+Extension.swift in Sources */,
 				BB8C984926051358003B40F8 /* AppStoreDetailWorker.swift in Sources */,
 				BB8C983A2605132F003B40F8 /* AppStoreSearchInteractor.swift in Sources */,
+				BB9A3D5C260C9760009E4747 /* SoftwareDataModel.swift in Sources */,
 				BBA69E6D260A394600E237FF /* MainTVSectionView.swift in Sources */,
 				BB8C983B2605132F003B40F8 /* AppStoreSearchPresenter.swift in Sources */,
 				BB8C982126050D91003B40F8 /* UIImage+Extension.swift in Sources */,
 				BB8C983F2605132F003B40F8 /* AppStoreSearchWorker.swift in Sources */,
-				BBA69E57260A2B5700E237FF /* SearchModel.swift in Sources */,
 				BB8C983C2605132F003B40F8 /* AppStoreSearchModels.swift in Sources */,
 				BB8C983E2605132F003B40F8 /* AppStoreSearchViewController.swift in Sources */,
-				BBA69E54260A1A1C00E237FF /* SoftWareDataModel.swift in Sources */,
 				8702166B2609A53400D05C08 /* RXViewController.swift in Sources */,
 				BBDF994F26075A5200F4BB20 /* ImageCacheManager.swift in Sources */,
 				BBA69E4C2608FEBA00E237FF /* SearchResultTVCell.swift in Sources */,
@@ -462,7 +455,6 @@
 				BBA69E69260A374A00E237FF /* CustomXibView.swift in Sources */,
 				BB8C982026050D91003B40F8 /* UITextField+Extension.swift in Sources */,
 				BBA69E412608F3A500E237FF /* NotFoundTVCell.swift in Sources */,
-				BBDF99632607B06400F4BB20 /* ITunesSearchDataModel.swift in Sources */,
 				BBA69E462608F8DD00E237FF /* MainTVCell.swift in Sources */,
 				BB8C981F26050D91003B40F8 /* String+Extension.swift in Sources */,
 				BB8C986626064902003B40F8 /* UIViewController+Extension.swift in Sources */,

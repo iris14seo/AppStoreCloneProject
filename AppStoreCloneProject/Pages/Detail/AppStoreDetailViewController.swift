@@ -85,8 +85,8 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
     
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
-    let screenShotCVCellHeight: Double = 250
-    let screenShotImageRatio: CGFloat =  0.5
+    let screenShotCVCellHeight: Double = 350
+    let screenShotImageRatio: CGFloat =  225 / 350
 
     @IBOutlet var supportDeviceView: UIView!
     @IBOutlet var iphoneImageView: UIImageView!
@@ -157,7 +157,7 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
             
             if let layout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
                 layout.scrollDirection = .horizontal
-                layout.minimumInteritemSpacing = 10
+                layout.minimumInteritemSpacing = 0
                 layout.minimumLineSpacing = 0
             }
         }
@@ -346,8 +346,8 @@ extension AppStoreDetailViewController: UICollectionViewDelegate, UICollectionVi
         }
         
     }
-    
-    func getCollectionViewCellSize(height: Double, ratio: CGFloat) -> CGSize{
-        return CGSize(width: height * Double(ratio) , height: height)
-    }
+}
+
+public func getCollectionViewCellSize(height: Double, ratio: CGFloat) -> CGSize{
+    return CGSize(width: height * Double(ratio) , height: height)
 }

@@ -15,7 +15,7 @@ protocol AppStoreSearchBusinessLogic {
 }
 
 protocol AppStoreSearchDataStore {
-    var softWareDataList: [SearchResultModel]? { get set }
+    var softWareDataList: [SoftwareDataModel]? { get set }
 }
 
 class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataStore {
@@ -23,7 +23,7 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     var worker = AppStoreSearchWorker()
     
     var historyWordList: [String]?
-    var softWareDataList: [SearchResultModel]?
+    var softWareDataList: [SoftwareDataModel]?
     
     let disposeBag = DisposeBag()
     

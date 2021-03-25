@@ -16,7 +16,7 @@ enum AppStoreDetail {
         }
         
         struct Response {
-            var data: SearchResultModel?
+            var data: SoftwareDataModel?
         }
         
         struct ViewModel{

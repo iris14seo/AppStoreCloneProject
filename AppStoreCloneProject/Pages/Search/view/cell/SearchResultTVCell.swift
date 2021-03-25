@@ -46,6 +46,8 @@ class SearchResultTVCell: UITableViewCell {
     
     @IBOutlet var screenShotCollectionView: UICollectionView!
     let screenShotCVCell = "ScreenShotCVCell"
+    let screenShotCVCellHeight: Double = 180.0
+    let screenShotImageRatio: CGFloat = 7 / 10
     let minimumInteritemSpacing: CGFloat = 20
     
     //data
@@ -185,4 +187,8 @@ extension SearchResultTVCell: UICollectionViewDelegate, UICollectionViewDataSour
         return uCell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return getCollectionViewCellSize(height: screenShotCVCellHeight, ratio: screenShotImageRatio)
+    }
+        
 }

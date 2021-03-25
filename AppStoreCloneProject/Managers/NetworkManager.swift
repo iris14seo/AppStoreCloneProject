@@ -44,7 +44,7 @@ enum HTTPMethod: String {
     //case delete = "DELETE" //잘 안씀
 }
 
-typealias CompletionHandler = (APIResult<[SearchResultModel]?>) -> Void
+typealias CompletionHandler = (APIResult<[SoftwareDataModel]?>) -> Void
 
 class NetworkManager {
     
@@ -105,7 +105,7 @@ class NetworkManager {
             break
         }
         
-        print(urlRequest)
+        //print(urlRequest)
         
         //네트워킹 시작
         let task = session?.dataTask(with: urlRequest) { (data, response, error) in
@@ -123,7 +123,7 @@ class NetworkManager {
                     do {
                         //JSON타입의 데이터를 디코딩
                         let decoder = JSONDecoder()
-                        let softWareResponse = try decoder.decode(SearchModel.self, from: resultData)
+                        let softWareResponse = try decoder.decode(SoftwareDataResponseModel.self, from: resultData)
                         //dump(softWareResponse)
                         
                         completionHandler(.success(result: softWareResponse.results))
