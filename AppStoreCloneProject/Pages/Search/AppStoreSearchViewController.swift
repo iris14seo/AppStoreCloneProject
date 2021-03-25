@@ -73,9 +73,10 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
         self.fetchMainTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        self.view.layoutIfNeeded()
         self.navigationController?.do {
             $0.navigationBar.prefersLargeTitles = true
         }
@@ -144,6 +145,7 @@ class AppStoreSearchViewController: RXViewController, AppStoreSearchDisplayLogic
             $0.register(UINib(nibName: mainCell, bundle: nil), forCellReuseIdentifier: mainCell)
             $0.register(UINib.init(nibName: mainSectionView, bundle: nil), forHeaderFooterViewReuseIdentifier: mainSectionView)
         }
+        
     }
     
     func fetchMainTableView() {
@@ -225,7 +227,7 @@ extension AppStoreSearchViewController: SearchResultTVCellDelegate {
     }
     
     func hideSearchBarKeyBoard() {
-        self.searchingController.searchBar.endEditing(true)
+        self.searchingController.searchBar.resignFirstResponder()
     }
     
     func routeToDetailPage(index: Int) {
@@ -324,5 +326,11 @@ extension AppStoreSearchViewController: UITableViewDelegate, UITableViewDataSour
         let keyWord = wordList[indexPath.row]
         self.searchingController.searchBar.text = keyWord
         self.requestAPISearch(keyWord: keyWord)
+    }
+}
+
+extension AppStoreSearchViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.searchingController.searchBar.resignFirstResponder()
     }
 }

@@ -243,13 +243,13 @@
 		BB8C98332605132F003B40F8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				BBDF99282606E8F700F4BB20 /* view */,
 				BB8C98342605132F003B40F8 /* AppStoreSearchInteractor.swift */,
-				BB8C98352605132F003B40F8 /* AppStoreSearchPresenter.swift */,
 				BB8C98362605132F003B40F8 /* AppStoreSearchModels.swift */,
+				BB8C98352605132F003B40F8 /* AppStoreSearchPresenter.swift */,
 				BB8C98372605132F003B40F8 /* AppStoreSearchRouter.swift */,
 				BB8C98382605132F003B40F8 /* AppStoreSearchViewController.swift */,
 				BB8C98392605132F003B40F8 /* AppStoreSearchWorker.swift */,
+				BBDF99282606E8F700F4BB20 /* view */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -257,14 +257,14 @@
 		BB8C984126051340003B40F8 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				BBA69E5F260A2FCD00E237FF /* cell */,
-				BB8C984226051358003B40F8 /* AppStoreDetailPresenter.swift */,
-				BB8C984326051358003B40F8 /* AppStoreDetailWorker.swift */,
-				BB8C984426051358003B40F8 /* AppStoreDetailRouter.swift */,
-				BB8C984526051358003B40F8 /* AppStoreDetailModels.swift */,
-				BB8C984626051358003B40F8 /* AppStoreDetailViewController.swift */,
 				BB8C984726051358003B40F8 /* AppStoreDetailInteractor.swift */,
+				BB8C984526051358003B40F8 /* AppStoreDetailModels.swift */,
+				BB8C984226051358003B40F8 /* AppStoreDetailPresenter.swift */,
+				BB8C984426051358003B40F8 /* AppStoreDetailRouter.swift */,
+				BB8C984626051358003B40F8 /* AppStoreDetailViewController.swift */,
 				BB8C984F26051370003B40F8 /* AppStoreDetailViewController.xib */,
+				BB8C984326051358003B40F8 /* AppStoreDetailWorker.swift */,
+				BBA69E5F260A2FCD00E237FF /* cell */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -291,8 +291,8 @@
 		BBDF99282606E8F700F4BB20 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				BBA69E492608FE7300E237FF /* tableView */,
 				BBDF99672607BB0700F4BB20 /* cell */,
+				BBA69E492608FE7300E237FF /* tableView */,
 			);
 			path = view;
 			sourceTree = "<group>";

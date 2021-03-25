@@ -26,7 +26,7 @@ class AppStoreSearchWorker: APIProtocol {
     func loadHistoryWordList() -> Observable<[String]?> {
         return Observable.create { (observer) -> Disposable in
             
-            if let responseData = HistoryWordUserDefaultManager.shared.getWordList() {
+            if let responseData = HistoryWordUserDefaultManager.shared.getDataList() {
                 observer.onNext(responseData)
                 observer.onCompleted()
             } else {
@@ -43,7 +43,7 @@ class AppStoreSearchWorker: APIProtocol {
         var resultWordList:[String] = wordList
         if tapIndex == 1 {
             resultWordList = wordList.filter({
-                return HistoryWordUserDefaultManager.shared.isExistWord(word: $0)
+                return HistoryWordUserDefaultManager.shared.isExistData(word: $0)
             })
         }
         return resultWordList

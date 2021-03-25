@@ -134,3 +134,9 @@ class SearchResultTableViewController: RXTableViewController {
         }
     }
 }
+
+extension SearchResultTableViewController {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.delegate?.hideSearchBarKeyBoard()
+    }
+}

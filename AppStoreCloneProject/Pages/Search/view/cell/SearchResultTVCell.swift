@@ -137,7 +137,7 @@ class SearchResultTVCell: UITableViewCell {
             guard let topViewController = UIApplication.topViewController() else {
                 return
             }
-            showOKAlert(vc: topViewController, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼 Tap")
+            showOKAlert(vc: topViewController, title: "다운로드", message: "\(self.titleLabel.text ?? "") 다운로드 버튼을 클릭하였습니다.")
         }).disposed(by: self.disposeBag)
     }
     

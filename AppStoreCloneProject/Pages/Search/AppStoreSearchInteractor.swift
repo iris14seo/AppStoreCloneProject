@@ -78,6 +78,6 @@ class AppStoreSearchInteractor: AppStoreSearchBusinessLogic, AppStoreSearchDataS
     }
     
     private func updateHistoryWordUserDefault(keyWord: String) {
-        HistoryWordUserDefaultManager.shared.addWord(word: keyWord)
+        HistoryWordUserDefaultManager.shared.addData(word: keyWord)
     }
 }

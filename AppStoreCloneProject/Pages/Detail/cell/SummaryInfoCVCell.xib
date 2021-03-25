@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,17 +22,17 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydk-xi-cMX" userLabel="rightLine">
                                 <rect key="frame" x="79" y="20" width="1" height="40"/>
-                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
+                                <color key="backgroundColor" red="0.80851500489177019" green="0.83001343383667781" blue="0.84830391839378239" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="ONJ-Xd-L0z"/>
                                     <constraint firstAttribute="height" constant="40" id="qgP-F2-8Sk"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2tJ-Cw-Wda">
-                                <rect key="frame" x="12" y="11" width="56" height="58"/>
+                                <rect key="frame" x="11" y="11" width="58" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상단 라벨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-JO-fhQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="TNo-Ps-9DF"/>
                                         </constraints>
@@ -41,22 +41,35 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중간 라벨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUu-HN-h4F">
-                                        <rect key="frame" x="0.0" y="20" width="56" height="18"/>
+                                        <rect key="frame" x="0.0" y="20" width="58" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-63-Do5">
-                                        <rect key="frame" x="0.0" y="38" width="56" height="20"/>
+                                        <rect key="frame" x="0.0" y="38" width="58" height="20"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKN-e8-wmA" customClass="CosmosView" customModule="Cosmos">
-                                                <rect key="frame" x="0.0" y="0.0" width="56" height="20"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKc-F0-2Hu">
+                                                <rect key="frame" x="0.0" y="0.0" width="58" height="20"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKN-e8-wmA" customClass="CosmosView" customModule="Cosmos">
+                                                        <rect key="frame" x="19" y="0.0" width="20" height="20"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
+                                                <constraints>
+                                                    <constraint firstItem="hKN-e8-wmA" firstAttribute="top" secondItem="fKc-F0-2Hu" secondAttribute="top" id="2Xq-nF-JWE"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hKN-e8-wmA" secondAttribute="trailing" id="4en-Qu-2A9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hKN-e8-wmA" secondAttribute="bottom" id="Avo-X5-Rhe"/>
+                                                    <constraint firstItem="hKN-e8-wmA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fKc-F0-2Hu" secondAttribute="leading" id="lPy-aD-Hx6"/>
+                                                    <constraint firstItem="hKN-e8-wmA" firstAttribute="centerX" secondItem="fKc-F0-2Hu" secondAttribute="centerX" id="xpV-3v-voK"/>
+                                                </constraints>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하단 라벨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yt-jT-SiZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="0.0" height="20"/>
@@ -98,6 +111,7 @@
                 <outlet property="bottomLabel" destination="8Yt-jT-SiZ" id="Qgf-j2-wlg"/>
                 <outlet property="middleLabel" destination="rUu-HN-h4F" id="qSC-2Y-kD2"/>
                 <outlet property="ratingStarView" destination="hKN-e8-wmA" id="aAr-l7-Lkf"/>
+                <outlet property="ratingStarViewContainer" destination="fKc-F0-2Hu" id="nNY-yT-o2z"/>
                 <outlet property="rightLineView" destination="ydk-xi-cMX" id="OUP-LN-Vkp"/>
                 <outlet property="topLabel" destination="DGs-JO-fhQ" id="Czv-XZ-w6S"/>
             </connections>

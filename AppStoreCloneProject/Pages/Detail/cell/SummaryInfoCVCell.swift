@@ -20,6 +20,8 @@ class SummaryInfoCVCell: UICollectionViewCell {
 
     @IBOutlet var topLabel: UILabel!
     @IBOutlet var middleLabel: UILabel!
+    
+    @IBOutlet var ratingStarViewContainer: UIView!
     @IBOutlet var ratingStarView: CosmosView!
     @IBOutlet var bottomLabel: UILabel!
     
@@ -66,14 +68,12 @@ class SummaryInfoCVCell: UICollectionViewCell {
         
         self.ratingStarView.do {
             $0.settings.updateOnTouch = false
-            $0.settings.starSize = 14
-            $0.settings.starMargin = 1.0
+            $0.settings.starSize = 15
+            $0.settings.starMargin = 0
             $0.settings.filledColor = UIColor.secondaryLabel
             $0.settings.filledBorderColor = UIColor.secondaryLabel
             $0.settings.emptyBorderColor = UIColor.secondaryLabel
             $0.rating = 0
-
-            $0.isHidden = true
         }
         
         self.rightLineView.isHidden = false
@@ -88,15 +88,15 @@ class SummaryInfoCVCell: UICollectionViewCell {
         
         switch type {
         case 0:
-            self.ratingStarView.isHidden = false
+            self.ratingStarViewContainer.isHidden = false
             self.bottomLabel.isHidden = true
             
-            self.topLabel.text = Int(data.ratingScore ?? 0).downloadUnit
+            self.topLabel.text = "\(data.downloadCount ?? "0")개의 평가"
             self.middleLabel.text = String(data.ratingScore ?? 0)
             self.ratingStarView.rating = data.ratingScore ?? 0
             
         case 1:
-            self.ratingStarView.isHidden = true
+            self.ratingStarViewContainer.isHidden = true
             self.bottomLabel.isHidden = false
             
             self.topLabel.text = "다운횟수"
@@ -104,7 +104,7 @@ class SummaryInfoCVCell: UICollectionViewCell {
             self.bottomLabel.text = "회"
             
         case 2:
-            self.ratingStarView.isHidden = true
+            self.ratingStarViewContainer.isHidden = true
             self.bottomLabel.isHidden = false
             
             self.topLabel.text = "연령"
@@ -112,7 +112,7 @@ class SummaryInfoCVCell: UICollectionViewCell {
             self.bottomLabel.text = "세"
             
         case 3:
-            self.ratingStarView.isHidden = true
+            self.ratingStarViewContainer.isHidden = true
             self.bottomLabel.isHidden = false
             
             self.topLabel.text = "언어"
@@ -120,7 +120,7 @@ class SummaryInfoCVCell: UICollectionViewCell {
             self.bottomLabel.text = "+ 기타 언어"
             
         case 4:
-            self.ratingStarView.isHidden = true
+            self.ratingStarViewContainer.isHidden = true
             self.bottomLabel.isHidden = false
             
             self.topLabel.text = "최소 OS"

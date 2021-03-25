@@ -27,7 +27,8 @@ class AppStoreDetailPresenter: AppStoreDetailPresentationLogic {
         model.title = data.trackName
         model.genres = data.genres?.first
         model.iconImageURL = data.artworkUrl100
-        model.ratingScore = data.averageUserRating ?? 0
+        model.downloadURL = data.trackViewUrl
+        model.ratingScore = getRatingScore(originNum: data.averageUserRating ?? 0) 
         model.downloadCount = Int(data.userRatingCount ?? 0).downloadUnit
         model.recommenedAge = data.contentAdvisoryRating
         model.baseLanguage = data.languageCodesISO2A?.first
