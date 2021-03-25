@@ -135,10 +135,10 @@ class AppStoreDetailViewController: RXViewController, AppStoreDetailDisplayLogic
         }
         
         self.downloadButton.do {
-            $0.layer.cornerRadius = 10
+            $0.layer.cornerRadius = 12
             $0.clipsToBounds = true
             $0.setTitle("받기", for: .normal)
-            $0.titleLabel?.setFontAndColor(f: .boldSystemFont(ofSize: 11), c: .white)
+            $0.titleLabel?.setFontAndColor(f: .boldSystemFont(ofSize: 12), c: .white)
         }
         
         self.shareButton.do {
